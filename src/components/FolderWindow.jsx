@@ -5,7 +5,7 @@ export default function FolderWindow({ title, file, onClose }) {
   const [content, setContent] = useState('Loading...');
 
   useEffect(() => {
-    fetch(`/memory_bank/${file}`)
+    fetch(`/content/${file}`)
       .then(r => r.text())
       .then(txt => setContent(txt))
       .catch(() => setContent('Error loading content'));

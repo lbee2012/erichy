@@ -5,9 +5,9 @@ export default function Home() {
   const [open, setOpen] = useState({})
 
   const folders = [
-    { key: "about", title: "About", file: "about.txt" },
-    { key: "works", title: "Works", file: "works.txt" },
-    { key: "contact", title: "Contact", file: "contact.txt" },
+    { key: "about", title: "about", file: "about.md" },
+    { key: "works", title: "works", file: "works.md" },
+    { key: "contact", title: "contact", file: "contact.md" },
   ]
 
   return (

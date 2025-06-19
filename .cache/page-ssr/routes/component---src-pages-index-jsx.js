@@ -36032,7 +36032,7 @@ function FolderWindow({
     1: setContent
   } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Loading...');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    fetch(`/memory_bank/${file}`).then(r => r.text()).then(txt => setContent(txt)).catch(() => setContent('Error loading content'));
+    fetch(`/content/${file}`).then(r => r.text()).then(txt => setContent(txt)).catch(() => setContent('Error loading content'));
   }, [file]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
     handle: ".handle"
@@ -36072,16 +36072,16 @@ function Home() {
   } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({});
   const folders = [{
     key: "about",
-    title: "About",
-    file: "about.txt"
+    title: "about",
+    file: "about.md"
   }, {
     key: "works",
-    title: "Works",
-    file: "works.txt"
+    title: "works",
+    file: "works.md"
   }, {
     key: "contact",
-    title: "Contact",
-    file: "contact.txt"
+    title: "contact",
+    file: "contact.md"
   }];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
     className: "h-screen w-screen bg-gray-100 flex items-center justify-center"

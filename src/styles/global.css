@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #___gatsby {
+  height: 100vh;
+  overflow: hidden;
+}
+
+#__gatsby > div {
+  box-sizing: border-box;
+  border: 8px solid #333;
+  height: 100%;
+}

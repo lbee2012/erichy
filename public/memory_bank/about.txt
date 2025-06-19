@@ -1,0 +1,20 @@
+WHO is me?
+- Origin: Vietnamese guy
+- Birthday: Dec-20.2007 (Vietnamese format 20/12; I often joke I was born in 2012)
+- Gender: undetermined
+
+WHERE my location?
+- Hanoi City, Vietnam's capital
+
+WHICH my degrees?
+- 2022–2026: Software Engineering (FPT Polytechnic)
+- 2026–20xx: AI & Data Science (FPT University)
+
+WHY this website?
+- Inspired by Shary’s design
+
+WHAT it involves?
+- things around me and myself
+- fun stuff: background music, light/dark appearance
+- portfolio links
+- “Lbee’s museum”: tech gear, books…

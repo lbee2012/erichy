@@ -28,14 +28,17 @@
     "use-sound": "^5.0.0"
   },
   "scripts": {
-    "clean": "gatsby clean",
-    "develop": "gatsby develop --host 0.0.0.0 --port 8000",
-    "build": "gatsby build",
-    "serve": "gatsby serve"
+    "prestart": "gatsby clean",
+    "clean": "rimraf .cache public \"node_modules/.cache/babel-loader\" \"node_modules/.cache/terser-webpack-plugin\"",
+    "develop": "gatsby develop -H 0.0.0.0 -p 8000",
+    "start":   "gatsby develop -H 0.0.0.0 -p 8000",
+    "build":   "gatsby build",
+    "serve":   "gatsby serve"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.10",
     "gatsby-cli": "^5.14.0",
-    "serve": "^14.2.4"
+    "serve": "^14.2.4",
+    "rimraf": "^5.0.0"
   }
 }

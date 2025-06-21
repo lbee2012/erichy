@@ -1,3 +1,5 @@
+/* Import JetBrains Mono font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +7,7 @@
 html, body, #___gatsby {
   height: 100vh;
   overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 #__gatsby > div {

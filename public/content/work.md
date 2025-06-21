@@ -1,0 +1,2 @@
+- carries my stuff
+- I was in a period of freelance editor, I got some results that wanna show off on this website.

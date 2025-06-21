@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Draggable from 'react-draggable';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { FRAME_WIDTH, FRAME_HEIGHT } from '../theme';
 
 export default function FolderWindow({ title, file, onClose }) {
   const [content, setContent] = useState('Loading...');
+  const [defaultPosition, setDefaultPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     fetch(`/content/${file}`)
@@ -11,14 +15,29 @@ export default function FolderWindow({ title, file, onClose }) {
       .catch(() => setContent('Error loading content'));
   }, [file]);
 
+  useEffect(() => {
+    // defaultPosition is centered by default; random spawning will be added later
+    setDefaultPosition({
+      x: (window.innerWidth - FRAME_WIDTH) / 2,
+      y: (window.innerHeight - FRAME_HEIGHT) / 2,
+    });
+  }, []);
+
   return (
-    <Draggable handle=".handle">
-      <div className="absolute bg-white border shadow-lg w-80">
+    <Draggable handle=".handle" defaultPosition={defaultPosition}>
+      <div
+        style={{ resize: 'both', overflow: 'auto' }}
+        className="bg-white border shadow-lg w-[800px] h-[600px] z-40 flex flex-col"
+      >
         <div className="handle bg-blue-600 text-white p-2 flex justify-between items-center cursor-move">
-          <span>{title}</span>
+          <span className="text-lg font-bold">{title.toLowerCase()}</span>
           <button onClick={onClose} className="ml-2 text-xl leading-none">&times;</button>
         </div>
-        <div className="p-4 whitespace-pre-wrap text-sm">{content}</div>
+        <div className="p-4 prose max-w-none overflow-auto flex-1">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {content}
+          </ReactMarkdown>
+        </div>
       </div>
     </Draggable>
   );

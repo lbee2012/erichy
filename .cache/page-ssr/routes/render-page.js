@@ -5084,6 +5084,50 @@ module.exports = require("https");
 
 /***/ }),
 
+/***/ "node:path":
+/*!****************************!*\
+  !*** external "node:path" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:path");
+
+/***/ }),
+
+/***/ "node:process":
+/*!*******************************!*\
+  !*** external "node:process" ***!
+  \*******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:process");
+
+/***/ }),
+
+/***/ "node:url":
+/*!***************************!*\
+  !*** external "node:url" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:url");
+
+/***/ }),
+
+/***/ "os":
+/*!*********************!*\
+  !*** external "os" ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("os");
+
+/***/ }),
+
 /***/ "punycode":
 /*!***************************!*\
   !*** external "punycode" ***!
@@ -5128,6 +5172,17 @@ module.exports = require("stream");
 
 /***/ }),
 
+/***/ "tty":
+/*!**********************!*\
+  !*** external "tty" ***!
+  \**********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("tty");
+
+/***/ }),
+
 /***/ "url":
 /*!**********************!*\
   !*** external "url" ***!
@@ -5136,6 +5191,17 @@ module.exports = require("stream");
 
 "use strict";
 module.exports = require("url");
+
+/***/ }),
+
+/***/ "util":
+/*!***********************!*\
+  !*** external "util" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("util");
 
 /***/ }),
 

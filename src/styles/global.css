@@ -7,8 +7,19 @@ html, body, #___gatsby {
   overflow: hidden;
 }
 
+/* Default font */
+body, html {
+  font-family: 'JetBrains Mono', monospace;
+}
+
 #__gatsby > div {
   box-sizing: border-box;
   border: 8px solid #333;
   height: 100%;
+}
+
+/* Override default font and scale text size */
+ /* Body elements use JetBrains Mono; no forced font-size to allow rem-based sizing */
+ body * {
+  font-family: 'JetBrains Mono', monospace !important;
 }

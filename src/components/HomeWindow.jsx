@@ -1,97 +1,123 @@
 import React from 'react';
-import {
-  FRAME_WIDTH, FRAME_HEIGHT,
-  STROKE_WIDTH, BORDER_RADIUS,
-  TITLE_BAR_HEIGHT,
-  COLOR_BACKGROUND, COLOR_TITLE_BG, COLOR_TITLE_TEXT,
-  COLOR_SECONDARY_TEXT, COLOR_SUPPORT_TEXT,
-  FONT_PT_TITLE, FONT_PT_MAIN, FONT_PT_SUPPORT,
-  ICON_GROUP_WIDTH, ICON_GROUP_HEIGHT, ICON_SIZE, ICON_LABEL_HEIGHT, ICON_LABEL_FONT
-} from '../theme';
+import uiSpec from '../ui-spec';
 
 export default function HomeWindow({ onOpen }) {
+  const cfg = uiSpec.home;
   return (
     <div className="fixed inset-0 flex items-center justify-center">
       <div
-        className="relative box-border overflow-hidden"
         style={{
-          width: FRAME_WIDTH,
-          height: FRAME_HEIGHT,
-          background: COLOR_BACKGROUND,
-          border: `${STROKE_WIDTH}px solid black`,
-          borderRadius: BORDER_RADIUS
+          width: `${cfg.window.width}px`,
+          height: `${cfg.window.height}px`,
+          backgroundColor: cfg.window.bg,
+          border: `${cfg.window.stroke}px solid black`,
+          borderRadius: `${cfg.window.radius}px`,
+          boxSizing: 'border-box'
         }}
+        className="relative overflow-hidden"
       >
-        {/* title bar */}
+        {/* title-bar */}
         <div
-          className="absolute top-0 left-0 box-border flex items-center justify-center"
           style={{
-            width: FRAME_WIDTH,
-            height: TITLE_BAR_HEIGHT,
-            background: COLOR_TITLE_BG,
-            borderBottom: `${STROKE_WIDTH}px solid black`
+            height: `${cfg.titleBar.height}px`,
+            
+            backgroundColor: cfg.titleBar.bg,
+            padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
+            boxSizing: 'border-box',
+            borderBottom: '4px solid black'
           }}
+          className="flex items-center justify-start"
         >
-          <span style={{ fontSize: FONT_PT_TITLE, color: COLOR_TITLE_TEXT }}>home</span>
+          <span
+            style={{
+              fontSize: cfg.titleText.fontSize,
+              fontWeight: cfg.titleText.fontWeight,
+              color: cfg.titleText.color
+            }}
+          >
+            home
+          </span>
         </div>
-        {/* content area */}
+
+        {/* content-area */}
         <div
-          className="absolute left-0 box-border overflow-hidden"
           style={{
-            top: TITLE_BAR_HEIGHT,
-            width: FRAME_WIDTH,
-            height: FRAME_HEIGHT - TITLE_BAR_HEIGHT,
-            background: COLOR_BACKGROUND
+            height: `${cfg.contentArea.height}px`,
+            backgroundColor: cfg.contentArea.bg,
+            padding: `${cfg.contentArea.padding[0]}px ${cfg.contentArea.padding[1]}px ${cfg.contentArea.padding[2]}px ${cfg.contentArea.padding[3]}px`,
+            boxSizing: 'border-box',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
           }}
         >
-          <div className="relative w-full h-full flex flex-col items-center pt-[50px] space-y-[20px] overflow-auto">
-            <div
-              className="flex items-center justify-center"
-              style={{
-                width: ICON_GROUP_WIDTH * 4.8,
-                height: ICON_GROUP_HEIGHT * 0.94,
-                fontSize: FONT_PT_MAIN,
-                fontWeight: 'bold',
-                lineHeight: `${ICON_GROUP_HEIGHT * 0.94}px`,
-                color: COLOR_TITLE_TEXT
-              }}
-            >
-              <span>hi!</span>
-              <span style={{ color: COLOR_SECONDARY_TEXT, marginLeft: '10px' }}>i'm lbee</span>
-            </div>
-            <div
-              className="flex items-center justify-center"
-              style={{
-                width: ICON_GROUP_WIDTH * 3.025,
-                height: FONT_PT_SUPPORT,
-                fontSize: FONT_PT_SUPPORT,
-                fontWeight: 'bold',
-                color: COLOR_SUPPORT_TEXT
-              }}
-            >
-              technology enthusiasm
-            </div>
+          {/* main-text */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: cfg.mainText.fontSize,
+              fontWeight: cfg.mainText.fontWeight,
+              color: cfg.mainText.colors[0]
+            }}
+          >
+            <span>hi!&nbsp;</span>
+            <span style={{ color: cfg.mainText.colors[1], marginLeft: `${cfg.mainText.marginLeft}px` }}>
+              i'm lbee
+            </span>
           </div>
+
+          {/* supporting-text */}
+          <div
+            style={{
+              marginTop: `${cfg.supportingText.marginTop}px`,
+              fontSize: cfg.supportingText.fontSize,
+              fontWeight: cfg.supportingText.fontWeight,
+              color: cfg.supportingText.color
+            }}
+          >
+            technology enthusiasm
+          </div>
+
           {/* icon groups */}
-          <div className="absolute bottom-[20px] left-1/2 transform -translate-x-1/2 flex space-x-[50px]">
-            <div onClick={() => onOpen('about')} className="w-[120px] h-[180px] flex flex-col items-center cursor-pointer">
-              <img src="/ico/home/about.png" className="w-[120px] h-[120px]" alt="about icon" />
-              <div className="w-[120px] h-[60px] flex items-center justify-center" style={{ fontSize: '32pt', fontWeight: 'bold', color: '#333333' }}>
-                about
+          <div style={{ display: 'flex', margin: `${cfg.supportingText.marginTop}px` }}>
+            {Object.entries(cfg.iconGroup).map(([key, grp]) => (
+              <div
+                key={key}
+                onClick={() => onOpen(key)}
+                style={{
+                  width: `${grp.width}px`,
+                  height: `${grp.height}px`,
+                  margin: `${grp.margin}px`,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  cursor: 'pointer'
+                }}
+              >
+                <img
+                  src={`/ico/home/${key}.png`}
+                  alt={`${key} icon`}
+                  style={{ width: `${cfg.icon.width}px`, height: `${cfg.icon.height}px` }}
+                />
+                <div
+                  style={{
+                    width: `${cfg.iconText.width}px`,
+                    height: `${cfg.iconText.height}px`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: cfg.iconText.fontSize,
+                    fontWeight: cfg.iconText.fontWeight,
+                    color: cfg.iconText.color
+                  }}
+                >
+                  {key}
+                </div>
               </div>
-            </div>
-            <div onClick={() => onOpen('works')} className="w-[120px] h-[180px] flex flex-col items-center cursor-pointer">
-              <img src="/ico/home/works.png" className="w-[120px] h-[120px]" alt="works icon" />
-              <div className="w-[120px] h-[60px] flex items-center justify-center" style={{ fontSize: '32pt', fontWeight: 'bold', color: '#333333' }}>
-                works
-              </div>
-            </div>
-            <div onClick={() => onOpen('contact')} className="w-[120px] h-[180px] flex flex-col items-center cursor-pointer">
-              <img src="/ico/home/contact.png" className="w-[120px] h-[120px]" alt="contact icon" />
-              <div className="w-[120px] h-[60px] flex items-center justify-center" style={{ fontSize: '32pt', fontWeight: 'bold', color: '#333333' }}>
-                contact
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

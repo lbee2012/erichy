@@ -1,71 +1,148 @@
 import React, { useState, useEffect } from 'react';
 import Draggable from 'react-draggable';
-import {
-  FRAME_WIDTH, FRAME_HEIGHT,
-  STROKE_WIDTH, BORDER_RADIUS,
-  TITLE_BAR_HEIGHT,
-  COLOR_BACKGROUND, COLOR_TITLE_BG, COLOR_TITLE_TEXT,
-  FONT_PT_TITLE, FONT_PT_SUPPORT,
-} from '../theme';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import avatarImg from '../../static/ico/about/cn_mel.jpeg';
+import uiSpec from '../ui-spec';
 
 export default function AboutWindow({ onClose }) {
+  const cfg = uiSpec.about;
   const [content, setContent] = useState('Loading...');
   useEffect(() => {
     fetch('/content/about.md')
-      .then(r => r.text())
-      .then(txt => setContent(txt))
+      .then(r => r.text()).then(txt => setContent(txt))
       .catch(() => setContent('Error loading content'));
   }, []);
-  const [position] = useState(() => {
-    const x = (window.innerWidth - FRAME_WIDTH) / 2;
-    const y = (window.innerHeight - FRAME_HEIGHT) / 2;
-    return { x, y };
-  });
+  // const [position] = useState(() => ({
+  //   x: Math.random() * (window.innerWidth - 800),
+  //   y: Math.random() * (window.innerHeight - 600)
+  // }));
+
   return (
-    <Draggable handle=".handle" defaultPosition={position}>
+    <Draggable handle=".handle" /* defaultPosition={position} */>
       <div
-        className="absolute box-border shadow-lg z-40 flex flex-col"
         style={{
-          width: FRAME_WIDTH,
-          height: FRAME_HEIGHT,
-          background: COLOR_BACKGROUND,
-          border: `${STROKE_WIDTH}px solid black`,
-          borderRadius: BORDER_RADIUS,
+          width: `${cfg.window.width}px`,
+          height: `${cfg.window.height}px`,
+          backgroundColor: cfg.window.bg,
+          border: `${cfg.window.stroke}px solid black`,
+          borderRadius: `${cfg.window.radius}px`,
+          boxSizing: 'border-box'
         }}
+        className="absolute flex flex-col overflow-hidden"
       >
-        {/* titlebar */}
+        {/* title-bar */}
         <div
-          className="handle relative box-border flex items-center justify-between px-[20px] cursor-move"
           style={{
-            width: FRAME_WIDTH,
-            height: TITLE_BAR_HEIGHT,
-            background: COLOR_TITLE_BG,
-            borderBottom: `${STROKE_WIDTH}px solid black`,
+            height: `${cfg.titleBar.height}px`,
+            backgroundColor: cfg.titleBar.bg,
+            padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
+            boxSizing: 'border-box',
+            borderBottom: '4px solid black'
+          }}
+          className="handle flex items-center justify-between"
+        >
+          <span
+            style={{
+              fontSize: cfg.titleText.fontSize,
+              fontWeight: cfg.titleText.fontWeight,
+              color: cfg.titleText.color
+            }}
+          >about</span>
+          <button
+            onClick={onClose}
+            style={{
+              width: `${cfg.closeButton.width}px`,
+              height: `${cfg.closeButton.height}px`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'transparent',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer'
+            }}
+          >
+            <span
+              style={{
+                fontSize: cfg.closeButton.fontSize,
+                fontWeight: cfg.closeButton.fontWeight,
+                color: cfg.closeButton.color
+              }}
+            >[x]</span>
+          </button>
+        </div>
+
+        {/* content-area */}
+        <div
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
+            paddingTop: `${cfg.contentArea.padding[0]}px`,
+            paddingRight: `${cfg.contentArea.padding[1]}px`,
+            paddingBottom: `${cfg.contentArea.padding[2]}px`,
+            paddingLeft: `${cfg.contentArea.padding[3]}px`,
+            boxSizing: 'border-box'
           }}
         >
-          <span style={{ fontSize: FONT_PT_TITLE, color: COLOR_TITLE_TEXT }}>about</span>
-          <button onClick={onClose} style={{ fontSize: FONT_PT_TITLE, color: COLOR_TITLE_TEXT }}>&times;</button>
-        </div>
-        {/* content area */}
-        <div className="relative w-full h-[536px] overflow-auto box-border px-[20px] pt-[15px]">
-          {/* avatar */}
-          <img src="/ico/about/cn mel.jpeg" alt="avatar" className="w-[200px] h-[200px] rounded-full" style={{ position: 'absolute', top: '89px', right: '59px' }} />
-          {/* main-text */}
-          <div style={{ position: 'absolute', top: '131px', left: '104px', fontSize: '44pt', fontWeight: 'bold', color: '#32117C' }}>
-            Quy Long. Hoang
+          <div style={{ display: 'flex', alignItems: 'start' }}>
+            <img
+              src={avatarImg}
+              alt="avatar"
+              style={{
+                width: `${cfg.avatar.width}px`,
+                height: `${cfg.avatar.height}px`,
+                borderRadius: `${cfg.avatar.radius}px`,
+                margin: `${cfg.avatar.margin[0]}px ${cfg.avatar.margin[1]}px ${cfg.avatar.margin[2]}px ${cfg.avatar.margin[3]}px`              
+              }}
+            />
+            <div>
+              <div
+                style={{
+                  fontSize: cfg.nameText.fontSize,
+                  fontWeight: cfg.nameText.fontWeight,
+                  color: cfg.nameText.color,
+                  margin: `${cfg.nameText.margin[0]}px ${cfg.nameText.margin[1]}px ${cfg.nameText.margin[2]}px ${cfg.nameText.margin[3]}px`                
+                }}
+              >Quy Long Hoang</div>
+              <div
+                style={{
+                  fontSize: cfg.quoteText.fontSize,
+                  fontWeight: cfg.quoteText.fontWeight,
+                  color: cfg.quoteText.color,
+                  margin: `${cfg.quoteText.margin[0]}px ${cfg.quoteText.margin[1]}px ${cfg.quoteText.margin[2]}px ${cfg.quoteText.margin[3]}px`
+                }}
+              >
+                where is my quality?<br/>MMT Co., Ltd.
+              </div>
+            </div>
           </div>
-          {/* under-text */}
-          <div style={{ position: 'absolute', top: '189px', left: '212px', fontSize: '24pt', color: '#333333', whiteSpace: 'pre-line' }}>
-            where is my quality?{' '}
-            MMT Co., Ltd.
-          </div>
-          {/* separator */}
-          <hr style={{ position: 'absolute', top: '314px', width: '100%', borderColor: '#979797', opacity: 0.5, borderWidth: '1px' }} />
-          {/* markdown content */}
-          <div style={{ position: 'absolute', top: '329px', left: '20px', right: '20px', bottom: '0px', overflow: 'auto', fontSize: '24pt', color: '#333333' }}>
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+
+          <hr
+            style={{
+              margin: `${cfg.separator.margin[0]}px ${cfg.separator.margin[1]}px ${cfg.separator.margin[2]}px ${cfg.separator.margin[3]}px`,
+              borderTop: `${cfg.separator.borderWidth}px solid ${cfg.separator.color}`,
+              width: `${cfg.separator.width}px`,
+              marginLeft: `${cfg.separator.offsetLeft}px`,
+              opacity: cfg.separator.opacity
+            }}
+          />
+
+          <div
+            style={{
+              flex: 1,
+              overflow: 'auto',
+              width: `${cfg.content.width || '100%'}px`,
+              fontSize: cfg.content.fontSize,
+              color: cfg.content.color,
+              boxSizing: 'border-box'
+            }}
+          >
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {content}
+            </ReactMarkdown>
           </div>
         </div>
       </div>

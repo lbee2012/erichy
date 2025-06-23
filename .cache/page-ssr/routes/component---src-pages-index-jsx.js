@@ -64572,46 +64572,6 @@ function defaultUrlTransform(value) {
 
 /***/ }),
 
-/***/ "./node_modules/react-wavify/lib/index.module.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/react-wavify/lib/index.module.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _react_wavify_module_dev_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./react-wavify.module.dev.js */ "./node_modules/react-wavify/lib/react-wavify.module.dev.js");
-'use client'
-
-;
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ( false ? 0 : _react_wavify_module_dev_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-
-/***/ }),
-
-/***/ "./node_modules/react-wavify/lib/react-wavify.module.dev.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/react-wavify/lib/react-wavify.module.dev.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ e)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var i=class extends react__WEBPACK_IMPORTED_MODULE_0__.Component{constructor(s){super(s),this.t=()=>this.i.current.offsetWidth,this.h=()=>this.i.current.offsetHeight,this.i=react__WEBPACK_IMPORTED_MODULE_0___default().createRef(),this.state={path:""},this.l=0,this.o=0,this.p=0,this.u=this.u.bind(this)}m(){const t=[];for(let s=0;s<=Math.max(this.props.points,1);s++){const i=100,h=s/this.props.points*this.t(),e=(this.p+(s+s%this.props.points))*this.props.speed*i,n=Math.sin(e/i)*this.props.amplitude,a=Math.sin(e/i)*n+this.props.height;t.push({x:h,y:a})}return t}$(t){let s=`M ${t[0].x} ${t[0].y}`;const i={x:(t[1].x-t[0].x)/2,y:t[1].y-t[0].y+t[0].y+(t[1].y-t[0].y)},h=(t,s)=>` C ${t.x} ${t.y} ${t.x} ${t.y} ${s.x} ${s.y}`;s+=h(i,t[1]);let e=i;for(let i=1;i<t.length-1;i++)e={x:t[i].x-e.x+t[i].x,y:t[i].y-e.y+t[i].y},s+=h(e,t[i+1]);return s+=` L ${this.t()} ${this.h()}`,s+=` L 0 ${this.h()} Z`,s}v(){this.setState({path:this.$(this.m())})}M(){if(!this.props.paused){const t=new Date;this.o+=t-this.l,this.l=t}this.p=this.o*Math.PI/1e3,this.v()}u(){this.M(),this._&&this.D()}D(){this._=window.requestAnimationFrame(this.u),this.l=new Date}componentDidMount(){this._||this.D()}componentWillUnmount(){window.cancelAnimationFrame(this._),this._=0}render(){const{style:s,className:i,fill:h,paused:e,children:n,id:a,svgId:d,svgPathId:l,d:o,ref:r,height:c,amplitude:p,speed:u,points:w,...f}=this.props;/*#__PURE__*/return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div",{style:{width:"100%",display:"inline-block",...s},className:i,id:a,ref:this.i},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg",{width:"100%",height:"100%",version:"1.1",xmlns:"http://www.w3.org/2000/svg",id:d},n,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path",Object.assign({},{d:this.state.path,fill:h,id:l},f))))}};const h={fill:"#fff",paused:!1,height:20,amplitude:20,speed:.15,points:3},e=s=>{let{options:e,...n}=s;/*#__PURE__*/return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(i,Object.assign({},h,e,n))};e.displayName="Wave";
-
-
-/***/ }),
-
 /***/ "./node_modules/react/cjs/react-jsx-runtime.development.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/react/cjs/react-jsx-runtime.development.js ***!
@@ -73797,9 +73757,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-draggable */ "./node_modules/react-draggable/build/cjs/cjs.js");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_draggable__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_markdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-markdown */ "./node_modules/react-markdown/lib/index.js");
-/* harmony import */ var remark_gfm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! remark-gfm */ "./node_modules/remark-gfm/lib/index.js");
+/* harmony import */ var react_markdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-markdown */ "./node_modules/react-markdown/lib/index.js");
+/* harmony import */ var remark_gfm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! remark-gfm */ "./node_modules/remark-gfm/lib/index.js");
+/* harmony import */ var _static_ico_about_cn_mel_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../static/ico/about/cn_mel.jpeg */ "./static/ico/about/cn_mel.jpeg");
+/* harmony import */ var _ui_spec__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ui-spec */ "./src/ui-spec.js");
 /* provided dependency */ var fetch = __webpack_require__(/*! ./node_modules/node-fetch/lib/index.js */ "./node_modules/node-fetch/lib/index.js");
+
+
 
 
 
@@ -73807,6 +73771,7 @@ __webpack_require__.r(__webpack_exports__);
 function AboutWindow({
   onClose
 }) {
+  const cfg = _ui_spec__WEBPACK_IMPORTED_MODULE_3__["default"].about;
   const {
     0: content,
     1: setContent
@@ -73814,81 +73779,116 @@ function AboutWindow({
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     fetch('/content/about.md').then(r => r.text()).then(txt => setContent(txt)).catch(() => setContent('Error loading content'));
   }, []);
-  const {
-    0: position
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ({
-    x: Math.random() * (window.innerWidth - 200),
-    y: Math.random() * (window.innerHeight - 200)
-  }));
+  // const [position] = useState(() => ({
+  //   x: Math.random() * (window.innerWidth - 800),
+  //   y: Math.random() * (window.innerHeight - 600)
+  // }));
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
-    handle: ".handle",
-    defaultPosition: position
+    handle: ".handle" /* defaultPosition={position} */
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "absolute w-[800px] h-[600px] bg-[#FFFBE3] border-4 border-black rounded-[15px] box-border shadow-lg z-40 flex flex-col"
+    style: {
+      width: `${cfg.window.width}px`,
+      height: `${cfg.window.height}px`,
+      backgroundColor: cfg.window.bg,
+      border: `${cfg.window.stroke}px solid black`,
+      borderRadius: `${cfg.window.radius}px`,
+      boxSizing: 'border-box'
+    },
+    className: "absolute flex flex-col overflow-hidden"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "handle relative w-full h-[68px] bg-[#FFD992] box-border border-b-4 border-black flex items-center justify-between px-[20px] cursor-move"
+    style: {
+      height: `${cfg.titleBar.height}px`,
+      backgroundColor: cfg.titleBar.bg,
+      padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
+      boxSizing: 'border-box',
+      borderBottom: '4px solid black'
+    },
+    className: "handle flex items-center justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
-      fontSize: '32pt',
-      color: '#333333'
+      fontSize: cfg.titleText.fontSize,
+      fontWeight: cfg.titleText.fontWeight,
+      color: cfg.titleText.color
     }
   }, "about"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: onClose,
     style: {
-      fontSize: '32pt',
-      color: '#333333'
+      width: `${cfg.closeButton.width}px`,
+      height: `${cfg.closeButton.height}px`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'transparent',
+      border: 'none',
+      padding: 0,
+      cursor: 'pointer'
     }
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "relative w-full h-[536px] overflow-auto box-border px-[20px] pt-[15px]"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    style: {
+      fontSize: cfg.closeButton.fontSize,
+      fontWeight: cfg.closeButton.fontWeight,
+      color: cfg.closeButton.color
+    }
+  }, "[x]"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+      paddingTop: `${cfg.contentArea.padding[0]}px`,
+      paddingRight: `${cfg.contentArea.padding[1]}px`,
+      paddingBottom: `${cfg.contentArea.padding[2]}px`,
+      paddingLeft: `${cfg.contentArea.padding[3]}px`,
+      boxSizing: 'border-box'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'start'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: "/ico/about/cn mel.jpeg",
+    src: _static_ico_about_cn_mel_jpeg__WEBPACK_IMPORTED_MODULE_2__["default"],
     alt: "avatar",
-    className: "w-[200px] h-[200px] rounded-full",
     style: {
-      position: 'absolute',
-      top: '89px',
-      right: '59px'
+      width: `${cfg.avatar.width}px`,
+      height: `${cfg.avatar.height}px`,
+      borderRadius: `${cfg.avatar.radius}px`,
+      margin: `${cfg.avatar.margin[0]}px ${cfg.avatar.margin[1]}px ${cfg.avatar.margin[2]}px ${cfg.avatar.margin[3]}px`
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      fontSize: cfg.nameText.fontSize,
+      fontWeight: cfg.nameText.fontWeight,
+      color: cfg.nameText.color,
+      margin: `${cfg.nameText.margin[0]}px ${cfg.nameText.margin[1]}px ${cfg.nameText.margin[2]}px ${cfg.nameText.margin[3]}px`
+    }
+  }, "Quy Long Hoang"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      fontSize: cfg.quoteText.fontSize,
+      fontWeight: cfg.quoteText.fontWeight,
+      color: cfg.quoteText.color,
+      margin: `${cfg.quoteText.margin[0]}px ${cfg.quoteText.margin[1]}px ${cfg.quoteText.margin[2]}px ${cfg.quoteText.margin[3]}px`
+    }
+  }, "where is my quality?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "MMT Co., Ltd."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
+    style: {
+      margin: `${cfg.separator.margin[0]}px ${cfg.separator.margin[1]}px ${cfg.separator.margin[2]}px ${cfg.separator.margin[3]}px`,
+      borderTop: `${cfg.separator.borderWidth}px solid ${cfg.separator.color}`,
+      width: `${cfg.separator.width}px`,
+      marginLeft: `${cfg.separator.offsetLeft}px`,
+      opacity: cfg.separator.opacity
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
-      position: 'absolute',
-      top: '131px',
-      left: '104px',
-      fontSize: '44pt',
-      fontWeight: 'bold',
-      color: '#32117C'
-    }
-  }, "Quy Long. Hoang"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      position: 'absolute',
-      top: '189px',
-      left: '212px',
-      fontSize: '24pt',
-      color: '#333333',
-      whiteSpace: 'pre-line'
-    }
-  }, "where is my quality?", ' ', "MMT Co., Ltd."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("hr", {
-    style: {
-      position: 'absolute',
-      top: '314px',
-      width: '100%',
-      borderColor: '#979797',
-      opacity: 0.5,
-      borderWidth: '1px'
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      position: 'absolute',
-      top: '329px',
-      left: '20px',
-      right: '20px',
-      bottom: '0px',
+      flex: 1,
       overflow: 'auto',
-      fontSize: '24pt',
-      color: '#333333'
+      width: `${cfg.content.width || '100%'}px`,
+      fontSize: cfg.content.fontSize,
+      color: cfg.content.color,
+      boxSizing: 'border-box'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_markdown__WEBPACK_IMPORTED_MODULE_2__.Markdown, {
-    remarkPlugins: [remark_gfm__WEBPACK_IMPORTED_MODULE_3__["default"]]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_markdown__WEBPACK_IMPORTED_MODULE_4__.Markdown, {
+    remarkPlugins: [remark_gfm__WEBPACK_IMPORTED_MODULE_5__["default"]]
   }, content)))));
 }
 
@@ -73907,22 +73907,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_wavify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-wavify */ "./node_modules/react-wavify/lib/index.module.js");
-
 
 function Background() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "fixed inset-0 -z-10"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_wavify__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    fill: "rgba(255, 255, 255, 0.3)",
-    paused: false,
-    options: {
-      height: 20,
-      amplitude: 30,
-      speed: 0.15,
-      points: 3
-    },
-    className: "absolute top-0 right-0 w-full h-full"
+    className: "fixed inset-0 -z-10 bg-[#FFFBE3] overflow-hidden"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "absolute top-0 left-0 w-[1404px] h-[355px] bg-[#AACCFF]"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "absolute top-0 right-0 w-[1192px] h-[1080px] bg-[#AACCFF]"
   }));
 }
 
@@ -73943,23 +73935,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-draggable */ "./node_modules/react-draggable/build/cjs/cjs.js");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_draggable__WEBPACK_IMPORTED_MODULE_1__);
+/* provided dependency */ var fetch = __webpack_require__(/*! ./node_modules/node-fetch/lib/index.js */ "./node_modules/node-fetch/lib/index.js");
 
 
+
+
+const icons = ['discord', 'github', 'instagram', 'linkedin', 'paypal', 'telegram', 'tiktok', 'whatsapp'];
 function ContactWindow({
   onClose
 }) {
-  const [position] = react__WEBPACK_IMPORTED_MODULE_0___default().useState(() => ({
-    x: Math.random() * (window.innerWidth - 800),
-    y: Math.random() * (window.innerHeight - 600)
-  }));
-  const icons = ['discord', 'instagram', 'telegram', 'linkedin', 'github', 'tiktok', 'whatsapp', 'paypal'];
+  const {
+    0: content,
+    1: setContent
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Loading...');
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetch('/content/contact.md').then(r => r.text()).then(txt => setContent(txt)).catch(() => setContent('Error loading content'));
+  }, []);
+  // const [position] = useState(() => ({ x: Math.random() * (window.innerWidth - 800), y: Math.random() * (window.innerHeight - 600) }));
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
-    handle: ".handle",
-    defaultPosition: position
+    handle: ".handle" /* defaultPosition={position} */
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "absolute w-[800px] h-[600px] bg-[#FFFBE3] border-4 border-black rounded-[15px] box-border shadow-lg z-40 flex flex-col"
+    className: "absolute w-[800px] h-[600px] bg-[#FFFBE3] border-4 border-black rounded-[15px] box-border flex flex-col overflow-hidden"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "handle relative w-full h-[68px] bg-[#FFD992] box-border border-b-4 border-black flex items-center justify-between px-[20px] cursor-move"
+    className: "handle w-full h-[68px] bg-[#FFD992] flex items-center justify-between px-4 box-border border-b-4 border-black rounded-tl-[11px] rounded-tr-[11px]"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
       fontSize: '32pt',
@@ -73967,36 +73966,28 @@ function ContactWindow({
     }
   }, "contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: onClose,
+    className: "w-[50px] h-[50px] flex items-center justify-center bg-transparent border-none p-0 outline-none focus:outline-none",
     style: {
-      fontSize: '32pt',
-      color: '#333333'
+      cursor: 'pointer'
     }
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "relative w-full h-[536px] box-border pt-[20px]"
+  }, "[x]")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-1 p-4 overflow-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "absolute top-0 left-0 w-full h-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex flex-wrap justify-center",
-    style: {
-      gap: '50px',
-      marginTop: '20px'
-    }
-  }, icons.map((key, idx) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    key: key,
-    onClick: () => window.open(`https://${key}.com`, '_blank'),
-    className: "w-[200px] h-[183px] flex flex-col items-center cursor-pointer"
+    className: "grid grid-cols-4 gap-4 place-items-center"
+  }, icons.map(icon => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    key: icon,
+    className: "flex flex-col items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: `/static/ico/contact/${key}.png`,
-    alt: `${key} icon`,
+    src: `/ico/contact/${icon}.png`,
+    alt: `${icon} icon`,
     className: "w-[120px] h-[120px]"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-[120px] h-[60px] flex items-center justify-center",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
       fontSize: '32pt',
       fontWeight: 'bold',
       color: '#333333'
     }
-  }, key))))))));
+  }, icon)))))));
 }
 
 /***/ }),
@@ -74014,94 +74005,108 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ui_spec__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ui-spec */ "./src/ui-spec.js");
+
 
 function HomeWindow({
   onOpen
 }) {
+  const cfg = _ui_spec__WEBPACK_IMPORTED_MODULE_1__["default"].home;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fixed inset-0 flex items-center justify-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "relative w-[800px] h-[600px] bg-[#FFFBE3] border-4 border-black rounded-[15px] box-border overflow-hidden"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "absolute top-0 left-0 w-full h-[68px] bg-[#FFD992] box-border border-b-4 border-black flex items-center justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "font-normal",
     style: {
-      fontSize: '32pt',
-      color: '#333333'
+      width: `${cfg.window.width}px`,
+      height: `${cfg.window.height}px`,
+      backgroundColor: cfg.window.bg,
+      border: `${cfg.window.stroke}px solid black`,
+      borderRadius: `${cfg.window.radius}px`,
+      boxSizing: 'border-box'
+    },
+    className: "relative overflow-hidden"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      height: `${cfg.titleBar.height}px`,
+      backgroundColor: cfg.titleBar.bg,
+      padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
+      boxSizing: 'border-box',
+      borderBottom: '4px solid black'
+    },
+    className: "flex items-center justify-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    style: {
+      fontSize: cfg.titleText.fontSize,
+      fontWeight: cfg.titleText.fontWeight,
+      color: cfg.titleText.color
     }
   }, "home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "absolute top-[68px] left-0 w-full h-[536px] bg-[#FFFBE3] box-border overflow-hidden"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "relative w-full h-full flex flex-col items-center pt-[50px] space-y-[20px] overflow-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-[576px] h-[106px] flex items-center justify-center",
     style: {
-      fontSize: '80pt',
-      fontWeight: 'bold',
-      lineHeight: '106px'
+      height: `${cfg.contentArea.height}px`,
+      backgroundColor: cfg.contentArea.bg,
+      padding: `${cfg.contentArea.padding[0]}px ${cfg.contentArea.padding[1]}px ${cfg.contentArea.padding[2]}px ${cfg.contentArea.padding[3]}px`,
+      boxSizing: 'border-box',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
-      color: '#333333'
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: cfg.mainText.fontSize,
+      fontWeight: cfg.mainText.fontWeight,
+      color: cfg.mainText.colors[0]
     }
-  }, "hi!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "hi\xA0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
-      color: '#32117C',
-      marginLeft: '10px'
+      color: cfg.mainText.colors[1],
+      marginLeft: `${cfg.mainText.marginLeft}px`
     }
   }, "i'm lbee")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-[403px] h-[42px] flex items-center justify-center",
     style: {
-      fontSize: '32pt',
-      fontWeight: 'bold',
-      color: '#CCBEEA'
+      marginTop: `${cfg.supportingText.marginTop}px`,
+      fontSize: cfg.supportingText.fontSize,
+      fontWeight: cfg.supportingText.fontWeight,
+      color: cfg.supportingText.color
     }
-  }, "technology enthusiasm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "absolute bottom-[20px] left-1/2 transform -translate-x-1/2 flex space-x-[50px]"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    onClick: () => onOpen('about'),
-    className: "w-[120px] h-[180px] flex flex-col items-center cursor-pointer"
+  }, "technology enthusiasm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: 'flex',
+      margin: `${cfg.supportingText.marginTop}px`
+    }
+  }, Object.entries(cfg.iconGroup).map(([key, grp]) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    key: key,
+    onClick: () => onOpen(key),
+    style: {
+      width: `${grp.width}px`,
+      height: `${grp.height}px`,
+      margin: `${grp.margin}px`,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      cursor: 'pointer'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: "/ico/home/about.png",
-    className: "w-[120px] h-[120px]",
-    alt: "about icon"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-[120px] h-[60px] flex items-center justify-center",
+    src: `/ico/home/${key}.png`,
+    alt: `${key} icon`,
     style: {
-      fontSize: '32pt',
-      fontWeight: 'bold',
-      color: '#333333'
+      width: `${cfg.icon.width}px`,
+      height: `${cfg.icon.height}px`
     }
-  }, "about")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    onClick: () => onOpen('works'),
-    className: "w-[120px] h-[180px] flex flex-col items-center cursor-pointer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: "/ico/home/works.png",
-    className: "w-[120px] h-[120px]",
-    alt: "works icon"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-[120px] h-[60px] flex items-center justify-center",
     style: {
-      fontSize: '32pt',
-      fontWeight: 'bold',
-      color: '#333333'
+      width: `${cfg.iconText.width}px`,
+      height: `${cfg.iconText.height}px`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: cfg.iconText.fontSize,
+      fontWeight: cfg.iconText.fontWeight,
+      color: cfg.iconText.color
     }
-  }, "works")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    onClick: () => onOpen('contact'),
-    className: "w-[120px] h-[180px] flex flex-col items-center cursor-pointer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: "/ico/home/contact.png",
-    className: "w-[120px] h-[120px]",
-    alt: "contact icon"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "w-[120px] h-[60px] flex items-center justify-center",
-    style: {
-      fontSize: '32pt',
-      fontWeight: 'bold',
-      color: '#333333'
-    }
-  }, "contact"))))));
+  }, key)))))));
 }
 
 /***/ }),
@@ -74121,47 +74126,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-draggable */ "./node_modules/react-draggable/build/cjs/cjs.js");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_draggable__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ui_spec__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ui-spec */ "./src/ui-spec.js");
 /* provided dependency */ var fetch = __webpack_require__(/*! ./node_modules/node-fetch/lib/index.js */ "./node_modules/node-fetch/lib/index.js");
-
 
 
 
 function WorksWindow({
   onClose
 }) {
+  const cfg = _ui_spec__WEBPACK_IMPORTED_MODULE_2__["default"].works;
   const {
-    0: content,
-    1: setContent
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Loading...');
+    0: text,
+    1: setText
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('loading...');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    fetch('/content/works.md').then(r => r.text()).then(txt => setContent(txt)).catch(() => setContent('Error loading content'));
+    fetch('/content/works.md').then(r => r.text()).then(txt => setText(txt)).catch(() => setText('error loading content'));
   }, []);
-  const {
-    0: position
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => ({
-    x: Math.random() * (window.innerWidth - 1000),
-    y: Math.random() * (window.innerHeight - 200)
-  }));
+  // const [position] = useState(() => ({
+  //   x: Math.random() * (window.innerWidth - 800),
+  //   y: Math.random() * (window.innerHeight - 600)
+  // }));
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
-    handle: ".handle",
-    defaultPosition: position
+    handle: ".handle" /* defaultPosition={position} */
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "absolute w-[800px] h-[600px] bg-[#FFFBE3] border-4 border-black rounded-[15px] box-border shadow-lg z-40 flex flex-col"
+    style: {
+      width: `${cfg.window.width}px`,
+      height: `${cfg.window.height}px`,
+      backgroundColor: cfg.window.bg,
+      borderWidth: `${cfg.window.stroke}px`,
+      borderColor: 'black',
+      borderStyle: 'solid',
+      borderRadius: `${cfg.window.radius}px`
+    },
+    className: "absolute box-border flex flex-col overflow-hidden"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "handle relative w-full h-[68px] bg-[#FFD992] box-border border-b-4 border-black flex items-center justify-between px-[20px] cursor-move"
+    style: {
+      height: `${cfg.titleBar.height}px`,
+      backgroundColor: cfg.titleBar.bg,
+      padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
+      boxSizing: 'border-box'
+    },
+    className: "handle w-full flex items-center justify-between border-b-4 border-black"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
-      fontSize: '32pt',
-      color: '#333333'
+      fontSize: cfg.titleText.fontSize,
+      fontWeight: cfg.titleText.fontWeight,
+      color: cfg.titleText.color
     }
   }, "works"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: onClose,
     style: {
-      fontSize: '32pt',
-      color: '#333333'
+      width: `${cfg.closeButton.width}px`,
+      height: `${cfg.closeButton.height}px`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'transparent',
+      border: 'none',
+      padding: 0,
+      cursor: 'pointer'
     }
-  }, "\xD7")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "relative w-full h-[536px] box-border"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    style: {
+      fontSize: cfg.closeButton.fontSize,
+      fontWeight: cfg.closeButton.fontWeight,
+      color: cfg.closeButton.color
+    }
+  }, "[x]"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "flex-1 box-border overflow-hidden pt-[15px] pr-[20px] pb-0 pl-[20px]"
   })));
 }
 
@@ -74222,6 +74255,226 @@ function Home() {
     }))
   })));
 }
+
+/***/ }),
+
+/***/ "./src/ui-spec.js":
+/*!************************!*\
+  !*** ./src/ui-spec.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// ui-spec.js
+// Centralized UI configuration for window dimensions and styles
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  home: {
+    window: {
+      width: 800,
+      height: 600,
+      stroke: 4,
+      bg: '#FFFBE3',
+      radius: 5,
+      overflowHidden: true
+    },
+    titleBar: {
+      height: 40,
+      padding: [0, 20, 0, 20],
+      bg: '#FFD992'
+    },
+    titleText: {
+      fontSize: '1rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    contentArea: {
+      height: 560,
+      padding: [100, 0, 20, 0],
+      bg: '#FFFBE3'
+    },
+    mainText: {
+      fontSize: '5rem',
+      fontWeight: 'bold',
+      colors: ['#333333', '#32117C'],
+      marginLeft: 20
+    },
+    supportingText: {
+      fontSize: '2rem',
+      fontWeight: 'bold',
+      color: '#333333',
+      marginTop: 20
+    },
+    iconGroup: {
+      about: {
+        width: 120,
+        height: 180,
+        margin: 20
+      },
+      works: {
+        width: 120,
+        height: 180,
+        margin: 20
+      },
+      contact: {
+        width: 120,
+        height: 180,
+        margin: 20
+      }
+    },
+    icon: {
+      width: 120,
+      height: 120
+    },
+    iconText: {
+      width: 120,
+      height: 60,
+      fontSize: '1rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    }
+  },
+  about: {
+    window: {
+      width: 800,
+      height: 600,
+      stroke: 4,
+      bg: '#FFFBE3',
+      radius: 5,
+      overflowHidden: true
+    },
+    titleBar: {
+      height: 40,
+      padding: [0, 20, 0, 20],
+      bg: '#FFD992'
+    },
+    titleText: {
+      fontSize: '1rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    closeButton: {
+      width: 29,
+      height: 21,
+      fontSize: '1rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    contentArea: {
+      padding: [20, 0, 0, 20]
+    },
+    avatar: {
+      width: 150,
+      height: 150,
+      radius: 75,
+      margin: [20, 20, 20, 80]
+    },
+    nameText: {
+      fontSize: '2rem',
+      fontWeight: 'bold',
+      color: '#32117C',
+      margin: [50, 0, 0, 20]
+    },
+    quoteText: {
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
+      color: '#333333',
+      margin: [0, 0, 0, 20]
+    },
+    separator: {
+      offsetLeft: -20,
+      width: 820,
+      borderWidth: 2,
+      color: '#979797',
+      opacity: 1,
+      margin: [20, 0, 15, 0]
+    },
+    content: {
+      fontSize: '1rem',
+      color: '#333333'
+    }
+  },
+  works: {
+    window: {
+      width: 1000,
+      height: 600,
+      stroke: 4,
+      bg: '#FFFBE3',
+      radius: 5,
+      overflowHidden: true
+    },
+    titleBar: {
+      height: 60,
+      padding: [0, 20, 0, 20],
+      bg: '#FFD992'
+    },
+    titleText: {
+      fontSize: '1rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    closeButton: {
+      width: 29,
+      height: 21,
+      fontSize: '1rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    contentArea: {
+      height: 540,
+      padding: [15, 20, 0, 20]
+    }
+  },
+  contact: {
+    window: {
+      width: 600,
+      height: 400,
+      stroke: 4,
+      bg: '#FFFBE3',
+      radius: 5,
+      overflowHidden: true
+    },
+    titleBar: {
+      height: 60,
+      padding: [0, 20, 0, 20],
+      bg: '#FFD992'
+    },
+    titleText: {
+      fontSize: '1rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    closeButton: {
+      width: 29,
+      height: 21,
+      fontSize: '1rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    contentArea: {
+      height: 340,
+      padding: [15, 20, 0, 20]
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./static/ico/about/cn_mel.jpeg":
+/*!**************************************!*\
+  !*** ./static/ico/about/cn_mel.jpeg ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/static/cn_mel-06af45d202d0cb0d17900bfb117fc158.jpeg");
 
 /***/ })
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Draggable from 'react-draggable';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { FRAME_WIDTH, FRAME_HEIGHT } from '../theme';
 
 export default function FolderWindow({ title, file, onClose }) {
   const [content, setContent] = useState('Loading...');
@@ -16,11 +15,9 @@ export default function FolderWindow({ title, file, onClose }) {
   }, [file]);
 
   useEffect(() => {
-    // defaultPosition is centered by default; random spawning will be added later
-    setDefaultPosition({
-      x: (window.innerWidth - FRAME_WIDTH) / 2,
-      y: (window.innerHeight - FRAME_HEIGHT) / 2,
-    });
+    const x = (window.innerWidth - 800) / 2;
+    const y = (window.innerHeight - 600) / 2;
+    setDefaultPosition({ x, y });
   }, []);
 
   return (

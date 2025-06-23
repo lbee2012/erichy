@@ -4,12 +4,7 @@ module.exports = {
     './gatsby-browser.js',
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ['JetBrains Mono', 'ui-sans-serif', 'system-ui'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-      },
-    },
+    extend: {},
   },
   plugins: [
     require('@tailwindcss/typography'),

@@ -1,0 +1,66 @@
+// ui-spec.js
+// Centralized UI configuration for window dimensions and styles
+export default {
+  home: {
+    window: { width: 800, height: 600, stroke: 4, bg: '#FFFBE3', radius: 10, overflowHidden: true },
+    titleBar: { height: 60, padding: [0, 30, 0, 30], bg: '#FFD992' },
+    titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    contentArea: { height: 540, padding: [100, 0, 20, 0], bg: '#FFFBE3' },
+    mainText: { fontSize: '5rem', fontWeight: 'bold', colors: ['#333333', '#32117C'] },
+    supportingText: { fontSize: '2rem', fontWeight: 'bold', color: '#333333' },
+    iconGroup: {
+      about: { width: 120, height: 180, margin: 10 },
+      works: { width: 120, height: 180, margin: 10 },
+      contact: { width: 120, height: 180, margin: 10 }
+    },
+    icon: { width: 120, height: 120 },
+    iconText: { width: 120, height: 60, fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+  },
+  about: {
+    window: { width: 800, height: 600, stroke: 4, bg: '#FFFBE3', radius: 10, overflowHidden: true },
+    titleBar: { height: 60, padding: [0, 30, 0, 30], bg: '#FFD992' },
+    titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    contentArea: { height: 540,padding: [20, 0, 0, 20] },
+    avatar: { width: 150, height: 150, radius: 75, margin: [20, 20, 20, 80] },
+    nameText: { fontSize: '2rem', fontWeight: 'bold', color: '#32117C', margin: [50, 0, 0, 20] },
+    quoteText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333', margin: [0, 0, 0, 20] },
+    separator: { offsetLeft: -20, width: 800, borderWidth: 0.5, color: '#979797', opacity: 0.25, margin: [20, 0, 15, 0] },
+    content: { fontSize: '1rem', color: '#333333' },
+  },
+  works: {
+    window: { width: 1000, height: 600, stroke: 4, bg: '#FFFBE3', radius: 10, overflowHidden: true },
+    titleBar: { height: 60, padding: [0, 30, 0, 30], bg: '#FFD992' },
+    titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    contentArea: { height: 540, padding: [15, 20, 0, 20] },
+  },
+  faq: {
+    window: { width: 600, height: 600, stroke: 4, bg: '#FFFBE3', radius: 10, overflowHidden: true },
+    titleBar: { height: 60, padding: [0, 30, 0, 30], bg: '#FFD992' },
+    titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    contentArea: { height: 540, padding: [15, 20, 0, 20] },
+  },
+  contact: {
+    window: { width: 600, height: 400, stroke: 4, bg: '#FFFBE3', radius: 10, overflowHidden: true },
+    titleBar: { height: 60, padding: [0, 30, 0, 30], bg: '#FFD992' },
+    titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    contentArea: { height: 340, padding: [5, 60, 25, 60] },  
+    iconGroup: {
+      discord: { width: 100, height: 120, margin: 10 },
+      instagram: { width: 100, height: 120, margin: 10 },
+      telegram: { width: 100, height: 120, margin: 10 },
+      linkedin: { width: 100, height: 120, margin: 10 },
+      github: { width: 100, height: 120, margin: 10 },
+      tiktok: { width: 100, height: 120, margin: 10 },
+      whatsapp: { width: 100, height: 120, margin: 10 },
+      paypal: { width: 100, height: 120, margin: 10 },
+    },
+    icons: { width: 120, height: 120 },
+    iconText: { width: 120, height: 60, fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
+    descriptionFrame: { width: 540, height: 40, padding: [0, 70, 0, 70] },
+    description: { fontSize: '1rem', color: '#333333', margin: [10, 0, 0, 0] },
+  },
+};

@@ -1,57 +1,84 @@
 import React, { useState, useEffect } from 'react';
 import Draggable from 'react-draggable';
-import {
-  FRAME_WIDTH, FRAME_HEIGHT,
-  STROKE_WIDTH, BORDER_RADIUS,
-  TITLE_BAR_HEIGHT,
-  COLOR_BACKGROUND, COLOR_TITLE_BG, COLOR_TITLE_TEXT,
-  FONT_PT_TITLE
-} from '../theme';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import uiSpec from '../ui-spec';
 
 export default function WorksWindow({ onClose }) {
-  const [content, setContent] = useState('Loading...');
+  const cfg = uiSpec.works;
+  const [text, setText] = useState('loading...');
   useEffect(() => {
     fetch('/content/works.md')
       .then(r => r.text())
-      .then(txt => setContent(txt))
-      .catch(() => setContent('Error loading content'));
+      .then(txt => setText(txt))
+      .catch(() => setText('error loading content'));
   }, []);
-  const [position] = useState(() => {
-    const x = (window.innerWidth - FRAME_WIDTH) / 2;
-    const y = (window.innerHeight - FRAME_HEIGHT) / 2;
-    return { x, y };
-  });
+  // const [position] = useState(() => ({
+  //   x: Math.random() * (window.innerWidth - 800),
+  //   y: Math.random() * (window.innerHeight - 600)
+  // }));
 
   return (
-    <Draggable handle=".handle" defaultPosition={position}>
+    <Draggable handle=".handle" /* defaultPosition={position} */>
       <div
-        className="absolute box-border shadow-lg z-40 flex flex-col"
         style={{
-          width: FRAME_WIDTH,
-          height: FRAME_HEIGHT,
-          background: COLOR_BACKGROUND,
-          border: `${STROKE_WIDTH}px solid black`,
-          borderRadius: BORDER_RADIUS
+          width: `${cfg.window.width}px`,
+          height: `${cfg.window.height}px`,
+          backgroundColor: cfg.window.bg,
+          borderWidth: `${cfg.window.stroke}px`,
+          borderColor: 'black',
+          borderStyle: 'solid',
+          borderRadius: `${cfg.window.radius}px`
         }}
+        className="absolute box-border flex flex-col overflow-hidden"
       >
-        {/* titlebar */}
+        
+        {/* window-title */}
         <div
-          className="handle relative box-border flex items-center justify-between px-[20px] cursor-move"
           style={{
-            width: FRAME_WIDTH,
-            height: TITLE_BAR_HEIGHT,
-            background: COLOR_TITLE_BG,
-            borderBottom: `${STROKE_WIDTH}px solid black`
+            height: `${cfg.titleBar.height}px`,
+            backgroundColor: cfg.titleBar.bg,
+            padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
+            boxSizing: 'border-box'
           }}
+          className="handle w-full flex items-center justify-between border-b-4 border-black"
         >
-          <span style={{ fontSize: FONT_PT_TITLE, color: COLOR_TITLE_TEXT }}>works</span>
-          <button onClick={onClose} style={{ fontSize: FONT_PT_TITLE, color: COLOR_TITLE_TEXT }}>&times;</button>
+          <span
+            style={{
+              fontSize: cfg.titleText.fontSize,
+              fontWeight: cfg.titleText.fontWeight,
+              color: cfg.titleText.color
+            }}
+          >
+            works
+          </span>
+          <button
+            onClick={onClose}
+            style={{
+              width: `${cfg.closeButton.width}px`,
+              height: `${cfg.closeButton.height}px`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'transparent',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer'
+            }}
+          >
+            <span
+              style={{
+                fontSize: cfg.closeButton.fontSize,
+                fontWeight: cfg.closeButton.fontWeight,
+                color: cfg.closeButton.color
+              }}
+            >
+              [x]
+            </span>
+          </button>
         </div>
-        {/* content area */}
-        <div className="relative w-full h-[536px] box-border">
-          {/* empty content for now */}
+
+        {/* window-content */}
+        <div className="flex-1 box-border overflow-hidden pt-[15px] pr-[20px] pb-0 pl-[20px]">
+          {/* works-lower (empty content placeholder) */}
         </div>
       </div>
     </Draggable>

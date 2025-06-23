@@ -1,21 +1,12 @@
 import React from 'react';
-import Wavify from 'react-wavify';
 
 export default function Background() {
   return (
-    <div className="fixed inset-0 -z-10">
-      {/* Sunlight waves effect */}
-      <Wavify
-        fill="rgba(255, 255, 255, 0.3)"
-        paused={false}
-        options={{
-          height: 20,
-          amplitude: 30,
-          speed: 0.15,
-          points: 3
-        }}
-        className="absolute top-0 right-0 w-full h-full"
-      />
+    <div className="fixed inset-0 -z-10 bg-[#FFFBE3] overflow-hidden">
+      {/* Top-left sunlight */}
+      <div className="absolute top-0 left-0 w-[1404px] h-[355px] bg-[#AACCFF]" />
+      {/* Top-right sunlight */}
+      <div className="absolute top-0 right-0 w-[1192px] h-[1080px] bg-[#AACCFF]" />
     </div>
   );
 }

@@ -74059,7 +74059,7 @@ function HomeWindow({
       fontWeight: cfg.mainText.fontWeight,
       color: cfg.mainText.colors[0]
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "hi\xA0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "hi!\xA0"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
       color: cfg.mainText.colors[1],
       marginLeft: `${cfg.mainText.marginLeft}px`
@@ -74278,51 +74278,49 @@ __webpack_require__.r(__webpack_exports__);
       height: 600,
       stroke: 4,
       bg: '#FFFBE3',
-      radius: 5,
+      radius: 10,
       overflowHidden: true
     },
     titleBar: {
-      height: 40,
-      padding: [0, 20, 0, 20],
+      height: 60,
+      padding: [0, 30, 0, 30],
       bg: '#FFD992'
     },
     titleText: {
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#333333'
     },
     contentArea: {
-      height: 560,
+      height: 540,
       padding: [100, 0, 20, 0],
       bg: '#FFFBE3'
     },
     mainText: {
       fontSize: '5rem',
       fontWeight: 'bold',
-      colors: ['#333333', '#32117C'],
-      marginLeft: 20
+      colors: ['#333333', '#32117C']
     },
     supportingText: {
       fontSize: '2rem',
       fontWeight: 'bold',
-      color: '#333333',
-      marginTop: 20
+      color: '#333333'
     },
     iconGroup: {
       about: {
         width: 120,
         height: 180,
-        margin: 20
+        margin: 10
       },
       works: {
         width: 120,
         height: 180,
-        margin: 20
+        margin: 10
       },
       contact: {
         width: 120,
         height: 180,
-        margin: 20
+        margin: 10
       }
     },
     icon: {
@@ -74332,7 +74330,7 @@ __webpack_require__.r(__webpack_exports__);
     iconText: {
       width: 120,
       height: 60,
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#333333'
     }
@@ -74343,27 +74341,26 @@ __webpack_require__.r(__webpack_exports__);
       height: 600,
       stroke: 4,
       bg: '#FFFBE3',
-      radius: 5,
+      radius: 10,
       overflowHidden: true
     },
     titleBar: {
-      height: 40,
-      padding: [0, 20, 0, 20],
+      height: 60,
+      padding: [0, 30, 0, 30],
       bg: '#FFD992'
     },
     titleText: {
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#333333'
     },
     closeButton: {
-      width: 29,
-      height: 21,
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#333333'
     },
     contentArea: {
+      height: 540,
       padding: [20, 0, 0, 20]
     },
     avatar: {
@@ -74386,10 +74383,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     separator: {
       offsetLeft: -20,
-      width: 820,
-      borderWidth: 2,
+      width: 800,
+      borderWidth: 0.5,
       color: '#979797',
-      opacity: 1,
+      opacity: 0.25,
       margin: [20, 0, 15, 0]
     },
     content: {
@@ -74403,23 +74400,50 @@ __webpack_require__.r(__webpack_exports__);
       height: 600,
       stroke: 4,
       bg: '#FFFBE3',
-      radius: 5,
+      radius: 10,
       overflowHidden: true
     },
     titleBar: {
       height: 60,
-      padding: [0, 20, 0, 20],
+      padding: [0, 30, 0, 30],
       bg: '#FFD992'
     },
     titleText: {
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#333333'
     },
     closeButton: {
-      width: 29,
-      height: 21,
-      fontSize: '1rem',
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    contentArea: {
+      height: 540,
+      padding: [15, 20, 0, 20]
+    }
+  },
+  faq: {
+    window: {
+      width: 600,
+      height: 600,
+      stroke: 4,
+      bg: '#FFFBE3',
+      radius: 10,
+      overflowHidden: true
+    },
+    titleBar: {
+      height: 60,
+      padding: [0, 30, 0, 30],
+      bg: '#FFD992'
+    },
+    titleText: {
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    closeButton: {
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#333333'
     },
@@ -74434,29 +74458,90 @@ __webpack_require__.r(__webpack_exports__);
       height: 400,
       stroke: 4,
       bg: '#FFFBE3',
-      radius: 5,
+      radius: 10,
       overflowHidden: true
     },
     titleBar: {
       height: 60,
-      padding: [0, 20, 0, 20],
+      padding: [0, 30, 0, 30],
       bg: '#FFD992'
     },
     titleText: {
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#333333'
     },
     closeButton: {
-      width: 29,
-      height: 21,
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       fontWeight: 'bold',
       color: '#333333'
     },
     contentArea: {
       height: 340,
-      padding: [15, 20, 0, 20]
+      padding: [5, 60, 25, 60]
+    },
+    iconGroup: {
+      discord: {
+        width: 100,
+        height: 120,
+        margin: 10
+      },
+      instagram: {
+        width: 100,
+        height: 120,
+        margin: 10
+      },
+      telegram: {
+        width: 100,
+        height: 120,
+        margin: 10
+      },
+      linkedin: {
+        width: 100,
+        height: 120,
+        margin: 10
+      },
+      github: {
+        width: 100,
+        height: 120,
+        margin: 10
+      },
+      tiktok: {
+        width: 100,
+        height: 120,
+        margin: 10
+      },
+      whatsapp: {
+        width: 100,
+        height: 120,
+        margin: 10
+      },
+      paypal: {
+        width: 100,
+        height: 120,
+        margin: 10
+      }
+    },
+    icons: {
+      width: 120,
+      height: 120
+    },
+    iconText: {
+      width: 120,
+      height: 60,
+      fontSize: '1.25rem',
+      fontWeight: 'bold',
+      color: '#333333'
+    },
+    descriptionFrame: {
+      width: 540,
+      height: 40,
+      padding: [0, 70, 0, 70]
+    },
+    description: {
+      fontSize: '1rem',
+      color: '#333333',
+      margin: [10, 0, 0, 0]
     }
   }
 });

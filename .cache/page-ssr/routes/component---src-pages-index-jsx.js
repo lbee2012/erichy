@@ -73935,59 +73935,129 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-draggable */ "./node_modules/react-draggable/build/cjs/cjs.js");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_draggable__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ui_spec__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ui-spec */ "./src/ui-spec.js");
 /* provided dependency */ var fetch = __webpack_require__(/*! ./node_modules/node-fetch/lib/index.js */ "./node_modules/node-fetch/lib/index.js");
 
 
 
 
-const icons = ['discord', 'github', 'instagram', 'linkedin', 'paypal', 'telegram', 'tiktok', 'whatsapp'];
+
+const icons = ['discord', 'instagram', 'telegram', 'linkedin', 'github', 'tiktok', 'whatsapp', 'paypal'];
 function ContactWindow({
   onClose
 }) {
+  const cfg = _ui_spec__WEBPACK_IMPORTED_MODULE_2__["default"].contact;
   const {
     0: content,
     1: setContent
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Loading...');
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     fetch('/content/contact.md').then(r => r.text()).then(txt => setContent(txt)).catch(() => setContent('Error loading content'));
   }, []);
-  // const [position] = useState(() => ({ x: Math.random() * (window.innerWidth - 800), y: Math.random() * (window.innerHeight - 600) }));
+  // Position is static center by default
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
-    handle: ".handle" /* defaultPosition={position} */
+    handle: ".handle"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "absolute w-[800px] h-[600px] bg-[#FFFBE3] border-4 border-black rounded-[15px] box-border flex flex-col overflow-hidden"
+    style: {
+      width: `${cfg.window.width}px`,
+      height: `${cfg.window.height}px`,
+      backgroundColor: cfg.window.bg,
+      border: `${cfg.window.stroke}px solid black`,
+      borderRadius: `${cfg.window.radius}px`,
+      boxSizing: 'border-box'
+    },
+    className: "absolute flex flex-col overflow-hidden"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "handle w-full h-[68px] bg-[#FFD992] flex items-center justify-between px-4 box-border border-b-4 border-black rounded-tl-[11px] rounded-tr-[11px]"
+    style: {
+      height: `${cfg.titleBar.height}px`,
+      backgroundColor: cfg.titleBar.bg,
+      padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
+      boxSizing: 'border-box',
+      borderBottom: '4px solid black'
+    },
+    className: "handle flex items-center justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
-      fontSize: '32pt',
-      color: '#333333'
+      fontSize: cfg.titleText.fontSize,
+      fontWeight: cfg.titleText.fontWeight,
+      color: cfg.titleText.color
     }
   }, "contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: onClose,
-    className: "w-[50px] h-[50px] flex items-center justify-center bg-transparent border-none p-0 outline-none focus:outline-none",
     style: {
+      background: 'transparent',
+      border: 'none',
+      padding: 0,
       cursor: 'pointer'
     }
-  }, "[x]")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "flex-1 p-4 overflow-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "grid grid-cols-4 gap-4 place-items-center"
-  }, icons.map(icon => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    key: icon,
-    className: "flex flex-col items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: `/ico/contact/${icon}.png`,
-    alt: `${icon} icon`,
-    className: "w-[120px] h-[120px]"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
-      fontSize: '32pt',
-      fontWeight: 'bold',
-      color: '#333333'
+      fontSize: cfg.closeButton.fontSize,
+      fontWeight: cfg.closeButton.fontWeight,
+      color: cfg.closeButton.color
     }
-  }, icon)))))));
+  }, "[x]"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      height: `${cfg.contentArea.height}px`,
+      padding: `${cfg.contentArea.padding[0]}px ${cfg.contentArea.padding[1]}px ${cfg.contentArea.padding[2]}px ${cfg.contentArea.padding[3]}px`,
+      boxSizing: 'border-box',
+      overflow: 'auto'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center'
+    }
+  }, icons.map(icon => {
+    const grp = cfg.iconGroup[icon];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: icon,
+      style: {
+        width: `${grp.width}px`,
+        height: `${grp.height}px`,
+        margin: `${grp.margin}px`,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        cursor: 'pointer'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      src: `/ico/contact/${icon}.png`,
+      alt: `${icon} icon`,
+      style: {
+        width: `${cfg.icons.width}px`,
+        height: `${cfg.icons.height}px`
+      }
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      style: {
+        width: `${cfg.iconText.width}px`,
+        height: `${cfg.iconText.height}px`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: cfg.iconText.fontSize,
+        fontWeight: cfg.iconText.fontWeight,
+        color: cfg.iconText.color
+      }
+    }, icon));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      width: `${cfg.descriptionFrame.width}px`,
+      height: `${cfg.descriptionFrame.height}px`,
+      padding: `${cfg.descriptionFrame.padding[0]}px ${cfg.descriptionFrame.padding[1]}px ${cfg.descriptionFrame.padding[2]}px ${cfg.descriptionFrame.padding[3]}px`,
+      boxSizing: 'border-box',
+      border: '1px solid black',
+      margin: 'auto'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    style: {
+      fontSize: cfg.description.fontSize,
+      color: cfg.description.color,
+      margin: `${cfg.description.margin[0]}px ${cfg.description.margin[1]}px ${cfg.description.margin[2]}px ${cfg.description.margin[3]}px`
+    }
+  }, content)))));
 }
 
 /***/ }),
@@ -74361,13 +74431,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     contentArea: {
       height: 540,
-      padding: [20, 0, 0, 20]
+      padding: [20, 0, 0, 40]
     },
     avatar: {
       width: 150,
       height: 150,
       radius: 75,
-      margin: [20, 20, 20, 80]
+      margin: [20, 20, 20, 60]
     },
     nameText: {
       fontSize: '2rem',
@@ -74382,7 +74452,7 @@ __webpack_require__.r(__webpack_exports__);
       margin: [0, 0, 0, 20]
     },
     separator: {
-      offsetLeft: -20,
+      offsetLeft: -40,
       width: 800,
       borderWidth: 0.5,
       color: '#979797',
@@ -74390,8 +74460,14 @@ __webpack_require__.r(__webpack_exports__);
       margin: [20, 0, 15, 0]
     },
     content: {
-      fontSize: '1rem',
-      color: '#333333'
+      normalText: {
+        fontSize: '1rem',
+        color: '#333333'
+      },
+      heading1: {
+        fontSize: '2rem',
+        color: '#333333'
+      }
     }
   },
   works: {

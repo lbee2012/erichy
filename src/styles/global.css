@@ -12,7 +12,7 @@ body, html {
   font-family: 'JetBrains Mono', monospace;
 }
 
-#__gatsby > div {
+#___gatsby > div {
   box-sizing: border-box;
   border: 8px solid #333;
   height: 100%;

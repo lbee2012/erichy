@@ -5140,24 +5140,24 @@ module.exports = require("punycode");
 /***/ }),
 
 /***/ "react":
-/*!*************************************************************************************************!*\
-  !*** external "S:\\Portable\\_non-application\\Git Repo\\Archy\\node_modules\\react\\index.js" ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** external "S:\\Hard_Storage\\Git Repo\\Archy\\node_modules\\react\\index.js" ***!
+  \***********************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("S:\\Portable\\_non-application\\Git Repo\\Archy\\node_modules\\react\\index.js");
+module.exports = require("S:\\Hard_Storage\\Git Repo\\Archy\\node_modules\\react\\index.js");
 
 /***/ }),
 
 /***/ "react-dom/server":
-/*!******************************************************************************************************!*\
-  !*** external "S:\\Portable\\_non-application\\Git Repo\\Archy\\node_modules\\react-dom\\server.js" ***!
-  \******************************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** external "S:\\Hard_Storage\\Git Repo\\Archy\\node_modules\\react-dom\\server.js" ***!
+  \****************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("S:\\Portable\\_non-application\\Git Repo\\Archy\\node_modules\\react-dom\\server.js");
+module.exports = require("S:\\Hard_Storage\\Git Repo\\Archy\\node_modules\\react-dom\\server.js");
 
 /***/ }),
 

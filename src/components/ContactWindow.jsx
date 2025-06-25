@@ -1,49 +1,140 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Draggable from 'react-draggable';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import uiSpec from '../ui-spec';
 
-const icons = [
-  'discord','github','instagram','linkedin','paypal','telegram','tiktok','whatsapp'
-];
+const icons = ['discord','instagram','telegram','linkedin','github','tiktok','whatsapp','paypal'];
 
 export default function ContactWindow({ onClose }) {
-  const [content, setContent] = useState('Loading...');
-  useEffect(() => {
-    fetch('/content/contact.md')
-      .then(r => r.text())
-      .then(txt => setContent(txt))
-      .catch(() => setContent('Error loading content'));
-  }, []);
-  // const [position] = useState(() => ({ x: Math.random() * (window.innerWidth - 800), y: Math.random() * (window.innerHeight - 600) }));
+  const cfg = uiSpec.contact;
+  const description = 'clicking any links will open a new tab!';
+  
+  // split into two rows of exactly 4
+  const row1 = icons.slice(0, 4);
+  const row2 = icons.slice(4);
 
   return (
-    <Draggable handle=".handle" /* defaultPosition={position} */>
-      <div className="absolute w-[800px] h-[600px] bg-[#FFFBE3] border-4 border-black rounded-[15px] box-border flex flex-col overflow-hidden">
-        <div className="handle w-full h-[68px] bg-[#FFD992] flex items-center justify-between px-4 box-border border-b-4 border-black rounded-tl-[11px] rounded-tr-[11px]">
-          <span style={{ fontSize: '32pt', color: '#333333' }}>contact</span>
-          <button
-            onClick={onClose}
-            className="w-[50px] h-[50px] flex items-center justify-center bg-transparent border-none p-0 outline-none focus:outline-none"
-            style={{ cursor: 'pointer' }}
+    <Draggable handle=".handle">
+      <div
+        style={{
+          width: `${cfg.window.width}px`,
+          height: `${cfg.window.height}px`,
+          backgroundColor: cfg.window.bg,
+          border: `${cfg.window.stroke}px solid black`,
+          borderRadius: `${cfg.window.radius}px`,
+          boxSizing: 'border-box'
+        }}
+        className="absolute flex flex-col overflow-hidden"
+      >
+        {/* title-bar */}
+        <div
+          style={{
+            height: `${cfg.titleBar.height}px`,
+            backgroundColor: cfg.titleBar.bg,
+            padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
+            boxSizing: 'border-box',
+            borderBottom: '4px solid black'
+          }}
+          className="handle flex items-center justify-between"
+        >
+          <span
+            style={{
+              fontSize: cfg.titleText.fontSize,
+              fontWeight: cfg.titleText.fontWeight,
+              color: cfg.titleText.color
+            }}
           >
-            [x]
+            contact
+          </span>
+          <button onClick={onClose} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
+            <span
+              style={{
+                fontSize: cfg.closeButton.fontSize,
+                fontWeight: cfg.closeButton.fontWeight,
+                color: cfg.closeButton.color
+              }}
+            >
+              [x]
+            </span>
           </button>
         </div>
-        <div className="flex-1 p-4 overflow-auto">
-          <div className="grid grid-cols-4 gap-4 place-items-center">
-            {icons.map(icon => (
-              <div key={icon} className="flex flex-col items-center">
-                <img
-                  src={`/ico/contact/${icon}.png`}
-                  alt={`${icon} icon`}
-                  className="w-[120px] h-[120px]"
-                />
-                <span style={{ fontSize: '32pt', fontWeight: 'bold', color: '#333333' }}>
-                  {icon}
-                </span>
-              </div>
-            ))}
+
+        {/* content-area */}
+        <div
+          style={{
+            height: `${cfg.contentArea.height}px`,
+            padding: `${cfg.contentArea.padding[0]}px ${cfg.contentArea.padding[1]}px ${cfg.contentArea.padding[2]}px ${cfg.contentArea.padding[3]}px`,
+            boxSizing: 'border-box',
+            overflow: 'auto'
+          }}
+        >
+          {[row1, row2].map((row, i) => (
+            <div
+              key={i}
+              style={{ display: 'flex', justifyContent: 'center' }}
+            >
+              {row.map(icon => {
+                const grp = cfg.iconGroup[icon];
+                return (
+                  <div
+                    key={icon}
+                    style={{
+                      width: `${grp.width}px`,
+                      height: `${grp.height}px`,
+                      margin: `${grp.margin[0]}px ${grp.margin[1]}px ${grp.margin[2]}px ${grp.margin[3]}px`,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <img
+                      src={`/ico/contact/${icon}.png`}
+                      alt={`${icon} icon`}
+                      style={{ width: `${cfg.icons.width}px`, height: `${cfg.icons.height}px` }}
+                    />
+                    <div
+                      style={{
+                        width: `${cfg.iconText.width}px`,
+                        height: `${cfg.iconText.height}px`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: cfg.iconText.fontSize,
+                        fontWeight: cfg.iconText.fontWeight,
+                        color: cfg.iconText.color
+                      }}
+                    >
+                      {icon}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+
+          {/* description */}
+          <div
+            style={{
+              width: `${cfg.descriptionFrame.width}px`,
+              height: `${cfg.descriptionFrame.height}px`,
+              padding: `${cfg.descriptionFrame.padding[0]}px ${cfg.descriptionFrame.padding[1]}px ${cfg.descriptionFrame.padding[2]}px ${cfg.descriptionFrame.padding[3]}px`,
+              boxSizing: 'border-box',
+              border: '1px solid black',
+              borderRadius: `${cfg.descriptionFrame.radius}px`,
+              margin: '0 auto',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <span
+              style={{
+                fontSize: cfg.description.fontSize,
+                color: cfg.description.color,
+              }}
+            >
+              {description}
+            </span>
           </div>
         </div>
       </div>

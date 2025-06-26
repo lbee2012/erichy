@@ -73812,13 +73812,9 @@ function AboutWindow({
       color: cfg.titleText.color
     }
   }, "about"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onMouseDown: e => e.stopPropagation(),
     onClick: onClose,
     style: {
-      width: `${cfg.closeButton.width}px`,
-      height: `${cfg.closeButton.height}px`,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
       background: 'transparent',
       border: 'none',
       padding: 0,
@@ -73936,9 +73932,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-draggable */ "./node_modules/react-draggable/build/cjs/cjs.js");
 /* harmony import */ var react_draggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_draggable__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _ui_spec__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ui-spec */ "./src/ui-spec.js");
-/* provided dependency */ var fetch = __webpack_require__(/*! ./node_modules/node-fetch/lib/index.js */ "./node_modules/node-fetch/lib/index.js");
-
-
 
 
 
@@ -73947,15 +73940,11 @@ function ContactWindow({
   onClose
 }) {
   const cfg = _ui_spec__WEBPACK_IMPORTED_MODULE_2__["default"].contact;
-  const {
-    0: content,
-    1: setContent
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    fetch('/content/contact.md').then(r => r.text()).then(txt => setContent(txt)).catch(() => setContent('Error loading content'));
-  }, []);
-  // Position is static center by default
+  const description = 'clicking any links will open a new tab!';
 
+  // split into two rows of exactly 4
+  const row1 = icons.slice(0, 4);
+  const row2 = icons.slice(4);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react_draggable__WEBPACK_IMPORTED_MODULE_1___default()), {
     handle: ".handle"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -73984,11 +73973,11 @@ function ContactWindow({
       color: cfg.titleText.color
     }
   }, "contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onMouseDown: e => e.stopPropagation(),
     onClick: onClose,
     style: {
       background: 'transparent',
       border: 'none',
-      padding: 0,
       cursor: 'pointer'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -74004,20 +73993,20 @@ function ContactWindow({
       boxSizing: 'border-box',
       overflow: 'auto'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, [row1, row2].map((row, i) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    key: i,
     style: {
       display: 'flex',
-      flexWrap: 'wrap',
       justifyContent: 'center'
     }
-  }, icons.map(icon => {
+  }, row.map(icon => {
     const grp = cfg.iconGroup[icon];
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       key: icon,
       style: {
         width: `${grp.width}px`,
         height: `${grp.height}px`,
-        margin: `${grp.margin}px`,
+        margin: `${grp.margin[0]}px ${grp.margin[1]}px ${grp.margin[2]}px ${grp.margin[3]}px`,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -74042,22 +74031,25 @@ function ContactWindow({
         color: cfg.iconText.color
       }
     }, icon));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       width: `${cfg.descriptionFrame.width}px`,
       height: `${cfg.descriptionFrame.height}px`,
       padding: `${cfg.descriptionFrame.padding[0]}px ${cfg.descriptionFrame.padding[1]}px ${cfg.descriptionFrame.padding[2]}px ${cfg.descriptionFrame.padding[3]}px`,
       boxSizing: 'border-box',
       border: '1px solid black',
-      margin: 'auto'
+      borderRadius: `${cfg.descriptionFrame.radius}px`,
+      margin: '0 auto',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     style: {
       fontSize: cfg.description.fontSize,
-      color: cfg.description.color,
-      margin: `${cfg.description.margin[0]}px ${cfg.description.margin[1]}px ${cfg.description.margin[2]}px ${cfg.description.margin[3]}px`
+      color: cfg.description.color
     }
-  }, content)))));
+  }, description)))));
 }
 
 /***/ }),
@@ -74245,13 +74237,9 @@ function WorksWindow({
       color: cfg.titleText.color
     }
   }, "works"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onMouseDown: e => e.stopPropagation(),
     onClick: onClose,
     style: {
-      width: `${cfg.closeButton.width}px`,
-      height: `${cfg.closeButton.height}px`,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
       background: 'transparent',
       border: 'none',
       padding: 0,
@@ -74457,7 +74445,7 @@ __webpack_require__.r(__webpack_exports__);
       borderWidth: 0.5,
       color: '#979797',
       opacity: 0.25,
-      margin: [20, 0, 15, 0]
+      margin: [10, 0, 15, 0]
     },
     content: {
       normalText: {
@@ -74554,57 +74542,57 @@ __webpack_require__.r(__webpack_exports__);
     },
     contentArea: {
       height: 340,
-      padding: [5, 60, 25, 60]
+      padding: [15, 20, 0, 20]
     },
     iconGroup: {
       discord: {
         width: 100,
         height: 120,
-        margin: 10
+        margin: [0, 20, 10, 20]
       },
       instagram: {
         width: 100,
         height: 120,
-        margin: 10
+        margin: [0, 20, 10, 20]
       },
       telegram: {
         width: 100,
         height: 120,
-        margin: 10
+        margin: [0, 20, 10, 20]
       },
       linkedin: {
         width: 100,
         height: 120,
-        margin: 10
+        margin: [0, 20, 10, 20]
       },
       github: {
         width: 100,
         height: 120,
-        margin: 10
+        margin: [0, 20, 10, 20]
       },
       tiktok: {
         width: 100,
         height: 120,
-        margin: 10
+        margin: [0, 20, 10, 20]
       },
       whatsapp: {
         width: 100,
         height: 120,
-        margin: 10
+        margin: [0, 20, 10, 20]
       },
       paypal: {
         width: 100,
         height: 120,
-        margin: 10
+        margin: [0, 20, 10, 20]
       }
     },
     icons: {
-      width: 120,
-      height: 120
+      width: 80,
+      height: 80
     },
     iconText: {
-      width: 120,
-      height: 60,
+      width: 100,
+      height: 40,
       fontSize: '1.25rem',
       fontWeight: 'bold',
       color: '#333333'
@@ -74612,12 +74600,12 @@ __webpack_require__.r(__webpack_exports__);
     descriptionFrame: {
       width: 540,
       height: 40,
-      padding: [0, 70, 0, 70]
+      padding: [0, 70, 0, 70],
+      radius: 5
     },
     description: {
       fontSize: '1rem',
-      color: '#333333',
-      margin: [10, 0, 0, 0]
+      color: '#333333'
     }
   }
 });

@@ -45,7 +45,11 @@ export default function ContactWindow({ onClose }) {
           >
             contact
           </span>
-          <button onClick={onClose} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
+          <button
+            onMouseDown={e => e.stopPropagation()}
+            onClick={onClose}
+            style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
+          >
             <span
               style={{
                 fontSize: cfg.closeButton.fontSize,

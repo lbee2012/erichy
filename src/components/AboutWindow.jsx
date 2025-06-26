@@ -50,13 +50,9 @@ export default function AboutWindow({ onClose }) {
             }}
           >about</span>
           <button
+            onMouseDown={e => e.stopPropagation()}
             onClick={onClose}
             style={{
-              width: `${cfg.closeButton.width}px`,
-              height: `${cfg.closeButton.height}px`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
               background: 'transparent',
               border: 'none',
               padding: 0,

@@ -2,45 +2,51 @@ import React, { useState, useEffect } from 'react';
 import Draggable from 'react-draggable';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import avatarImg from '../../static/ico/about/cn_mel.jpeg';
 import uiSpec from '../ui-spec';
 
 export default function AboutWindow({ onClose }) {
   const cfg = uiSpec.about;
-  const [content, setContent] = useState('Loading...');
+  const [content, setContent] = useState('Loading…');
+
   useEffect(() => {
     fetch('/content/about.md')
-      .then(r => r.text()).then(txt => setContent(txt))
+      .then(r => r.text())
+      .then(txt => setContent(txt))
       .catch(() => setContent('Error loading content'));
   }, []);
-  // const [position] = useState(() => ({
-  //   x: Math.random() * (window.innerWidth - 800),
-  //   y: Math.random() * (window.innerHeight - 600)
-  // }));
 
   return (
-    <Draggable handle=".handle" /* defaultPosition={position} */>
+    <Draggable handle=".handle">
       <div
         style={{
-          width: `${cfg.window.width}px`,
-          height: `${cfg.window.height}px`,
+          position: 'absolute',
+          width: cfg.window.width + 'px',
+          height: cfg.window.height + 'px',
           backgroundColor: cfg.window.bg,
-          border: `${cfg.window.stroke}px solid black`,
-          borderRadius: `${cfg.window.radius}px`,
-          boxSizing: 'border-box'
+          border: cfg.window.stroke + 'px solid black',
+          borderRadius: cfg.window.radius + 'px',
+          display: 'flex',
+          flexDirection: 'column',
+          boxSizing: 'border-box',
+          overflow: 'hidden'
         }}
-        className="absolute flex flex-col overflow-hidden"
       >
         {/* title-bar */}
         <div
           style={{
-            height: `${cfg.titleBar.height}px`,
+            height: cfg.titleBar.height + 'px',
             backgroundColor: cfg.titleBar.bg,
-            padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
-            boxSizing: 'border-box',
-            borderBottom: '4px solid black'
+            paddingTop: cfg.titleBar.padding[0] + 'px',
+            paddingRight: cfg.titleBar.padding[1] + 'px',
+            paddingBottom: cfg.titleBar.padding[2] + 'px',
+            paddingLeft: cfg.titleBar.padding[3] + 'px',
+            borderBottom: '4px solid black',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            boxSizing: 'border-box'
           }}
-          className="handle flex items-center justify-between"
+          className="handle"
         >
           <span
             style={{
@@ -55,7 +61,7 @@ export default function AboutWindow({ onClose }) {
             style={{
               background: 'transparent',
               border: 'none',
-              padding: 0,
+              padding: '0px',
               cursor: 'pointer'
             }}
           >
@@ -72,26 +78,29 @@ export default function AboutWindow({ onClose }) {
         {/* content-area */}
         <div
           style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
+            flex: '1',
+            paddingTop: cfg.contentArea.padding[0] + 'px',
+            paddingRight: cfg.contentArea.padding[1] + 'px',
+            paddingBottom: cfg.contentArea.padding[2] + 'px',
+            paddingLeft: cfg.contentArea.padding[3] + 'px',
+            boxSizing: 'border-box',
             overflow: 'hidden',
-            paddingTop: `${cfg.contentArea.padding[0]}px`,
-            paddingRight: `${cfg.contentArea.padding[1]}px`,
-            paddingBottom: `${cfg.contentArea.padding[2]}px`,
-            paddingLeft: `${cfg.contentArea.padding[3]}px`,
-            boxSizing: 'border-box'
+            display: 'flex',
+            flexDirection: 'column'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'start' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start' }}>
             <img
-              src={avatarImg}
+              src="/ico/about/cn_mel.jpeg"
               alt="avatar"
               style={{
-                width: `${cfg.avatar.width}px`,
-                height: `${cfg.avatar.height}px`,
-                borderRadius: `${cfg.avatar.radius}px`,
-                margin: `${cfg.avatar.margin[0]}px ${cfg.avatar.margin[1]}px ${cfg.avatar.margin[2]}px ${cfg.avatar.margin[3]}px`              
+                width: cfg.avatar.width + 'px',
+                height: cfg.avatar.height + 'px',
+                borderRadius: cfg.avatar.radius + 'px',
+                marginTop: cfg.avatar.margin[0] + 'px',
+                marginRight: cfg.avatar.margin[1] + 'px',
+                marginBottom: cfg.avatar.margin[2] + 'px',
+                marginLeft: cfg.avatar.margin[3] + 'px'
               }}
             />
             <div>
@@ -100,7 +109,10 @@ export default function AboutWindow({ onClose }) {
                   fontSize: cfg.nameText.fontSize,
                   fontWeight: cfg.nameText.fontWeight,
                   color: cfg.nameText.color,
-                  margin: `${cfg.nameText.margin[0]}px ${cfg.nameText.margin[1]}px ${cfg.nameText.margin[2]}px ${cfg.nameText.margin[3]}px`                
+                  marginTop: cfg.nameText.margin[0] + 'px',
+                  marginRight: cfg.nameText.margin[1] + 'px',
+                  marginBottom: cfg.nameText.margin[2] + 'px',
+                  marginLeft: cfg.nameText.margin[3] + 'px'
                 }}
               >Quy Long Hoang</div>
               <div
@@ -108,7 +120,10 @@ export default function AboutWindow({ onClose }) {
                   fontSize: cfg.quoteText.fontSize,
                   fontWeight: cfg.quoteText.fontWeight,
                   color: cfg.quoteText.color,
-                  margin: `${cfg.quoteText.margin[0]}px ${cfg.quoteText.margin[1]}px ${cfg.quoteText.margin[2]}px ${cfg.quoteText.margin[3]}px`
+                  marginTop: cfg.quoteText.margin[0] + 'px',
+                  marginRight: cfg.quoteText.margin[1] + 'px',
+                  marginBottom: cfg.quoteText.margin[2] + 'px',
+                  marginLeft: cfg.quoteText.margin[3] + 'px'
                 }}
               >
                 where is my quality?<br/>MMT Co., Ltd.
@@ -118,21 +133,23 @@ export default function AboutWindow({ onClose }) {
 
           <hr
             style={{
-              margin: `${cfg.separator.margin[0]}px ${cfg.separator.margin[1]}px ${cfg.separator.margin[2]}px ${cfg.separator.margin[3]}px`,
-              borderTop: `${cfg.separator.borderWidth}px solid ${cfg.separator.color}`,
-              width: `${cfg.separator.width}px`,
-              marginLeft: `${cfg.separator.offsetLeft}px`,
+              marginTop: cfg.separator.margin[0] + 'px',
+              marginRight: cfg.separator.margin[1] + 'px',
+              marginBottom: cfg.separator.margin[2] + 'px',
+              marginLeft: cfg.separator.offsetLeft + 'px',
+              borderTop: cfg.separator.borderWidth + 'px solid ' + cfg.separator.color,
+              width: cfg.separator.width + 'px',
               opacity: cfg.separator.opacity
             }}
           />
 
           <div
             style={{
-              flex: 1,
+              flex: '1',
               overflow: 'auto',
-              width: `${cfg.content.width || '100%'}px`,
-              fontSize: cfg.content.fontSize,
-              color: cfg.content.color,
+              width: (cfg.content.width || '100%') + 'px',
+              fontSize: cfg.content.normalText.fontSize,
+              color: cfg.content.normalText.color,
               boxSizing: 'border-box'
             }}
           >

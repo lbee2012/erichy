@@ -4,29 +4,34 @@ import uiSpec from '../ui-spec';
 export default function HomeWindow({ onOpen }) {
   const cfg = uiSpec.home;
   return (
-    <div className="fixed inset-0 flex items-center justify-center">
+    <div style={{ position: 'fixed', top: '0px', left: '0px', right: '0px', bottom: '0px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div
         style={{
-          width: `${cfg.window.width}px`,
-          height: `${cfg.window.height}px`,
+          position: 'relative',
+          width: cfg.window.width + 'px',
+          height: cfg.window.height + 'px',
           backgroundColor: cfg.window.bg,
-          border: `${cfg.window.stroke}px solid black`,
-          borderRadius: `${cfg.window.radius}px`,
-          boxSizing: 'border-box'
+          border: cfg.window.stroke + 'px solid black',
+          borderRadius: cfg.window.radius + 'px',
+          boxSizing: 'border-box',
+          overflow: 'hidden'
         }}
-        className="relative overflow-hidden"
       >
         {/* title-bar */}
         <div
           style={{
-            height: `${cfg.titleBar.height}px`,
-            
+            height: cfg.titleBar.height + 'px',
             backgroundColor: cfg.titleBar.bg,
-            padding: `${cfg.titleBar.padding[0]}px ${cfg.titleBar.padding[1]}px ${cfg.titleBar.padding[2]}px ${cfg.titleBar.padding[3]}px`,
-            boxSizing: 'border-box',
-            borderBottom: '4px solid black'
+            paddingTop: cfg.titleBar.padding[0] + 'px',
+            paddingRight: cfg.titleBar.padding[1] + 'px',
+            paddingBottom: cfg.titleBar.padding[2] + 'px',
+            paddingLeft: cfg.titleBar.padding[3] + 'px',
+            borderBottom: '4px solid black',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            boxSizing: 'border-box'
           }}
-          className="flex items-center justify-start"
         >
           <span
             style={{
@@ -42,9 +47,12 @@ export default function HomeWindow({ onOpen }) {
         {/* content-area */}
         <div
           style={{
-            height: `${cfg.contentArea.height}px`,
+            height: cfg.contentArea.height + 'px',
             backgroundColor: cfg.contentArea.bg,
-            padding: `${cfg.contentArea.padding[0]}px ${cfg.contentArea.padding[1]}px ${cfg.contentArea.padding[2]}px ${cfg.contentArea.padding[3]}px`,
+            paddingTop: cfg.contentArea.padding[0] + 'px',
+            paddingRight: cfg.contentArea.padding[1] + 'px',
+            paddingBottom: cfg.contentArea.padding[2] + 'px',
+            paddingLeft: cfg.contentArea.padding[3] + 'px',
             boxSizing: 'border-box',
             overflow: 'hidden',
             display: 'flex',
@@ -64,7 +72,7 @@ export default function HomeWindow({ onOpen }) {
             }}
           >
             <span>hi!&nbsp;</span>
-            <span style={{ color: cfg.mainText.colors[1], marginLeft: `${cfg.mainText.marginLeft}px` }}>
+            <span style={{ color: cfg.mainText.colors[1], marginLeft: cfg.mainText.marginLeft + 'px' }}>
               i'm lbee
             </span>
           </div>
@@ -72,7 +80,7 @@ export default function HomeWindow({ onOpen }) {
           {/* supporting-text */}
           <div
             style={{
-              marginTop: `${cfg.supportingText.marginTop}px`,
+              marginBottom: cfg.supportingText.marginBottom + 'px',
               fontSize: cfg.supportingText.fontSize,
               fontWeight: cfg.supportingText.fontWeight,
               color: cfg.supportingText.color
@@ -82,15 +90,15 @@ export default function HomeWindow({ onOpen }) {
           </div>
 
           {/* icon groups */}
-          <div style={{ display: 'flex', margin: `${cfg.supportingText.marginTop}px` }}>
+          <div style={{ display: 'flex', margin: cfg.supportingText.marginTop + 'px' }}>
             {Object.entries(cfg.iconGroup).map(([key, grp]) => (
               <div
                 key={key}
                 onClick={() => onOpen(key)}
                 style={{
-                  width: `${grp.width}px`,
-                  height: `${grp.height}px`,
-                  margin: `${grp.margin}px`,
+                  width: grp.width + 'px',
+                  height: grp.height + 'px',
+                  margin: grp.margin + 'px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -100,12 +108,12 @@ export default function HomeWindow({ onOpen }) {
                 <img
                   src={`/ico/home/${key}.png`}
                   alt={`${key} icon`}
-                  style={{ width: `${cfg.icon.width}px`, height: `${cfg.icon.height}px` }}
+                  style={{ width: cfg.icon.width + 'px', height: cfg.icon.height + 'px' }}
                 />
                 <div
                   style={{
-                    width: `${cfg.iconText.width}px`,
-                    height: `${cfg.iconText.height}px`,
+                    width: cfg.iconText.width + 'px',
+                    height: cfg.iconText.height + 'px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

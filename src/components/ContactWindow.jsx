@@ -1,50 +1,87 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Draggable from 'react-draggable';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-
-const icons = [
-  'discord','github','instagram','linkedin','paypal','telegram','tiktok','whatsapp'
-];
+import uiSpec from '../ui-spec';
 
 export default function ContactWindow({ onClose }) {
-  const [content, setContent] = useState('Loading...');
-  useEffect(() => {
-    fetch('/content/contact.md')
-      .then(r => r.text())
-      .then(txt => setContent(txt))
-      .catch(() => setContent('Error loading content'));
-  }, []);
-  // const [position] = useState(() => ({ x: Math.random() * (window.innerWidth - 800), y: Math.random() * (window.innerHeight - 600) }));
-
+  const cfg = uiSpec.contact;
   return (
-    <Draggable handle=".handle" /* defaultPosition={position} */>
-      <div className="absolute w-[800px] h-[600px] bg-[#FFFBE3] border-4 border-black rounded-[15px] box-border flex flex-col overflow-hidden">
-        <div className="handle w-full h-[68px] bg-[#FFD992] flex items-center justify-between px-4 box-border border-b-4 border-black rounded-tl-[11px] rounded-tr-[11px]">
-          <span style={{ fontSize: '32pt', color: '#333333' }}>contact</span>
-          <button
-            onClick={onClose}
-            className="w-[50px] h-[50px] flex items-center justify-center bg-transparent border-none p-0 outline-none focus:outline-none"
-            style={{ cursor: 'pointer' }}
+    <Draggable handle=".handle">
+      <div
+        style={{
+          position: 'absolute',
+          width: cfg.window.width + 'px',
+          height: cfg.window.height + 'px',
+          backgroundColor: cfg.window.bg,
+          border: cfg.window.stroke + 'px solid black',
+          borderRadius: cfg.window.radius + 'px',
+          display: 'flex',
+          flexDirection: 'column',
+          boxSizing: 'border-box',
+          overflow: 'hidden'
+        }}
+      >
+        {/* title-bar */}
+        <div
+          style={{
+            height: cfg.titleBar.height + 'px',
+            backgroundColor: cfg.titleBar.bg,
+            paddingTop: cfg.titleBar.padding[0] + 'px',
+            paddingRight: cfg.titleBar.padding[1] + 'px',
+            paddingBottom: cfg.titleBar.padding[2] + 'px',
+            paddingLeft: cfg.titleBar.padding[3] + 'px',
+            borderBottom: '4px solid black',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            boxSizing: 'border-box'
+          }}
+          className="handle"
+        >
+          <span
+            style={{
+              fontSize: cfg.titleText.fontSize,
+              fontWeight: cfg.titleText.fontWeight,
+              color: cfg.titleText.color
+            }}
           >
-            [x]
+            contact
+          </span>
+          <button
+            onMouseDown={e => e.stopPropagation()}
+            onClick={onClose}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              padding: '0px',
+              cursor: 'pointer'
+            }}
+          >
+            <span
+              style={{
+                fontSize: cfg.closeButton.fontSize,
+                fontWeight: cfg.closeButton.fontWeight,
+                color: cfg.closeButton.color
+              }}
+            >
+              [x]
+            </span>
           </button>
         </div>
-        <div className="flex-1 p-4 overflow-auto">
-          <div className="grid grid-cols-4 gap-4 place-items-center">
-            {icons.map(icon => (
-              <div key={icon} className="flex flex-col items-center">
-                <img
-                  src={`/ico/contact/${icon}.png`}
-                  alt={`${icon} icon`}
-                  className="w-[120px] h-[120px]"
-                />
-                <span style={{ fontSize: '32pt', fontWeight: 'bold', color: '#333333' }}>
-                  {icon}
-                </span>
-              </div>
-            ))}
-          </div>
+        {/* content-area */}
+        <div
+          style={{
+            flex: '1',
+            paddingTop: cfg.contentArea.padding[0] + 'px',
+            paddingRight: cfg.contentArea.padding[1] + 'px',
+            paddingBottom: cfg.contentArea.padding[2] + 'px',
+            paddingLeft: cfg.contentArea.padding[3] + 'px',
+            boxSizing: 'border-box',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
+          <p>No contact content available.</p>
         </div>
       </div>
     </Draggable>

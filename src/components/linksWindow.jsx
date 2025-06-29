@@ -2,7 +2,7 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import uiSpec from '../ui-spec';
 
-export default function LinksWindow({ onClose }) {
+export default function linksWindow({ onClose }) {
   const cfg = uiSpec.links;
   return (
     <Draggable handle=".handle">
@@ -90,7 +90,7 @@ export default function LinksWindow({ onClose }) {
             width: '100%',
           }}>
             {/* First row - 4 icons */}
-            {['discord', 'instagram', 'telegram', 'linkedin'].map((platform) => (
+            {['group1', 'group2', 'group3', 'group4'].map((platform) => (
               <div
                 key={platform}
                 style={{
@@ -107,7 +107,7 @@ export default function LinksWindow({ onClose }) {
                 }}
               >
                 <img
-                  src={`/ico/links/${platform}.png`}
+                  src={cfg.iconGroup[platform].source}
                   alt={platform}
                   style={{
                     width: cfg.icons.width + 'px',
@@ -128,10 +128,10 @@ export default function LinksWindow({ onClose }) {
                     justifyContent: 'center'
                   }}
                 >
-                  {platform === 'linkedin' ? 'edin' :
-                   platform === 'instagram' ? 'ig' :
-                   platform === 'telegram' ? 'tele' :
-                   platform === 'discord' ? 'disco' :
+                  {platform === 'group4' ? 'edin' :
+                   platform === 'group2' ? 'ig' :
+                   platform === 'group3' ? 'tele' :
+                   platform === 'group1' ? 'disco' :
                    platform}
                 </div>
               </div>
@@ -145,7 +145,7 @@ export default function LinksWindow({ onClose }) {
             justifyContent: 'center',
             width: '100%',
           }}>
-            {['github', 'x', 'whatsapp', 'youtube'].map((platform) => (
+            {['group5', 'group6', 'group7', 'group8'].map((platform) => (
               <div
                 key={platform}
                 style={{
@@ -162,7 +162,7 @@ export default function LinksWindow({ onClose }) {
                 }}
               >
                 <img
-                  src={`/ico/links/${platform}.png`}
+                  src={cfg.iconGroup[platform].source}
                   alt={platform}
                   style={{
                     width: cfg.icons.width + 'px',
@@ -183,10 +183,10 @@ export default function LinksWindow({ onClose }) {
                     justifyContent: 'center'
                   }}
                 >
-                  {platform === 'github' ? 'gubhit' : 
-                   platform === 'x' ? 'x' :
-                   platform === 'whatsapp' ? 'whatsup' :
-                   platform === 'youtube' ? 'utub' :
+                  {platform === 'group5' ? 'gubhit' : 
+                   platform === 'group6' ? 'x' :
+                   platform === 'group7' ? 'whatsup' :
+                   platform === 'group8' ? 'utub' :
                    platform}
                 </div>
               </div>

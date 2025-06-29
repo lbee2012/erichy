@@ -9,11 +9,11 @@ export default {
     mainText: { fontSize: '5rem', fontWeight: 'bold', colors: ['#333333', '#32117C'], marginLeft: 0 },
     supportingText: { fontSize: '2rem', fontWeight: 'bold', color: '#333333', marginTop: 20, marginBottom: 100},
     iconGroup: { 
-      about: { width: 100, height: 140, margin: 10 },
-      work: { width: 100, height: 140, margin: 10 },
-      links: { width: 100, height: 140, margin: 10 },
-      faq: { width: 100, height: 140, margin: 10 },
-      museum: { width: 100, height: 140, margin: 10 },
+      about: { width: 100, height: 140, margin: 10, source: "/ico/home/about.png" },
+      work: { width: 100, height: 140, margin: 10, source: "/ico/home/work.png" },
+      links: { width: 100, height: 140, margin: 10, source: "/ico/home/links.png" },
+      faq: { width: 100, height: 140, margin: 10, source: "/ico/home/faq.png" },
+      museum: { width: 100, height: 140, margin: 10, source: "/ico/home/museum.png" },
     },
     icon: { width: 100, height: 100 },
     iconText: { width: 100, height: 40, fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
@@ -24,7 +24,7 @@ export default {
     titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
     contentArea: { height: 540, padding: [20, 0, 0, 40] },
-    avatar: { width: 150, height: 150, radius: 75, margin: [20, 20, 20, 60] },
+    avatar: { width: 150, height: 150, radius: 75, margin: [20, 20, 20, 60], source: "/ico/about/cn_mel.jpeg" },
     nameText: { fontSize: '2rem', fontWeight: 'bold', color: '#32117C', margin: [50, 0, 0, 20] },
     quoteText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333', margin: [0, 0, 0, 20] },
     separator: { offsetLeft: -40, width: 800, borderWidth: 0.5, color: '#979797', opacity: 0.25, margin: [10, 0, 15, 0] },
@@ -42,25 +42,40 @@ export default {
     section1: {
       title: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333', margin: [0, 0, 0, 0] },
       content: { padding: [20, 20, 40, 20] },
-      spacing: { marginBottom: 20 }
+      spacing: { marginBottom: 20 },
     },
     section2: {
       title: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333', margin: [0, 0, 0, 0] },
       content: { padding: [20, 20, 40, 20] },
       spacing: { marginBottom: 20 },
       videoSlot: { 
-        backgroundColor: '#C4C4C4', 
+        backgroundColor: '#DBDBDB', 
         borderRadius: 5,
-        fontSize: '0.9rem',
-        color: '#666666'
+        fontSize: '1rem',
+        color: '#333333',
       },
-      videoGrid: { gap: 40 }
+      videoGrid: { gap: 20 },
+      videoSlots: {
+        slot1: { width: 430, height: 242, showDimensions: false, source: "/ico/work/video1.mp4" },  // horizontal 16:9
+        slot2: { width: 430, height: 242, showDimensions: false, source: "/ico/work/video2.mp4" }, // horizontal 16:9
+        slot3: { width: 253, height: 450, showDimensions: false, source: "/ico/work/video3.mp4" }, // vertical 9:16
+        slot4: { width: 338, height: 450, showDimensions: false, source: "/ico/work/video4.mp4" },  // vertical 3:4
+        slot5: { width: 253, height: 450, showDimensions: false, source: "/ico/work/video5.mp4" },  // vertical 9:16
+      },
+      videoSettings: {
+        autoplay: false,
+        muted: true,
+        loop: false,
+        controls: false,
+        preload: 'metadata',
+        objectFit: 'cover' // or 'contain', 'fill',
+      }
     },
     section3: {
       title: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333', margin: [0, 0, 0, 0] },
       content: { padding: [20, 20, 40, 20] },
       developmentText: { margin: 0, paddingLeft: 20},
-      githubLink: { marginTop: 10, fontSize: '1rem', color: '#333333' }
+      githubLink: { marginTop: 10, fontSize: '1rem', color: '#333333' },
     }
   },
   links: {
@@ -70,14 +85,14 @@ export default {
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
     contentArea: { height: 340, padding: [15, 15, 0, 15] },  
     iconGroup: {
-      discord: { width: 100, height: 120, margin: [0, 20, 10, 20] },
-      instagram: { width: 100, height: 120, margin: [0, 20, 10, 20] },
-      telegram: { width: 100, height: 120, margin: [0, 20, 10, 20] },
-      linkedin: { width: 100, height: 120, margin: [0, 20, 10, 20] },
-      github: { width: 100, height: 120, margin: [0, 20, 10, 20] },
-      x: { width: 100, height: 120, margin: [0, 20, 10, 20] },
-      whatsapp: { width: 100, height: 120, margin: [0, 20, 10, 20] },
-      youtube: { width: 100, height: 120, margin: [0, 20, 10, 20] },
+      group1: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/ico/links/discord.png" },
+      group2: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/ico/links/instagram.png" },
+      group3: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/ico/links/telegram.png" },
+      group4: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/ico/links/linkedin.png" },
+      group5: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/ico/links/github.png" },
+      group6: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/ico/links/x.png" },
+      group7: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/ico/links/whatsapp.png" },
+      group8: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/ico/links/youtube.png" },
     },
     icons: { width: 80, height: 80 },
     iconText: { width: 100, height: 40, fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
@@ -104,12 +119,13 @@ export default {
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
     contentArea: { height: 540, padding: [20, 0, 0, 20] },
     scrollContainer: { height: 'calc(100% - 40px)', overflowY: 'auto'},
+    arrow: { source: "/ico/faq/arrow.png", width: 16, height: 16 },
     questionContainer: { 
       width: 540, 
-      margin: [0, 0, 10, 0], 
+      margin: [0, 0, 20, 0], 
       stroke: 2, 
       radius: 5,
-      strokeColor: '#DBDBDB'
+      strokeColor: '#DBDBDB',
     },
     questionHeader: {
       width: 540,
@@ -117,25 +133,27 @@ export default {
       padding: [0, 30, 0, 20],
       bg: '#DBDBDB',
       cursor: 'pointer',
-      borderRadius: '5px 5px 0 0'
+      radiusTop: 5,
+      radiusBottom: 0,
     },
     questionTitle: { 
       fontSize: '1.25rem', 
       fontWeight: 'bold', 
       color: '#333333', 
       margin: [0, 0, 0, 0],
-      userSelect: 'none'
+      userSelect: 'none',
     },
     questionContent: { 
       fontSize: '1rem', 
       color: '#333333',
       padding: [15, 20, 15, 20],
-      borderRadius: '0 0 5px 5px'
+      radiusTop: 0,
+      radiusBottom: 5,
     },
     checkbox: {
       position: 'absolute',
       opacity: 0,
-      cursor: 'pointer'
+      cursor: 'pointer',
     }
   },
   museum: {
@@ -143,6 +161,46 @@ export default {
     titleBar: { height: 60, padding: [0, 30, 0, 30], bg: '#FFD992' },
     titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
-    contentArea: { height: 740, padding: [15, 20, 0, 20] },
+    contentArea: { height: 740, padding: [20, 40, 20, 40] },
+    sectionTitle: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333', margin: [0, 0, 0, 0] },
+    sectionSubTitle: { fontSize: '0.75rem', fontWeight: 'normal', color: '#333333', margin: [0, 0, 0, 20] },
+    sectionContent: { margin: [20, 20, 40, 20] },
+    section1: {
+      title: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
+      book: { width: 300, height: 225, radius: 10 },
+      book1: { source: "/ico/museum/book/atomic_habits.jpg" },
+      book2: { source: "/ico/museum/book/deep_work.jpg" },
+      bookContent: { fontSize: '1rem', fontWeight: 'normal', color: '#333333', marginSide: 40 },
+      book1Frame: { width: 880, height: 225, marginBottom: 40 },
+      book2Frame: { width: 880, height: 225 },
+    },
+    section2: {
+      title: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
+      picture: { width: 280, height: 280, spacing: 20, borderRadius: 10, backgroundColor: '#DBDBDB' },
+      picture1: { source: "/ico/museum/tech/device1.jpg" },
+      picture2: { source: "/ico/museum/tech/device2.jpg" },
+      picture3: { source: "/ico/museum/tech/device3.jpg" },
+      picture4: { source: "/ico/museum/tech/device4.jpg" },
+      picture5: { source: "/ico/museum/tech/device5.jpg" },
+      picture6: { source: "/ico/museum/tech/device6.jpg" },
+      picture7: { source: "/ico/museum/tech/device7.jpg" },
+      picture8: { source: "/ico/museum/tech/device8.jpg" },
+      picture9: { source: "/ico/museum/tech/device9.jpg" },
+    },
+    section3: {
+      title: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
+    },
+    section4: {
+      title: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
+      game1Frame: { width: 880, height: 225, marginBottom: 40},
+      game2Frame: { width: 880, height: 208 },
+      game1Pic: { width: 300, height: 225, borderRadius: 10, source: "/ico/museum/game/free_fire.jpg" },
+      game2Pic: { width: 300, height: 208, borderRadius: 10, source: "/ico/museum/game/arena_of_valor.jpg" },
+      gameName: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333', margin: [20, 0, 5, 40] },
+      gameContent: { fontSize: '1rem', fontWeight: 'normal', color: '#333333', margin: [5, 0, 0, 40] },
+    },
+    section5: {
+      title: { fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
+    },
   },
 };

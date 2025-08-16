@@ -1,2 +1,22 @@
-node_modules
-.cache\
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+build/
+
+# Cache directories
+.cache/
+.parcel-cache/
+
+# Environment files
+.env*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/

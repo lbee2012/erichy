@@ -16,6 +16,7 @@
     "build": "next build",
     "start": "next start -p 8000",
     "clean": "rimraf .next",
+    "clean:all": "rimraf .next node_modules/.cache",
     "lint": "next lint"
   },
   "devDependencies": {

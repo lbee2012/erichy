@@ -236,7 +236,7 @@ export default function MuseumWindow({ onClose }) {
                 marginLeft: cfg.sectionSubTitle.margin[3] + 'px'
               }}
             >
-              (enjoy for pulling them out)
+              (some of the most techs i owned, pulling-able)
             </p>
             
             <div
@@ -246,22 +246,23 @@ export default function MuseumWindow({ onClose }) {
                 marginBottom: cfg.sectionContent.margin[2] + 'px',
                 marginLeft: cfg.sectionContent.margin[3] + 'px',
                 display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
+                gridTemplateColumns: 'repeat(4, 1fr)',
                 gap: cfg.section2.picture.spacing + 'px'
               }}
             >
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-                <div
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((num) => (
+                <img
                   key={num}
+                  src={cfg.section2[`picture${num}`]?.source}
+                  alt={`Device ${num}`}
                   style={{
                     width: cfg.section2.picture.width + 'px',
                     height: cfg.section2.picture.height + 'px',
                     backgroundColor: cfg.section2.picture.backgroundColor,
                     borderRadius: cfg.section2.picture.borderRadius + 'px',
+                    objectFit: 'cover'
                   }}
-                >
-                  {/* Placeholder for device images */}
-                </div>
+                />
               ))}
             </div>
           </div>

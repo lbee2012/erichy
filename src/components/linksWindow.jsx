@@ -2,7 +2,7 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import uiSpec from '../ui-spec';
 
-export default function linksWindow({ onClose }) {
+export default function LinksWindow({ onClose }) {
   const cfg = uiSpec.links;
   return (
     <Draggable handle=".handle">

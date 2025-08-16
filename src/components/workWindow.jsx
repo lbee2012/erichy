@@ -2,7 +2,7 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import uiSpec from '../ui-spec';
 
-export default function workWindow({ onClose }) {
+export default function WorkWindow({ onClose }) {
   const cfg = uiSpec.work;
   return (
     <Draggable handle=".handle">

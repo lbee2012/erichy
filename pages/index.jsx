@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Background from '../src/components/background';
-import HomeWindow from '../src/components/homeWindow';
-import AboutWindow from '../src/components/aboutWindow';
-import WorkWindow from '../src/components/workWindow';
-import LinksWindow from '../src/components/linksWindow';
-import ContactWindow from '../src/components/contactWindow';
-import MuseumWindow from '../src/components/museumWindow';
-import FaqWindow from '../src/components/faqWindow';
+import Background from '../src/components/Background';
+import HomeWindow from '../src/components/HomeWindow';
+import AboutWindow from '../src/components/AboutWindow';
+import WorkWindow from '../src/components/WorkWindow';
+import LinksWindow from '../src/components/LinksWindow';
+import ContactWindow from '../src/components/ContactWindow';
+import MuseumWindow from '../src/components/MuseumWindow';
+import FaqWindow from '../src/components/FaqWindow';
 
 // Markdown content is fetched client-side within each window component
 

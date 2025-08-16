@@ -2,18 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #__gatsby {
+html, body {
   height: 100vh;
   overflow: hidden;
-}
-
-/* Default font */
-body, html {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Override default font and scale text size */
-/* Body elements use JetBrains Mono; no forced font-size to allow rem-based sizing */
+/* Override default font for all elements */
 body * {
   font-family: 'JetBrains Mono', monospace !important;
 }

@@ -129,8 +129,8 @@ export default function WorkWindow({ onClose }) {
                 {/* Top row: S1 and S2 (horizontal 16:9) */}
                 <div style={{ display: 'flex', gap: cfg.section2.videoGrid.gap + 'px' }}>
                   <div style={{ 
-                    width: '420px', 
-                    height: '226px', 
+                    width: cfg.section2.videoSlots.slot1.width + 'px', 
+                    height: cfg.section2.videoSlots.slot1.height + 'px', 
                     backgroundColor: cfg.section2.videoSlot.backgroundColor,
                     borderRadius: cfg.section2.videoSlot.borderRadius + 'px',
                     display: 'flex',
@@ -139,30 +139,87 @@ export default function WorkWindow({ onClose }) {
                     fontSize: cfg.section2.videoSlot.fontSize,
                     color: cfg.section2.videoSlot.color
                   }}>
-                    420w x 226h
+                    <video
+                      src={cfg.section2.videoSlots.slot1.source}
+                      style={{
+                        width: cfg.section2.videoSlots.slot1.width + 'px', 
+                        height: cfg.section2.videoSlots.slot1.height + 'px', 
+                        borderRadius: cfg.section2.videoSlot.borderRadius + 'px',
+                        objectFit: 'cover'
+                      }}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      preload="metadata"
+                    />
+                    {cfg.section2.videoSlots.slot1.showDimensions && (
+                      <div style={{ 
+                        position: 'absolute',
+                        bottom: '8px',
+                        right: '8px',
+                        backgroundColor: 'rgba(0,0,0,0.7)',
+                        color: 'white',
+                        padding: '4px 8px',
+                        borderRadius: '4px',
+                        fontSize: '0.75rem'
+                      }}>
+                        {cfg.section2.videoSlots.slot1.width}w x {cfg.section2.videoSlots.slot1.height}h
+                      </div>
+                    )}
                   </div>
                   <div style={{ 
-                    width: '420px', 
-                    height: '226px', 
+                    width: cfg.section2.videoSlots.slot2.width + 'px', 
+                    height: cfg.section2.videoSlots.slot2.height + 'px', 
                     backgroundColor: cfg.section2.videoSlot.backgroundColor,
                     borderRadius: cfg.section2.videoSlot.borderRadius + 'px'
-                  }}></div>
+                  }}>
+                    <video
+                      src={cfg.section2.videoSlots.slot2.source}
+                      style={{
+                        width: cfg.section2.videoSlots.slot2.width + 'px', 
+                        height: cfg.section2.videoSlots.slot2.height + 'px', 
+                        borderRadius: cfg.section2.videoSlot.borderRadius + 'px',
+                        objectFit: 'cover'
+                      }}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      preload="metadata"
+                    />
+                  </div>
                 </div>
                 
                 {/* Bottom row: S3, S4, S5 */}
                 <div style={{ display: 'flex', gap: cfg.section2.videoGrid.gap + 'px' }}>
                   {/* S3 - vertical 9:16 */}
                   <div style={{ 
-                    width: '240px', 
-                    height: '426px', 
+                    width: cfg.section2.videoSlots.slot3.width + 'px', 
+                    height: cfg.section2.videoSlots.slot3.height + 'px', 
                     backgroundColor: cfg.section2.videoSlot.backgroundColor,
                     borderRadius: cfg.section2.videoSlot.borderRadius + 'px'
-                  }}></div>
+                  }}>
+                    <video
+                      src={cfg.section2.videoSlots.slot3.source}
+                      style={{
+                        width: cfg.section2.videoSlots.slot3.width + 'px', 
+                        height: cfg.section2.videoSlots.slot3.height + 'px', 
+                        borderRadius: cfg.section2.videoSlot.borderRadius + 'px',
+                        objectFit: 'cover'
+                      }}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      preload="metadata"
+                    />
+                  </div>
                   
                   {/* S4 - vertical 3:4 */}
                   <div style={{ 
-                    width: '319px', 
-                    height: '426px', 
+                    width: cfg.section2.videoSlots.slot4.width + 'px', 
+                    height: cfg.section2.videoSlots.slot4.height + 'px', 
                     backgroundColor: cfg.section2.videoSlot.backgroundColor,
                     borderRadius: cfg.section2.videoSlot.borderRadius + 'px',
                     display: 'flex',
@@ -171,13 +228,27 @@ export default function WorkWindow({ onClose }) {
                     fontSize: cfg.section2.videoSlot.fontSize,
                     color: cfg.section2.videoSlot.color
                   }}>
-                    319w x 426h
+                    <video
+                      src={cfg.section2.videoSlots.slot4.source}
+                      style={{
+                        width: cfg.section2.videoSlots.slot4.width + 'px', 
+                        height: cfg.section2.videoSlots.slot4.height + 'px', 
+                        borderRadius: cfg.section2.videoSlot.borderRadius + 'px',
+                        objectFit: 'cover'
+                      }}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      preload="metadata"
+                    />
+                    {cfg.section2.videoSlots.slot4.showDimensions && `${cfg.section2.videoSlots.slot4.width}w x ${cfg.section2.videoSlots.slot4.height}h`}
                   </div>
                   
                   {/* S5 - vertical 9:16 */}
                   <div style={{ 
-                    width: '240px', 
-                    height: '426px', 
+                    width: cfg.section2.videoSlots.slot5.width + 'px', 
+                    height: cfg.section2.videoSlots.slot5.height + 'px', 
                     backgroundColor: cfg.section2.videoSlot.backgroundColor,
                     borderRadius: cfg.section2.videoSlot.borderRadius + 'px',
                     display: 'flex',
@@ -186,7 +257,21 @@ export default function WorkWindow({ onClose }) {
                     fontSize: cfg.section2.videoSlot.fontSize,
                     color: cfg.section2.videoSlot.color
                   }}>
-                    240h x 426w
+                    <video
+                      src={cfg.section2.videoSlots.slot5.source}
+                      style={{
+                        width: cfg.section2.videoSlots.slot5.width + 'px', 
+                        height: cfg.section2.videoSlots.slot5.height + 'px', 
+                        borderRadius: cfg.section2.videoSlot.borderRadius + 'px',
+                        objectFit: 'cover'
+                      }}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      preload="metadata"
+                    />
+                    {cfg.section2.videoSlots.slot5.showDimensions && `${cfg.section2.videoSlots.slot5.width}w x ${cfg.section2.videoSlots.slot5.height}h`}
                   </div>
                 </div>
               </div>
@@ -225,7 +310,7 @@ export default function WorkWindow({ onClose }) {
                 fontSize: cfg.section3.githubLink.fontSize,
                 color: cfg.section3.githubLink.color
               }}>
-                check out on my <a href="https://github.com/lbee2012/ " target="_blank" rel="noopener noreferrer">GitHub</a>
+                check out on my <a href="https://github.com/lbee2012/ " target="_blank" rel="noopener noreferrer">github</a>!
               </p>
             </div>
           </div>

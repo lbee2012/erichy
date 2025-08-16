@@ -106,7 +106,7 @@ export default function HomeWindow({ onOpen }) {
                 }}
               >
                 <img
-                  src={`/ico/home/${key}.png`}
+                  src={grp.source}
                   alt={`${key} icon`}
                   style={{ width: cfg.icon.width + 'px', height: cfg.icon.height + 'px' }}
                 />

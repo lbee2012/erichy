@@ -91,7 +91,7 @@ export default function AboutWindow({ onClose }) {
         >
           <div style={{ display: 'flex', alignItems: 'flex-start' }}>
             <img
-              src="/ico/about/cn_mel.jpeg"
+              src={cfg.avatar.source}
               alt="avatar"
               style={{
                 width: cfg.avatar.width + 'px',

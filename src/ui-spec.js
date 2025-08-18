@@ -9,11 +9,11 @@ export default {
     mainText: { fontSize: '5rem', fontWeight: 'bold', colors: ['#333333', '#32117C'], marginLeft: 0 },
     supportingText: { fontSize: '2rem', fontWeight: 'bold', color: '#333333', marginTop: 20, marginBottom: 100},
     iconGroup: { 
-      about: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/about.png" },
-      work: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/work.png" },
-      links: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/links.png" },
-      faq: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/faq.png" },
-      museum: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/museum.png" },
+      about: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/about.webp" },
+      work: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/work.webp" },
+      links: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/links.webp" },
+      faq: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/faq.webp" },
+      museum: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/museum.webp" },
     },
     icon: { width: 100, height: 100 },
     iconText: { width: 100, height: 40, fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
@@ -56,11 +56,11 @@ export default {
       },
       videoGrid: { gap: 20 },
       videoSlots: {
-        slot1: { width: 430, height: 242, showDimensions: false, source: "https://youtu.be/TdlOwJ3p9Bw" },  // horizontal 16:9
-        slot2: { width: 430, height: 242, showDimensions: false, source: "https://youtu.be/5c-9aJYq-XA" }, // horizontal 16:9
-        slot3: { width: 253, height: 450, showDimensions: false, source: "https://youtube.com/shorts/sSbO3aEqthw?feature=share" }, // vertical 9:16
-        slot4: { width: 338, height: 450, showDimensions: false, source: "https://youtube.com/shorts/yDfvRPXB32o?feature=share" },  // vertical 3:4
-        slot5: { width: 253, height: 450, showDimensions: false, source: "https://youtube.com/shorts/TUk7U1mkRu0?feature=share" },  // vertical 9:16
+        slot1: { width: 430, height: 242, showDimensions: false, source: "/sources/vid/work/snhat.mp4" },  // horizontal 16:9
+        slot2: { width: 430, height: 242, showDimensions: false, source: "/sources/vid/work/galazy.mp4" }, // horizontal 16:9
+        slot3: { width: 253, height: 450, showDimensions: false, source: "/sources/vid/work/cube.mp4" }, // vertical 9:16
+        slot4: { width: 338, height: 450, showDimensions: false, source: "/sources/vid/work/unlockit.mp4" },  // vertical 3:4
+        slot5: { width: 253, height: 450, showDimensions: false, source: "/sources/vid/work/acye.mp4" },  // vertical 9:16
       },
       videoSettings: {
         autoplay: false,
@@ -85,14 +85,14 @@ export default {
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
     contentArea: { height: 340, padding: [15, 15, 0, 15] },  
     iconGroup: {
-      group1: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/discord.png" },
-      group2: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/instagram.png" },
-      group3: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/telegram.png" },
-      group4: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/linkedin.png" },
-      group5: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/github.png" },
-      group6: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/x.png" },
-      group7: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/whatsapp.png" },
-      group8: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/youtube.png" },
+      group1: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/discord.webp" },
+      group2: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/instagram.webp" },
+      group3: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/telegram.webp" },
+      group4: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/linkedin.webp" },
+      group5: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/github.webp" },
+      group6: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/x.webp" },
+      group7: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/whatsapp.webp" },
+      group8: { width: 100, height: 120, margin: [0, 20, 10, 20], source: "/sources/ico/links/youtube.webp" },
     },
     icons: { width: 80, height: 80 },
     iconText: { width: 100, height: 40, fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
@@ -119,7 +119,7 @@ export default {
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
     contentArea: { height: 540, padding: [20, 0, 0, 20] },
     scrollContainer: { height: 'calc(100% - 40px)', overflowY: 'auto'},
-    arrow: { source: "/sources/ico/faq/arrow.png", width: 16, height: 16 },
+    arrow: { source: "/sources/ico/faq/arrow.webp", width: 16, height: 16 },
     questionContainer: { 
       width: 540, 
       margin: [0, 0, 20, 0], 

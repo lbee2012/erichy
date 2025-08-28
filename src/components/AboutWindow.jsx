@@ -9,7 +9,7 @@ export default function AboutWindow({ onClose }) {
   const [content, setContent] = useState('Loading…');
 
   useEffect(() => {
-    fetch('/content/about.md')
+    fetch('/sources/txt/about.md')
       .then(r => r.text())
       .then(txt => setContent(txt))
       .catch(() => setContent('Error loading content'));
@@ -91,39 +91,39 @@ export default function AboutWindow({ onClose }) {
         >
           <div style={{ display: 'flex', alignItems: 'flex-start' }}>
             <img
-              src={cfg.avatar.source}
-              alt="avatar"
+              src={cfg.profileImage.source}
+              alt="profile"
               style={{
-                width: cfg.avatar.width + 'px',
-                height: cfg.avatar.height + 'px',
-                borderRadius: cfg.avatar.radius + 'px',
-                marginTop: cfg.avatar.margin[0] + 'px',
-                marginRight: cfg.avatar.margin[1] + 'px',
-                marginBottom: cfg.avatar.margin[2] + 'px',
-                marginLeft: cfg.avatar.margin[3] + 'px'
+                width: cfg.profileImage.width + 'px',
+                height: cfg.profileImage.height + 'px',
+                borderRadius: cfg.profileImage.radius + 'px',
+                marginTop: cfg.profileImage.margin[0] + 'px',
+                marginRight: cfg.profileImage.margin[1] + 'px',
+                marginBottom: cfg.profileImage.margin[2] + 'px',
+                marginLeft: cfg.profileImage.margin[3] + 'px'
               }}
             />
             <div>
               <div
                 style={{
-                  fontSize: cfg.nameText.fontSize,
-                  fontWeight: cfg.nameText.fontWeight,
-                  color: cfg.nameText.color,
-                  marginTop: cfg.nameText.margin[0] + 'px',
-                  marginRight: cfg.nameText.margin[1] + 'px',
-                  marginBottom: cfg.nameText.margin[2] + 'px',
-                  marginLeft: cfg.nameText.margin[3] + 'px'
+                  fontSize: cfg.profileName.fontSize,
+                  fontWeight: cfg.profileName.fontWeight,
+                  color: cfg.profileName.color,
+                  marginTop: cfg.profileName.margin[0] + 'px',
+                  marginRight: cfg.profileName.margin[1] + 'px',
+                  marginBottom: cfg.profileName.margin[2] + 'px',
+                  marginLeft: cfg.profileName.margin[3] + 'px'
                 }}
               >Quy Long Hoang</div>
               <div
                 style={{
-                  fontSize: cfg.quoteText.fontSize,
-                  fontWeight: cfg.quoteText.fontWeight,
-                  color: cfg.quoteText.color,
-                  marginTop: cfg.quoteText.margin[0] + 'px',
-                  marginRight: cfg.quoteText.margin[1] + 'px',
-                  marginBottom: cfg.quoteText.margin[2] + 'px',
-                  marginLeft: cfg.quoteText.margin[3] + 'px'
+                  fontSize: cfg.profileQuote.fontSize,
+                  fontWeight: cfg.profileQuote.fontWeight,
+                  color: cfg.profileQuote.color,
+                  marginTop: cfg.profileQuote.margin[0] + 'px',
+                  marginRight: cfg.profileQuote.margin[1] + 'px',
+                  marginBottom: cfg.profileQuote.margin[2] + 'px',
+                  marginLeft: cfg.profileQuote.margin[3] + 'px'
                 }}
               >
                 where is my quality?<br/>MMT Co., Ltd.
@@ -133,13 +133,13 @@ export default function AboutWindow({ onClose }) {
 
           <hr
             style={{
-              marginTop: cfg.separator.margin[0] + 'px',
-              marginRight: cfg.separator.margin[1] + 'px',
-              marginBottom: cfg.separator.margin[2] + 'px',
-              marginLeft: cfg.separator.offsetLeft + 'px',
-              borderTop: cfg.separator.borderWidth + 'px solid ' + cfg.separator.color,
-              width: cfg.separator.width + 'px',
-              opacity: cfg.separator.opacity
+              marginTop: cfg.divider.margin[0] + 'px',
+              marginRight: cfg.divider.margin[1] + 'px',
+              marginBottom: cfg.divider.margin[2] + 'px',
+              marginLeft: cfg.divider.offsetLeft + 'px',
+              borderTop: cfg.divider.borderWidth + 'px solid ' + cfg.divider.color,
+              width: cfg.divider.width + 'px',
+              opacity: cfg.divider.opacity
             }}
           />
 
@@ -147,11 +147,12 @@ export default function AboutWindow({ onClose }) {
             style={{
               flex: '1',
               overflow: 'auto',
-              width: (cfg.content.width || '100%') + 'px',
-              fontSize: cfg.content.normalText.fontSize,
-              color: cfg.content.normalText.color,
+              width: (cfg.textStyles.width || '100%') + 'px',
+              fontSize: cfg.textStyles.bodyText.fontSize,
+              color: cfg.textStyles.bodyText.color,
               boxSizing: 'border-box'
             }}
+            className="about-scrollbar-hidden"
           >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {content}

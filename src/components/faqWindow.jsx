@@ -4,64 +4,93 @@ import uiSpec from '../ui-spec';
 
 export default function FaqWindow({ onClose }) {
   const cfg = uiSpec.faq;
-  
-  // State to track which questions are expanded
-  const [expandedQuestions, setExpandedQuestions] = useState({});
-  
-  const questions = [
-    { 
-      title: "WHO is me?", 
-      content: "• origin: a vietnamese guy \n• birthday: dec•20. 2007 \n  • i often joke as i borned in '2012', as vietnam we mainly use DD/MM/YYYY. so my birthday would be wrote as '20/12'\n• gender: undetermined yet" 
-    },
-    { 
-      title: "WHERE my location?", 
-      content: "• currently living: Hanoi city - Vietnam's capital \n• originally from: \n  • Giao Tien, Nam Dinh province.\n  • Kien Xuong, Thai Binh province." 
-    },
-    { 
-      title: "WHICH my degrees?", 
-      content: "• 2022 • 2026: Software Engineering \n  (FPT PolySchool & FPT Polytechnic)\n• 2026 • 20xx (near future or far.. idk): ???" 
-    },
-    { 
-      title: "WHY this website?", 
-      content: "• inspired by Shar.\n• her personal site (sharyap.com) is sooo adorable! <3",
-      hasLinks: true,
-      links: [
-        { text: "Shar", url: "https://youtube.com/sharyap" },
-        { text: "sharyap.com", url: "https://sharyap.com" }
-      ]
-    },
-    { 
-      title: "WHAT things involved?", 
-      content: "• check them out urself! \n  • home (main directory!) \n  • about (me, not/and u <3) \n  • work (mine!) \n  • faq (but.. no one asked!) \n  • links (my social!) \n  • museum (cloud•hosting exhibition!)" 
-    },
-    { 
-      title: "are you grieay?", 
-      content: "• ..yea... i'm not sure :?" 
-    },
-    { 
-      title: "bro u r so skibidi!", 
-      content: "• i bili: ok -_- :/" 
-    },
-    { 
-      title: "wenomechainsama?", 
-      content: "• hell nah :(" 
-    },
-    { 
-      title: "gegagedigedagedago?", 
-      content: "• everyday i'm shuffling!" 
-    },
-    { 
-      title: "do you btw!?", 
-      content: "• absolutely! btw i use arch." 
-    }
-  ];
+  const [expandedItems, setExpandedItems] = useState({});
 
-  const toggleQuestion = (index) => {
-    setExpandedQuestions(prev => ({
+  const toggleItem = (index) => {
+    setExpandedItems(prev => ({
       ...prev,
       [index]: !prev[index]
     }));
   };
+
+  const faqItems = [
+    {
+      question: "WHO is me?",
+      answer: [
+        "• origin: a vietnamese guy",
+        "• birthday: dec-20. 2007",
+        "  - i often joke as i borned in '2012', because, as vietnam we mainly use DD/MM/YYYY, so my birthday would be wrote as '20/12'",
+        "• gender: undetermined yet"
+      ]
+    },
+    {
+      question: "WHERE my location?",
+      answer: [
+        "• currently living: Hanoi city - Vietnam's capital",
+        "• originally from:",
+        "  - Giao Tien, Nam Dinh province",
+        "  - Kien Xuong, Thai Binh province"
+      ]
+    },
+    {
+      question: "WHICH my degrees?",
+      answer: [
+        "• 2022 - 2026: Software Engineering",
+        "  (FPT PolySchool & FPT Polytechnic)",
+        "• 2026 - 20xx (near future or far.. idk): ???"
+      ]
+    },
+    {
+      question: "WHY this website?",
+      answer: [
+        "• inspired by Shan (youtube.com/sharyap).",
+        "• her personal site (sharyap.com) is sooo adorable!",
+        "  <3"
+      ]
+    },
+    {
+      question: "WHAT things involve?",
+      answer: [
+        "• check them out urself!",
+        "  - home (main directory)",
+        "  - about (me, not/and u <3)",
+        "  - work (mine!)",
+        "  - faq (no one asked?)",
+        "  - links (my social!)",
+        "  - museum (cloud-hosting exhibition!)"
+      ]
+    },
+    {
+      question: "are you grieay?",
+      answer: [
+        "• ..yea... i'm not sure :?"
+      ]
+    },
+    {
+      question: "bro u r so skibidi!",
+      answer: [
+        "• i bili: ok -_- :/"
+      ]
+    },
+    {
+      question: "wenomechainsama?",
+      answer: [
+        "• hell nah :("
+      ]
+    },
+    {
+      question: "gegagedigedagedago?",
+      answer: [
+        "• everyday i'm shuffling!"
+      ]
+    },
+    {
+      question: "do you btw!?",
+      answer: [
+        "• absolutely! btw i use arch."
+      ]
+    }
+  ];
 
   return (
     <Draggable handle=".handle">
@@ -103,7 +132,7 @@ export default function FaqWindow({ onClose }) {
               color: cfg.titleText.color
             }}
           >
-            faq
+            frequently asked questions
           </span>
           <button
             onMouseDown={e => e.stopPropagation()}
@@ -142,157 +171,89 @@ export default function FaqWindow({ onClose }) {
           {/* scrollable container */}
           <div
             style={{
-              height: cfg.scrollContainer.height,
-              overflowY: cfg.scrollContainer.overflowY,
+              height: cfg.scrollableArea.height,
+              overflowY: cfg.scrollableArea.overflowY,
+              // Hide scrollbar but keep functionality
+              scrollbarWidth: 'none', // Firefox
+              msOverflowStyle: 'none', // IE and Edge
             }}
+            // Add custom CSS class for webkit browsers
+            className="faq-scrollbar-hidden"
           >
-            {questions.map((question, index) => {
-              const isExpanded = expandedQuestions[index];
-              return (
+            {faqItems.map((item, index) => (
+              <div key={index}>
+                {/* Question header */}
                 <div
-                  key={index}
+                  onClick={() => toggleItem(index)}
                   style={{
-                    width: cfg.questionContainer.width + 'px',
-                    marginTop: cfg.questionContainer.margin[0] + 'px',
-                    marginRight: cfg.questionContainer.margin[1] + 'px',
-                    marginBottom: cfg.questionContainer.margin[2] + 'px',
-                    marginLeft: cfg.questionContainer.margin[3] + 'px',
-                    border: cfg.questionContainer.stroke + 'px solid ' + cfg.questionContainer.strokeColor,
-                    borderRadius: cfg.questionContainer.radius + 'px',
-                    boxSizing: 'border-box',
-                    overflow: 'hidden'
+                    backgroundColor: cfg.questionItem.backgroundColor,
+                    marginTop: cfg.questionItem.margin[0] + 'px',
+                    marginRight: cfg.questionItem.margin[1] + 'px',
+                    marginBottom: cfg.questionItem.margin[2] + 'px',
+                    marginLeft: cfg.questionItem.margin[3] + 'px',
+                    paddingTop: cfg.questionItem.padding[0] + 'px',
+                    paddingRight: cfg.questionItem.padding[1] + 'px',
+                    paddingBottom: cfg.questionItem.padding[2] + 'px',
+                    paddingLeft: cfg.questionItem.padding[3] + 'px',
+                    borderRadius: expandedItems[index] ? '5px 5px 0 0' : cfg.questionItem.borderRadius + 'px',
+                    border: '2px solid ' + cfg.questionItem.backgroundColor,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    userSelect: 'none'
                   }}
                 >
-                  {/* Question Header (Always Visible) */}
+                  <span
+                    style={{
+                      fontSize: cfg.questionItem.fontSize,
+                      fontWeight: cfg.questionItem.fontWeight,
+                      color: cfg.questionItem.color
+                    }}
+                  >
+                    {item.question}
+                  </span>
+                  <img
+                    src={cfg.expandIcon.source}
+                    alt="expand"
+                    style={{
+                      width: cfg.expandIcon.width + 'px',
+                      height: cfg.expandIcon.height + 'px',
+                      transform: expandedItems[index] ? 'rotate(90deg)' : 'rotate(0deg)',
+                      transition: 'transform 0.2s ease'
+                    }}
+                  />
+                </div>
+                
+                {/* Answer content - sticks to question */}
+                {expandedItems[index] && (
                   <div
                     style={{
-                      width: '100%',
-                      height: cfg.questionHeader.height + 'px',
-                      paddingTop: cfg.questionHeader.padding[0] + 'px',
-                      paddingRight: cfg.questionHeader.padding[1] + 'px',
-                      paddingBottom: cfg.questionHeader.padding[2] + 'px',
-                      paddingLeft: cfg.questionHeader.padding[3] + 'px',
-                      backgroundColor: cfg.questionHeader.bg,
-                      cursor: cfg.questionHeader.cursor,
-                      borderRadius: isExpanded ? 
-                        `${cfg.questionHeader.radiusTop}px ${cfg.questionHeader.radiusTop}px ${cfg.questionHeader.radiusBottom}px ${cfg.questionHeader.radiusBottom}px` : 
-                        cfg.questionContainer.radius + 'px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      boxSizing: 'border-box',
-                      borderBottom: isExpanded ? '1px solid #CCCCCC' : 'none'
+                      backgroundColor: cfg.questionAnswer.backgroundColor,
+                      marginTop: cfg.questionAnswer.margin[0] + 'px',
+                      marginRight: cfg.questionAnswer.margin[1] + 'px',
+                      marginBottom: cfg.questionAnswer.margin[2] + 'px',
+                      marginLeft: cfg.questionAnswer.margin[3] + 'px',
+                      paddingTop: cfg.questionAnswer.padding[0] + 'px',
+                      paddingRight: cfg.questionAnswer.padding[1] + 'px',
+                      paddingBottom: cfg.questionAnswer.padding[2] + 'px',
+                      paddingLeft: cfg.questionAnswer.padding[3] + 'px',
+                      border: cfg.questionAnswer.border,
+                      borderTop: cfg.questionAnswer.borderTop,
+                      borderRadius: cfg.questionAnswer.borderRadius,
+                      fontSize: cfg.questionAnswer.fontSize,
+                      color: cfg.questionAnswer.color,
                     }}
-                    onClick={() => toggleQuestion(index)}
                   >
-                    <h4
-                      style={{
-                        fontSize: cfg.questionTitle.fontSize,
-                        fontWeight: cfg.questionTitle.fontWeight,
-                        color: cfg.questionTitle.color,
-                        marginTop: cfg.questionTitle.margin[0] + 'px',
-                        marginRight: cfg.questionTitle.margin[1] + 'px',
-                        marginBottom: cfg.questionTitle.margin[2] + 'px',
-                        marginLeft: cfg.questionTitle.margin[3] + 'px',
-                        userSelect: cfg.questionTitle.userSelect
-                      }}
-                    >
-                      {question.title}
-                    </h4>
-                    <img
-                      src={cfg.arrow.source}
-                      alt="Toggle"
-                      style={{
-                        width: cfg.arrow.width + 'px',
-                        height: cfg.arrow.height + 'px',
-                        userSelect: 'none',
-                        transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.2s ease'
-                      }}
-                    />
+                    {item.answer.map((line, lineIndex) => (
+                      <div key={lineIndex} style={{ marginBottom: lineIndex < item.answer.length - 1 ? '4px' : '0' }}>
+                        {line}
+                      </div>
+                    ))}
                   </div>
-                  
-                  {/* Question Content (Dropdown) */}
-                  {isExpanded && (
-                    <div
-                      style={{
-                        width: '100%',
-                        paddingTop: cfg.questionContent.padding[0] + 'px',
-                        paddingRight: cfg.questionContent.padding[1] + 'px',
-                        paddingBottom: cfg.questionContent.padding[2] + 'px',
-                        paddingLeft: cfg.questionContent.padding[3] + 'px',
-                        backgroundColor: cfg.questionContent.bg,
-                        borderRadius: `${cfg.questionContent.radiusTop}px ${cfg.questionContent.radiusTop}px ${cfg.questionContent.radiusBottom}px ${cfg.questionContent.radiusBottom}px`,
-                        boxSizing: 'border-box'
-                      }}
-                    >
-                      {question.hasLinks ? (
-                        <div
-                          style={{
-                            fontSize: cfg.questionContent.fontSize,
-                            color: cfg.questionContent.color,
-                            lineHeight: cfg.questionContent.lineHeight,
-                            margin: 0,
-                            fontFamily: 'inherit'
-                          }}
-                        >
-                          {question.content.split('\n').map((line, lineIndex) => {
-                            let processedLine = line;
-                            question.links.forEach(link => {
-                              processedLine = processedLine.replace(
-                                link.text,
-                                `<LINK:${link.url}>${link.text}</LINK>`
-                              );
-                            });
-                            
-                            const parts = processedLine.split(/(<LINK:[^>]+>[^<]+<\/LINK>)/);
-                            
-                            return (
-                              <div key={lineIndex}>
-                                {parts.map((part, partIndex) => {
-                                  const linkMatch = part.match(/<LINK:([^>]+)>([^<]+)<\/LINK>/);
-                                  if (linkMatch) {
-                                    return (
-                                      <a
-                                        key={partIndex}
-                                        href={linkMatch[1]}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{
-                                          color: '#0066CC',
-                                          textDecoration: 'underline',
-                                          cursor: 'pointer'
-                                        }}
-                                      >
-                                        {linkMatch[2]}
-                                      </a>
-                                    );
-                                  }
-                                  return part;
-                                })}
-                              </div>
-                            );
-                          })}
-                        </div>
-                      ) : (
-                        <pre
-                          style={{
-                            fontSize: cfg.questionContent.fontSize,
-                            color: cfg.questionContent.color,
-                            lineHeight: cfg.questionContent.lineHeight,
-                            margin: 0,
-                            fontFamily: 'inherit',
-                            whiteSpace: 'pre-wrap'
-                          }}
-                        >
-                          {question.content}
-                        </pre>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>

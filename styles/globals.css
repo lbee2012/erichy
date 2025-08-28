@@ -12,3 +12,44 @@ html, body {
 body * {
   font-family: 'JetBrains Mono', monospace !important;
 }
+
+/* Hide scrollbar for About component */
+.about-scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.about-scrollbar-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Work component */
+.work-scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.work-scrollbar-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for FAQ component */
+.faq-scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.faq-scrollbar-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Museum component */
+.museum-scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.museum-scrollbar-hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+

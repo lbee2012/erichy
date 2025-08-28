@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Background from '../src/components/Background';
 import HomeWindow from '../src/components/HomeWindow';
 import AboutWindow from '../src/components/AboutWindow';
 import WorkWindow from '../src/components/WorkWindow';
@@ -15,8 +14,23 @@ export default function Home() {
 
   return (
     <>
-      <Background />
-      <main className="h-screen w-screen bg-gray-100 flex items-center justify-center">
+      {/* Background image with blur effect */}
+      <div 
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: 'url(/sources/img/background/background.webp)',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          filter: 'blur(3px)',
+          zIndex: -1
+        }}
+      />
+      <main className="h-screen w-screen bg-gray-100 flex items-center justify-center" style={{ backgroundColor: 'transparent' }}>
         {open.home && (
           <HomeWindow onOpen={key => setOpen(o => ({ ...o, [key]: true }))} />
         )}

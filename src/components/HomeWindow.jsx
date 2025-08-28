@@ -14,7 +14,8 @@ export default function HomeWindow({ onOpen }) {
           border: cfg.window.stroke + 'px solid black',
           borderRadius: cfg.window.radius + 'px',
           boxSizing: 'border-box',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          filter: 'drop-shadow(-8px 8px 8px rgba(0, 0, 0, 0.25))'
         }}
       >
         {/* title-bar */}
@@ -91,38 +92,41 @@ export default function HomeWindow({ onOpen }) {
 
           {/* icon groups */}
           <div style={{ display: 'flex', margin: cfg.supportingText.marginTop + 'px' }}>
-            {Object.entries(cfg.iconGroup).map(([key, grp]) => (
+            {Object.entries(cfg.navigationIcons).map(([key, iconConfig]) => (
               <div
                 key={key}
-                onClick={() => onOpen(key)}
+                onClick={() => onOpen(key.replace('Icon', ''))}
                 style={{
-                  width: grp.width + 'px',
-                  height: grp.height + 'px',
-                  margin: grp.margin + 'px',
+                  width: iconConfig.width + 'px',
+                  height: iconConfig.height + 'px',
+                  margin: iconConfig.margin + 'px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease'
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
                 <img
-                  src={grp.source}
+                  src={iconConfig.source}
                   alt={`${key} icon`}
-                  style={{ width: cfg.icon.width + 'px', height: cfg.icon.height + 'px' }}
+                  style={{ width: cfg.iconImage.width + 'px', height: cfg.iconImage.height + 'px' }}
                 />
                 <div
                   style={{
-                    width: cfg.iconText.width + 'px',
-                    height: cfg.iconText.height + 'px',
+                    width: cfg.iconLabel.width + 'px',
+                    height: cfg.iconLabel.height + 'px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: cfg.iconText.fontSize,
-                    fontWeight: cfg.iconText.fontWeight,
-                    color: cfg.iconText.color
+                    fontSize: cfg.iconLabel.fontSize,
+                    fontWeight: cfg.iconLabel.fontWeight,
+                    color: cfg.iconLabel.color
                   }}
                 >
-                  {key}
+                  {key.replace('Icon', '')}
                 </div>
               </div>
             ))}

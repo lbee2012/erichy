@@ -4,6 +4,19 @@ import uiSpec from '../ui-spec';
 
 export default function LinksWindow({ onClose }) {
   const cfg = uiSpec.links;
+  
+  // Define platform arrays for better organization
+  const firstRowPlatforms = ['discord', 'instagram', 'telegram', 'linkedin'];
+  const secondRowPlatforms = ['github', 'twitter', 'whatsapp', 'youtube'];
+
+  // Handle platform click to open URL in new tab
+  const handlePlatformClick = (platform) => {
+    const url = cfg.groupLinks[platform].url;
+    if (url) {
+      window.open(url, '_blank');
+    }
+  };
+  
   return (
     <Draggable handle=".handle">
       <div
@@ -67,6 +80,7 @@ export default function LinksWindow({ onClose }) {
             </span>
           </button>
         </div>
+        
         {/* content-area */}
         <div
           style={{
@@ -82,56 +96,59 @@ export default function LinksWindow({ onClose }) {
             alignItems: 'center'
           }}
         >
-          {/* Social Media Icons Grid */}
+          {/* First row - 4 icons */}
           <div style={{ 
             display: 'flex', 
             flexWrap: 'wrap', 
             justifyContent: 'center',
             width: '100%',
           }}>
-            {/* First row - 4 icons */}
-            {['group1', 'group2', 'group3', 'group4'].map((platform) => (
+            {firstRowPlatforms.map((platform) => (
               <div
                 key={platform}
+                onClick={() => handlePlatformClick(platform)}
                 style={{
-                  width: cfg.iconGroup[platform].width + 'px',
-                  height: cfg.iconGroup[platform].height + 'px',
-                  marginTop: cfg.iconGroup[platform].margin[0] + 'px',
-                  marginRight: cfg.iconGroup[platform].margin[1] + 'px',
-                  marginBottom: cfg.iconGroup[platform].margin[2] + 'px',
-                  marginLeft: cfg.iconGroup[platform].margin[3] + 'px',
+                  width: cfg.groupLinks[platform].width + 'px',
+                  height: cfg.groupLinks[platform].height + 'px',
+                  marginTop: cfg.groupLinks[platform].margin[0] + 'px',
+                  marginRight: cfg.groupLinks[platform].margin[1] + 'px',
+                  marginBottom: cfg.groupLinks[platform].margin[2] + 'px',
+                  marginLeft: cfg.groupLinks[platform].margin[3] + 'px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease'
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
                 <img
-                  src={cfg.iconGroup[platform].source}
+                  src={cfg.groupLinks[platform].source}
                   alt={platform}
                   style={{
-                    width: cfg.icons.width + 'px',
-                    height: cfg.icons.height + 'px',
+                    width: cfg.groupIcon.width + 'px',
+                    height: cfg.groupIcon.height + 'px',
                     objectFit: 'contain'
                   }}
                 />
                 <div
                   style={{
-                    width: cfg.iconText.width + 'px',
-                    height: cfg.iconText.height + 'px',
-                    fontSize: cfg.iconText.fontSize,
-                    fontWeight: cfg.iconText.fontWeight,
-                    color: cfg.iconText.color,
+                    width: cfg.groupLabel.width + 'px',
+                    height: cfg.groupLabel.height + 'px',
+                    fontSize: cfg.groupLabel.fontSize,
+                    fontWeight: cfg.groupLabel.fontWeight,
+                    color: cfg.groupLabel.color,
                     textAlign: 'center',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                   }}
                 >
-                  {platform === 'group4' ? 'edin' :
-                   platform === 'group2' ? 'ig' :
-                   platform === 'group3' ? 'tele' :
-                   platform === 'group1' ? 'disco' :
+                  {platform === 'linkedin' ? 'edin' :
+                   platform === 'instagram' ? 'ig' :
+                   platform === 'telegram' ? 'tele' :
+                   platform === 'discord' ? 'disco' :
                    platform}
                 </div>
               </div>
@@ -145,48 +162,52 @@ export default function LinksWindow({ onClose }) {
             justifyContent: 'center',
             width: '100%',
           }}>
-            {['group5', 'group6', 'group7', 'group8'].map((platform) => (
+            {secondRowPlatforms.map((platform) => (
               <div
                 key={platform}
+                onClick={() => handlePlatformClick(platform)}
                 style={{
-                  width: cfg.iconGroup[platform].width + 'px',
-                  height: cfg.iconGroup[platform].height + 'px',
-                  marginTop: cfg.iconGroup[platform].margin[0] + 'px',
-                  marginRight: cfg.iconGroup[platform].margin[1] + 'px',
-                  marginBottom: cfg.iconGroup[platform].margin[2] + 'px',
-                  marginLeft: cfg.iconGroup[platform].margin[3] + 'px',
+                  width: cfg.groupLinks[platform].width + 'px',
+                  height: cfg.groupLinks[platform].height + 'px',
+                  marginTop: cfg.groupLinks[platform].margin[0] + 'px',
+                  marginRight: cfg.groupLinks[platform].margin[1] + 'px',
+                  marginBottom: cfg.groupLinks[platform].margin[2] + 'px',
+                  marginLeft: cfg.groupLinks[platform].margin[3] + 'px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease'
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
                 <img
-                  src={cfg.iconGroup[platform].source}
+                  src={cfg.groupLinks[platform].source}
                   alt={platform}
                   style={{
-                    width: cfg.icons.width + 'px',
-                    height: cfg.icons.height + 'px',
+                    width: cfg.groupIcon.width + 'px',
+                    height: cfg.groupIcon.height + 'px',
                     objectFit: 'contain'
                   }}
                 />
                 <div
                   style={{
-                    width: cfg.iconText.width + 'px',
-                    height: cfg.iconText.height + 'px',
-                    fontSize: cfg.iconText.fontSize,
-                    fontWeight: cfg.iconText.fontWeight,
-                    color: cfg.iconText.color,
+                    width: cfg.groupLabel.width + 'px',
+                    height: cfg.groupLabel.height + 'px',
+                    fontSize: cfg.groupLabel.fontSize,
+                    fontWeight: cfg.groupLabel.fontWeight,
+                    color: cfg.groupLabel.color,
                     textAlign: 'center',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                   }}
                 >
-                  {platform === 'group5' ? 'gubhit' : 
-                   platform === 'group6' ? 'x' :
-                   platform === 'group7' ? 'whatsup' :
-                   platform === 'group8' ? 'utub' :
+                  {platform === 'github' ? 'gubhit' : 
+                   platform === 'twitter' ? 'x' :
+                   platform === 'whatsapp' ? 'whatsup' :
+                   platform === 'youtube' ? 'utub' :
                    platform}
                 </div>
               </div>
@@ -196,10 +217,10 @@ export default function LinksWindow({ onClose }) {
           {/* Description Frame */}
           <div
             style={{
-              width: cfg.descriptionFrame.width + 'px',
-              height: cfg.descriptionFrame.height + 'px',
-              border: cfg.descriptionFrame.stroke + 'px solid ' + cfg.descriptionFrame.strokeColor,
-              borderRadius: cfg.descriptionFrame.radius + 'px',
+              width: cfg.descriptionContainer.width + 'px',
+              height: cfg.descriptionContainer.height + 'px',
+              border: cfg.descriptionContainer.stroke + 'px solid ' + cfg.descriptionContainer.strokeColor,
+              borderRadius: cfg.descriptionContainer.radius + 'px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -208,8 +229,8 @@ export default function LinksWindow({ onClose }) {
           >
             <span
               style={{
-                fontSize: cfg.description.fontSize,
-                color: cfg.description.color,
+                fontSize: cfg.descriptionText.fontSize,
+                color: cfg.descriptionText.color,
                 textAlign: 'center'
               }}
             >

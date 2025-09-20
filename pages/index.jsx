@@ -30,7 +30,7 @@ export default function Home() {
           zIndex: -1
         }}
       />
-      <main className="h-screen w-screen bg-gray-100 flex items-center justify-center" style={{ backgroundColor: 'transparent' }}>
+  <main style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent' }}>
         {open.home && (
           <HomeWindow onOpen={key => setOpen(o => ({ ...o, [key]: true }))} />
         )}

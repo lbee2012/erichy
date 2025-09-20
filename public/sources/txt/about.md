@@ -1,16 +1,23 @@
-hi i'm lbee, a crazy man. and i...
-- extremely love to track my habits?
-- build and maintain this website! <3
+hi i'm lbee, a crazy guy. and i...
+- don't use social medias (except gubhit and linkedin).
+- crazy about tracking the habits!
+- believe in things i do would reflect my personality!
 
 ### EDUCATIONAL BACKGROUND
 - **i'm broke**
-- (since 2022)
+- FPT PolySchool (2022 - 2026) on Software Engineering.
+- FPT University - Hoa Lac campus (2026 - 2028) on Computer Science.
 
 ### OTHERS INTERESTS
-- gaming! (past)
-- light-colorful pictures about sky
-- news in: artificial intelligence & computer science
+- reading books (mostly self-help and psychology).
+- exploring new tech stacks.
+- learning new things, currently: 
+    - Japanese
+    - ricing archlinux
+    - self-care
+
+                                                           (updd on 9-19.25)
 
 ### LANGUAGE PROFICIENCY
 - modest **English** (IELTS - 6.0).
-- little bit of Japanese. (at a very pre-school ability). (future)
+- tiny on Japanese. (at a very pre-school ability).

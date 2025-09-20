@@ -29,7 +29,7 @@ export default {
     titleBar: { height: 60, padding: [0, 30, 0, 30], bg: '#FFD992' },
     titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
-    contentArea: { height: 540, padding: [20, 0, 0, 40] },
+    contentArea: { height: 540, padding: [20, 40, 0, 40] },
     
     // Profile section
     profileImage: { width: 150, height: 150, radius: 75, margin: [20, 20, 20, 60], source: "/sources/img/about/cn_mel.webp" },

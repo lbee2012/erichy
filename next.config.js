@@ -12,17 +12,6 @@ const nextConfig = {
     return config;
   },
   
-  // Enhanced Turbopack configuration for maximum performance
-  turbopack: {
-    // Optimize for faster rebuilds
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
-      },
-    },
-  },
-  
   // Additional Next.js optimizations
   experimental: {
     // Faster static analysis

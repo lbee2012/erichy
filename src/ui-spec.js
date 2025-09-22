@@ -1,6 +1,20 @@
 // ui-spec.js
 // Centralized UI configuration for window dimensions and styles
 export default {
+  main: { // Global/main page settings
+    backgroundImage: '/sources/img/background/background.webp',
+    favicon: '/favicon.ico',
+    darkMode: {
+      enabled: false,
+      icon: '/sources/ico/main/darkmode.webp'
+    },
+    footer: {
+      text: '© 2025 erichy (Long Hoang)',
+      fontSize: '1rem',
+      color: '#333333',
+      bg: 'transparent'
+    }
+  },
   home: { // Main desktop interface
     // Window configuration
     window: { width: 800, height: 600, stroke: 4, bg: '#FFFBE3', radius: 10, overflowHidden: true },
@@ -19,9 +33,18 @@ export default {
       linksIcon: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/links.webp" },
       faqIcon: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/faq.webp" },
       museumIcon: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/museum.webp" },
+      blogsIcon: { width: 100, height: 140, margin: 10, source: "/sources/ico/home/blogs.webp" },
     },
     iconImage: { width: 100, height: 100 },
     iconLabel: { width: 100, height: 40, fontSize: '1.25rem', fontWeight: 'bold', color: '#333333' },
+  },
+  blogs: { // Blogs section (placeholder)
+    window: { width: 800, height: 600, stroke: 4, bg: '#FFFBE3', radius: 10, overflowHidden: true },
+    titleBar: { height: 60, padding: [0, 30, 0, 30], bg: '#FFD992' },
+    titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: '#333333' },
+    contentArea: { height: 540, padding: [20, 40, 20, 40] },
+    placeholderText: { fontSize: '1rem', color: '#333333' }
   },
   about: { // Personal information and biography
     // Window configuration
@@ -111,13 +134,11 @@ export default {
     // Social platform icons (renamed from socialPlatforms to groupLinks)
     groupLinks: {
       discord: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/discord.webp", url: "https://discord.com" },
-      instagram: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/instagram.webp", url: "https://instagram.com" },
+      instagram: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/email.webp", url: "https://mailto:hoangflong2012@gmail.com" },
       telegram: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/telegram.webp", url: "https://telegram.org" },
       linkedin: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/linkedin.webp", url: "https://linkedin.com" },
       github: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/github.webp", url: "https://github.com" },
-      twitter: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/x.webp", url: "https://twitter.com" },
       whatsapp: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/whatsapp.webp", url: "https://whatsapp.com" },
-      youtube: { width: 100, height: 120, margin: [0, 10, 10, 10], source: "/sources/ico/links/youtube.webp", url: "https://youtube.com" },
     },
     
     // Icon styling (renamed from iconImage to groupIcon, iconLabel to groupLabel)

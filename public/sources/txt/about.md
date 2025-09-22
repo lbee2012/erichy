@@ -1,7 +1,7 @@
 hi i'm lbee, a crazy guy. and i...
 - don't use social medias (except gubhit and linkedin).
-- crazy about tracking the habits!
-- believe in things i do would reflect my personality!
+- crazy about tracking // the habits
+- believe in the things-i-do would reflect my personality!
 
 ### EDUCATIONAL BACKGROUND
 - **i'm broke**
@@ -13,7 +13,7 @@ hi i'm lbee, a crazy guy. and i...
 - exploring new tech stacks.
 - learning new things, currently: 
     - Japanese
-    - ricing archlinux
+    - archlinux ricing
     - self-care
 
                                                            (updd on 9-19.25)

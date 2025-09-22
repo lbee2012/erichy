@@ -6,6 +6,8 @@ import LinksWindow from '../src/components/LinksWindow';
 import ContactWindow from '../src/components/ContactWindow';
 import MuseumWindow from '../src/components/MuseumWindow';
 import FaqWindow from '../src/components/FaqWindow';
+import uiSpec from '../src/ui-spec';
+import BlogsWindow from '../src/components/BlogsWindow';
 
 // Markdown content is fetched client-side within each window component
 
@@ -15,14 +17,14 @@ export default function Home() {
   return (
     <>
       {/* Background image with blur effect */}
-      <div 
+      <div
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: 'url(/sources/img/background/background.webp)',
+          backgroundImage: `url(${uiSpec.main.backgroundImage})`,
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
@@ -52,6 +54,15 @@ export default function Home() {
         {open.faq && (
           <FaqWindow onClose={() => setOpen(o => ({ ...o, faq: false }))} />
         )}
+        {open.blogs && (
+          <BlogsWindow onClose={() => setOpen(o => ({ ...o, blogs: false }))} />
+        )}
+        {/* Footer */}
+        <div style={{ position: 'fixed', bottom: 8, left: 0, right: 0, textAlign: 'center', fontSize: uiSpec.main.footer.fontSize, color: uiSpec.main.footer.color, background: uiSpec.main.footer.bg }}>
+          {uiSpec.main.footer.text}
+        </div>
+        {/* Dark mode button placeholder */}
+        {/* <button style={{ position: 'fixed', top: 12, right: 12 }}>dark</button> */}
       </main>
     </>
   );

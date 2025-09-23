@@ -96,7 +96,7 @@ export default function WorkWindow({ onClose }) {
               marginBottom: cfg.arch.sectionTitle.margin[2] + 'px',
               marginLeft: cfg.arch.sectionTitle.margin[3] + 'px'
             }}>
-              DOTFILES (ARCH) - dotees
+              DOTFILES (ARCH & I3) - dotfs
             </h3>
             <div style={{
               paddingTop: cfg.arch.contentArea.padding[0] + 'px',

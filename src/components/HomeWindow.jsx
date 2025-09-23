@@ -74,7 +74,7 @@ export default function HomeWindow({ onOpen }) {
           >
             <span>hi!&nbsp;</span>
             <span style={{ color: cfg.mainText.colors[1], marginLeft: cfg.mainText.marginLeft + 'px' }}>
-              i'm lbee
+              i'm eric
             </span>
           </div>
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uiSpec from '../src/ui-spec';
 import HomeWindow from '../src/components/HomeWindow';
 import AboutWindow from '../src/components/AboutWindow';
 import WorkWindow from '../src/components/WorkWindow';
@@ -6,7 +7,6 @@ import LinksWindow from '../src/components/LinksWindow';
 import ContactWindow from '../src/components/ContactWindow';
 import MuseumWindow from '../src/components/MuseumWindow';
 import FaqWindow from '../src/components/FaqWindow';
-import uiSpec from '../src/ui-spec';
 import BlogsWindow from '../src/components/BlogsWindow';
 
 // Markdown content is fetched client-side within each window component
@@ -43,7 +43,10 @@ export default function Home() {
           <WorkWindow onClose={() => setOpen(o => ({ ...o, work: false }))} />
         )}
         {open.links && (
-          <LinksWindow onClose={() => setOpen(o => ({ ...o, links: false }))} />
+          <LinksWindow 
+            onClose={() => setOpen(o => ({ ...o, links: false }))}
+            onOpenContact={() => setOpen(o => ({ ...o, contact: true }))}
+          />
         )}
         {open.contact && (
           <ContactWindow onClose={() => setOpen(o => ({ ...o, contact: false }))} />
@@ -58,8 +61,21 @@ export default function Home() {
           <BlogsWindow onClose={() => setOpen(o => ({ ...o, blogs: false }))} />
         )}
         {/* Footer */}
-        <div style={{ position: 'fixed', bottom: 8, left: 0, right: 0, textAlign: 'center', fontSize: uiSpec.main.footer.fontSize, color: uiSpec.main.footer.color, background: uiSpec.main.footer.bg }}>
-          {uiSpec.main.footer.text}
+        <div style={{ position: 'fixed', bottom: 8, left: 0, right: 0, textAlign: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            {Object.entries(uiSpec.main.footer.linkingIcons).map(([key, icon]) => (
+              <img key={key} src={icon.source} alt={key}
+                   style={{ width: icon.width + 'px', height: icon.height + 'px', margin: icon.margin + 'px', cursor: 'pointer' }}
+                   onClick={() => {
+                     if (icon.url) {
+                       window.open(icon.url, '_blank', 'noopener,noreferrer');
+                     }
+                   }} />
+            ))}
+          </div>
+          <div style={{ fontSize: uiSpec.main.footer.description.fontSize, color: uiSpec.main.footer.description.color, background: uiSpec.main.footer.description.bg, fontWeight: uiSpec.main.footer.description.fontWeight }}>
+            {uiSpec.main.footer.description.text}
+          </div>
         </div>
         {/* Dark mode button placeholder */}
         {/* <button style={{ position: 'fixed', top: 12, right: 12 }}>dark</button> */}

@@ -2,19 +2,20 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import uiSpec from '../ui-spec';
 
-export default function LinksWindow({ onClose }) {
+export default function LinksWindow({ onClose, onOpenContact }) {
   const cfg = uiSpec.links;
-  
-  // Define platform arrays for better organization
-  const firstRowPlatforms = ['discord', 'instagram', 'telegram', 'linkedin'];
-  const secondRowPlatforms = ['github', 'twitter', 'whatsapp', 'youtube'];
+  // New order: disco, tele, edin, gubhit, mail, whasup
+  const firstRowPlatforms = ['discord', 'telegram', 'linkedin'];
+  const secondRowPlatforms = ['github', 'mail', 'whatsapp'];
 
   // Handle platform click to open URL in new tab
   const handlePlatformClick = (platform) => {
-    const url = cfg.groupLinks[platform].url;
-    if (url) {
-      window.open(url, '_blank');
+    if (platform === 'mail') {
+      if (onOpenContact) onOpenContact();
+      return;
     }
+    const url = cfg.groupLinks[platform].url;
+    if (url) window.open(url, '_blank');
   };
   
   return (
@@ -85,10 +86,10 @@ export default function LinksWindow({ onClose }) {
         <div
           style={{
             flex: '1',
-            paddingTop: cfg.contentArea.padding[0] + 'px',
-            paddingRight: cfg.contentArea.padding[1] + 'px',
-            paddingBottom: cfg.contentArea.padding[2] + 'px',
-            paddingLeft: cfg.contentArea.padding[3] + 'px',
+            marginTop: cfg.contentArea.margin[0] + 'px',
+            marginRight: cfg.contentArea.margin[1] + 'px',
+            marginBottom: cfg.contentArea.margin[2] + 'px',
+            marginLeft: cfg.contentArea.margin[3] + 'px',
             boxSizing: 'border-box',
             overflow: 'hidden',
             display: 'flex',
@@ -110,10 +111,10 @@ export default function LinksWindow({ onClose }) {
                 style={{
                   width: cfg.groupLinks[platform].width + 'px',
                   height: cfg.groupLinks[platform].height + 'px',
-                  marginTop: cfg.groupLinks[platform].margin[0] + 'px',
-                  marginRight: cfg.groupLinks[platform].margin[1] + 'px',
-                  marginBottom: cfg.groupLinks[platform].margin[2] + 'px',
-                  marginLeft: cfg.groupLinks[platform].margin[3] + 'px',
+                  paddingTop: cfg.groupLinks[platform].padding[0] + 'px',
+                  paddingRight: cfg.groupLinks[platform].padding[1] + 'px',
+                  paddingBottom: cfg.groupLinks[platform].padding[2] + 'px',
+                  paddingLeft: cfg.groupLinks[platform].padding[3] + 'px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -146,7 +147,6 @@ export default function LinksWindow({ onClose }) {
                   }}
                 >
                   {platform === 'linkedin' ? 'edin' :
-                   platform === 'instagram' ? 'ig' :
                    platform === 'telegram' ? 'tele' :
                    platform === 'discord' ? 'disco' :
                    platform}
@@ -169,10 +169,10 @@ export default function LinksWindow({ onClose }) {
                 style={{
                   width: cfg.groupLinks[platform].width + 'px',
                   height: cfg.groupLinks[platform].height + 'px',
-                  marginTop: cfg.groupLinks[platform].margin[0] + 'px',
-                  marginRight: cfg.groupLinks[platform].margin[1] + 'px',
-                  marginBottom: cfg.groupLinks[platform].margin[2] + 'px',
-                  marginLeft: cfg.groupLinks[platform].margin[3] + 'px',
+                  paddingTop: cfg.groupLinks[platform].padding[0] + 'px',
+                  paddingRight: cfg.groupLinks[platform].padding[1] + 'px',
+                  paddingBottom: cfg.groupLinks[platform].padding[2] + 'px',
+                  paddingLeft: cfg.groupLinks[platform].padding[3] + 'px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -205,9 +205,7 @@ export default function LinksWindow({ onClose }) {
                   }}
                 >
                   {platform === 'github' ? 'gubhit' : 
-                   platform === 'twitter' ? 'x' :
-                   platform === 'whatsapp' ? 'whatsup' :
-                   platform === 'youtube' ? 'utub' :
+                   platform === 'whatsapp' ? 'whasup' :
                    platform}
                 </div>
               </div>
@@ -219,6 +217,7 @@ export default function LinksWindow({ onClose }) {
             style={{
               width: cfg.descriptionContainer.width + 'px',
               height: cfg.descriptionContainer.height + 'px',
+              marginTop: cfg.descriptionContainer.marginTop + 'px',
               border: cfg.descriptionContainer.stroke + 'px solid ' + cfg.descriptionContainer.strokeColor,
               borderRadius: cfg.descriptionContainer.radius + 'px',
               display: 'flex',
@@ -234,7 +233,7 @@ export default function LinksWindow({ onClose }) {
                 textAlign: 'center'
               }}
             >
-              clicking any links will open a new tab!
+              wake me up on ...!
             </span>
           </div>
         </div>

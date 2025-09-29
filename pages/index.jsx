@@ -16,7 +16,7 @@ const ANIMATION_DURATION = 240;
 
 export default function Home() {
   const mainCfg = useThemedSpec('main');
-  const { toggleTheme, themeName } = useTheme();
+  const { toggleTheme } = useTheme();
   const [windowLifecycle, setWindowLifecycle] = useState(() =>
     WINDOW_KEYS.reduce((acc, key) => {
       acc[key] = { isMounted: false, isOpen: false };
@@ -118,6 +118,13 @@ export default function Home() {
 
   const defaultPositions = uiSpec.opening || {};
   const getDefaultPosition = (key) => defaultPositions[key] || { x: 0, y: 0 };
+  const togglePositionKey = mainCfg?.darkMode?.positionKey || 'appearanceToggle';
+  const togglePosition = getDefaultPosition(togglePositionKey);
+  const toggleButtonCfg = mainCfg?.darkMode?.button || {};
+  const toggleFrameSize = mainCfg?.darkMode?.frameSize ?? toggleButtonCfg.size ?? 48;
+  const toggleBorderRadius = toggleButtonCfg.borderRadius ?? toggleFrameSize / 2;
+  const toggleTop = typeof togglePosition.y === 'number' ? togglePosition.y : 20;
+  const toggleLeft = typeof togglePosition.x === 'number' ? togglePosition.x : 20;
 
   return (
     <>
@@ -145,20 +152,21 @@ export default function Home() {
             aria-label={mainCfg.darkMode.tooltip || 'Toggle theme'}
             style={{
               position: 'fixed',
-              top: 20,
-              right: 20,
-              width: (mainCfg.darkMode.button?.size || 48) + 'px',
-              height: (mainCfg.darkMode.button?.size || 48) + 'px',
-              borderRadius: (mainCfg.darkMode.button?.borderRadius || 24) + 'px',
-              background: mainCfg.darkMode.button?.background || 'rgba(255,255,255,0.85)',
-              color: mainCfg.darkMode.button?.color || '#000000',
-              border: mainCfg.darkMode.button?.border || 'none',
-              boxShadow: mainCfg.darkMode.button?.shadow || 'none',
+              top: toggleTop + 'px',
+              left: toggleLeft + 'px',
+              width: toggleFrameSize + 'px',
+              height: toggleFrameSize + 'px',
+              borderRadius: toggleBorderRadius + 'px',
+              background: toggleButtonCfg.background || 'rgba(255,255,255,0.85)',
+              color: toggleButtonCfg.color || '#000000',
+              border: toggleButtonCfg.border || 'none',
+              boxShadow: toggleButtonCfg.shadow || 'none',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              transition: 'transform 0.12s ease'
+              transition: 'transform 0.2s ease',
+              zIndex: 1100
             }}
             onMouseDown={(e) => e.stopPropagation()}
             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
@@ -169,8 +177,7 @@ export default function Home() {
               alt="Theme icon"
               style={{
                 width: (mainCfg.darkMode.iconSize || 28) + 'px',
-                height: (mainCfg.darkMode.iconSize || 28) + 'px',
-                filter: themeName === 'dark' ? 'invert(1)' : 'none'
+                height: (mainCfg.darkMode.iconSize || 28) + 'px'
               }}
             />
           </button>
@@ -243,15 +250,40 @@ export default function Home() {
         {/* Footer */}
         <div style={{ position: 'fixed', bottom: 8, left: 0, right: 0, textAlign: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            {Object.entries(mainCfg.footer.linkingIcons).map(([key, icon]) => (
-              <img key={key} src={icon.source} alt={key}
-                   style={{ width: icon.width + 'px', height: icon.height + 'px', margin: icon.margin + 'px', cursor: 'pointer' }}
-                   onClick={() => {
-                     if (icon.url) {
-                       window.open(icon.url, '_blank', 'noopener,noreferrer');
-                     }
-                   }} />
-            ))}
+            {Object.entries(mainCfg.footer.linkingIcons).map(([key, icon]) => {
+              const margin = typeof icon.margin === 'number' ? icon.margin : 0;
+              const sizeStyle = {
+                width: icon.width + 'px',
+                height: icon.height + 'px'
+              };
+              return (
+                <div
+                  key={key}
+                  style={{
+                    ...sizeStyle,
+                    margin: margin + 'px',
+                    cursor: icon.url ? 'pointer' : 'default',
+                    transition: 'transform 0.2s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                  onClick={() => {
+                    if (icon.url) {
+                      window.open(icon.url, '_blank', 'noopener,noreferrer');
+                    }
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                >
+                  <img
+                    src={icon.source}
+                    alt={key}
+                    style={{ width: '100%', height: '100%' }}
+                  />
+                </div>
+              );
+            })}
           </div>
           <div style={{ fontSize: mainCfg.footer.description.fontSize, color: mainCfg.footer.description.color, background: mainCfg.footer.description.bg, fontWeight: mainCfg.footer.description.fontWeight }}>
             {mainCfg.footer.description.text}

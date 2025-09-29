@@ -8,7 +8,7 @@ hi i'm lbee, a crazy guy. and i...
 - FPT PolySchool (2022 - 2026) on Software Engineering.
 - FPT University - Hoa Lac campus (2026 - 2028) on Computer Science.
 
-### OTHERS INTERESTS (updd on 9-19.25)
+### OTHERS INTERESTS
 - reading books (mostly self-help and psychology).
 - exploring new tech stacks.
 - learning new things, currently: 

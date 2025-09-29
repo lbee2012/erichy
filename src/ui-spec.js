@@ -1,5 +1,7 @@
 export default {
   opening: {
+    main: { x: 0, y: 0 },
+    appearanceToggle: { x: 20, y: 20 },
     about: { x: -160, y: 340 },
     work: { x: 360, y: -140 },
     links: { x: -200, y: 200 },
@@ -36,7 +38,17 @@ export default {
       museumBackgroundImage: '/sources/img/museum/sunrise.webp',
       museumBackgroundOverlay: 'rgba(255, 255, 255, 0.6)',
       contactBackgroundImage: '/sources/img/contact/c.pissarro_1878.webp',
-      contactBackgroundOverlay: 'rgba(255, 255, 255, 0.6)'
+      contactBackgroundOverlay: 'rgba(255, 255, 255, 0.6)',
+      appearanceToggleIcon: '/sources/ico/main/toggle/moon.svg',
+      homeAboutIcon: '/sources/ico/home/light/about.svg',
+      homeWorkIcon: '/sources/ico/home/light/work.svg',
+      homeLinksIcon: '/sources/ico/home/light/links.svg',
+      homeFaqIcon: '/sources/ico/home/light/faq.svg',
+      homeMuseumIcon: '/sources/ico/home/light/museum.svg',
+      homeBlogsIcon: '/sources/ico/home/light/blogs.svg',
+      footerYoutubeIcon: '/sources/ico/main/footer/light/utub.svg',
+      footerLinkedinIcon: '/sources/ico/main/footer/light/edin.svg',
+      footerGithubIcon: '/sources/ico/main/footer/light/gubhit.svg'
     },
     dark: {
       mainBg: 'transparent',
@@ -65,7 +77,17 @@ export default {
       museumBackgroundImage: '/sources/img/museum/blooming.webp',
       museumBackgroundOverlay: 'rgba(12, 18, 28, 0.4)',
       contactBackgroundImage: '/sources/img/contact/wallpaper.webp',
-      contactBackgroundOverlay: 'rgba(12, 18, 28, 0.6)'
+      contactBackgroundOverlay: 'rgba(12, 18, 28, 0.6)',
+      appearanceToggleIcon: '/sources/ico/main/toggle/sun.svg',
+      homeAboutIcon: '/sources/ico/home/dark/about.svg',
+      homeWorkIcon: '/sources/ico/home/dark/work.svg',
+      homeLinksIcon: '/sources/ico/home/dark/links.svg',
+      homeFaqIcon: '/sources/ico/home/dark/faq.svg',
+      homeMuseumIcon: '/sources/ico/home/dark/museum.svg',
+      homeBlogsIcon: '/sources/ico/home/dark/blogs.svg',
+      footerYoutubeIcon: '/sources/ico/main/footer/dark/utub.svg',
+      footerLinkedinIcon: '/sources/ico/main/footer/dark/edin.svg',
+      footerGithubIcon: '/sources/ico/main/footer/dark/gubhit.svg'
     }
   },
   main: {
@@ -73,12 +95,14 @@ export default {
     favicon: '/favicon.ico',
     darkMode: {
       enabled: true,
-      icon: '/sources/ico/main/darkmode.webp',
+      icon: 'appearanceToggleIcon',
       iconSize: 32,
+      frameSize: 64,
+      positionKey: 'appearanceToggle',
       tooltip: 'Toggle theme',
       button: {
-        size: 48,
-        borderRadius: 24,
+        size: 64,
+        borderRadius: 32,
         background: 'titleBarBg',
         color: 'titleColor',
         border: '2px solid frameStrokeColor',
@@ -87,9 +111,9 @@ export default {
     },
     footer: {
       linkingIcons: {
-        youtubeIcon:  { width: 32, height: 32, margin: 4, source: '/sources/ico/main/footer/utub.svg', url: 'https://youtube.com/@lbee2012' },
-        linkedinIcon: { width: 32, height: 32, margin: 4, source: '/sources/ico/main/footer/edin.svg', url: 'https://linkedin.com/in/lbee2012' },
-        githubIcon:   { width: 32, height: 32, margin: 4, source: '/sources/ico/main/footer/gubhit.svg', url: 'https://github.com/lbee2012' },
+        youtubeIcon:  { width: 32, height: 40, margin: 8, source: 'footerYoutubeIcon', url: 'https://youtube.com/@lbee2012' },
+        linkedinIcon: { width: 32, height: 32, margin: 8, source: 'footerLinkedinIcon', url: 'https://linkedin.com/in/lbee2012' },
+        githubIcon:   { width: 32, height: 32, margin: 8, source: 'footerGithubIcon', url: 'https://github.com/lbee2012' },
       },
       description: {
         text: '© 2025 Long Hoang (Eric Hy)',
@@ -109,15 +133,15 @@ export default {
   mainText: { fontSize: '5rem', fontWeight: 'bold', colors: ['homePrimaryTextColor', 'homeAccentTextColor'], marginLeft: 0 },
   supportingText: { fontSize: '2rem', fontWeight: 'bold', color: 'homeSupportingTextColor', marginTop: 20, marginBottom: 100 },
     navigationIcons: {
-      aboutIcon:  { width: 100, height: 140, margin: 10, source: '/sources/ico/home/about.webp' },
-      workIcon:   { width: 100, height: 140, margin: 10, source: '/sources/ico/home/work.webp' },
-      linksIcon:  { width: 100, height: 140, margin: 10, source: '/sources/ico/home/links.webp' },
-      faqIcon:    { width: 100, height: 140, margin: 10, source: '/sources/ico/home/faq.webp' },
-      museumIcon: { width: 100, height: 140, margin: 10, source: '/sources/ico/home/museum.webp' },
-      blogsIcon:  { width: 100, height: 140, margin: 10, source: '/sources/ico/home/blogs.webp' },
+      aboutIcon:  { width: 80, height: 120, margin: 10, source: 'homeAboutIcon' },
+      workIcon:   { width: 80, height: 120, margin: 10, source: 'homeWorkIcon' },
+      linksIcon:  { width: 80, height: 120, margin: 10, source: 'homeLinksIcon' },
+      faqIcon:    { width: 80, height: 120, margin: 10, source: 'homeFaqIcon' },
+      museumIcon: { width: 80, height: 120, margin: 10, source: 'homeMuseumIcon' },
+      blogsIcon:  { width: 80, height: 120, margin: 10, source: 'homeBlogsIcon' },
     },
-    iconImage: { width: 100, height: 100 },
-    iconLabel: { width: 100, height: 40, fontSize: '1.25rem', fontWeight: 'bold', color: 'textColor' },
+    iconImage: { width: 80, height: 80 },
+    iconLabel: { width: 80, height: 40, fontSize: '1.25rem', fontWeight: 'bold', color: 'textColor' },
   },
   about: {
     window: { width: 800, height: 600, stroke: 4, bg: 'windowBg', radius: 10, overflowHidden: true },

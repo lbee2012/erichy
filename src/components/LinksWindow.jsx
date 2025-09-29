@@ -1,9 +1,21 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import uiSpec from '../ui-spec';
+import { useTheme } from '../theme/ThemeContext';
+import { useThemedSpec } from '../theme/useThemedSpec';
+import { useDragState } from '../hooks/useDragState';
 
-export default function LinksWindow({ onClose, onOpenContact }) {
-  const cfg = uiSpec.links;
+export default function LinksWindow({
+  onClose,
+  onOpenContact,
+  onFocus = () => {},
+  zIndex = 1,
+  isOpen = true,
+  defaultPosition = { x: 0, y: 0 }
+}) {
+  const cfg = useThemedSpec('links');
+  const { palette } = useTheme();
+  const handleFocus = () => onFocus();
+  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus);
   // New order: disco, tele, edin, gubhit, mail, whasup
   const firstRowPlatforms = ['discord', 'telegram', 'linkedin'];
   const secondRowPlatforms = ['github', 'mail', 'whatsapp'];
@@ -17,16 +29,20 @@ export default function LinksWindow({ onClose, onOpenContact }) {
     const url = cfg.groupLinks[platform].url;
     if (url) window.open(url, '_blank');
   };
+  const frameStroke = cfg.window.strokeColor || palette.frameStrokeColor || '#000000';
   
   return (
-    <Draggable handle=".handle">
+    <Draggable handle=".handle" defaultPosition={defaultPosition} onStart={handleDragStart} onStop={handleDragStop}>
       <div
+        onMouseDown={handleFocus}
+        className={`window-frame ${isDragging ? 'window-dragging' : ''} ${isOpen ? 'window-open' : 'window-closed'}`}
         style={{
           position: 'absolute',
           width: cfg.window.width + 'px',
           height: cfg.window.height + 'px',
+          zIndex,
           backgroundColor: cfg.window.bg,
-          border: cfg.window.stroke + 'px solid black',
+          border: cfg.window.stroke + 'px solid ' + frameStroke,
           borderRadius: cfg.window.radius + 'px',
           display: 'flex',
           flexDirection: 'column',
@@ -43,7 +59,7 @@ export default function LinksWindow({ onClose, onOpenContact }) {
             paddingRight: cfg.titleBar.padding[1] + 'px',
             paddingBottom: cfg.titleBar.padding[2] + 'px',
             paddingLeft: cfg.titleBar.padding[3] + 'px',
-            borderBottom: '4px solid black',
+            borderBottom: '4px solid ' + frameStroke,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',

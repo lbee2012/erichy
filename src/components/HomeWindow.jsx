@@ -1,8 +1,11 @@
 import React from 'react';
-import uiSpec from '../ui-spec';
+import { useTheme } from '../theme/ThemeContext';
+import { useThemedSpec } from '../theme/useThemedSpec';
 
 export default function HomeWindow({ onOpen }) {
-  const cfg = uiSpec.home;
+  const cfg = useThemedSpec('home');
+  const { palette } = useTheme();
+  const frameStroke = cfg.window.strokeColor || palette.frameStrokeColor || '#000000';
   return (
     <div style={{ position: 'fixed', top: '0px', left: '0px', right: '0px', bottom: '0px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div
@@ -11,7 +14,7 @@ export default function HomeWindow({ onOpen }) {
           width: cfg.window.width + 'px',
           height: cfg.window.height + 'px',
           backgroundColor: cfg.window.bg,
-          border: cfg.window.stroke + 'px solid black',
+          border: cfg.window.stroke + 'px solid ' + frameStroke,
           borderRadius: cfg.window.radius + 'px',
           boxSizing: 'border-box',
           overflow: 'hidden',
@@ -27,7 +30,7 @@ export default function HomeWindow({ onOpen }) {
             paddingRight: cfg.titleBar.padding[1] + 'px',
             paddingBottom: cfg.titleBar.padding[2] + 'px',
             paddingLeft: cfg.titleBar.padding[3] + 'px',
-            borderBottom: '4px solid black',
+            borderBottom: '4px solid ' + frameStroke,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-start',
@@ -72,9 +75,9 @@ export default function HomeWindow({ onOpen }) {
               color: cfg.mainText.colors[0]
             }}
           >
-            <span>hi!&nbsp;</span>
+            <span>hey!&nbsp;</span>
             <span style={{ color: cfg.mainText.colors[1], marginLeft: cfg.mainText.marginLeft + 'px' }}>
-              i'm eric
+              it's eric
             </span>
           </div>
 
@@ -87,7 +90,7 @@ export default function HomeWindow({ onOpen }) {
               color: cfg.supportingText.color
             }}
           >
-            technology enthusiasm
+            technology enthusiasm.
           </div>
 
           {/* icon groups */}

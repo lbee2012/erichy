@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import uiSpec from '../src/ui-spec';
 import HomeWindow from '../src/components/HomeWindow';
 import AboutWindow from '../src/components/AboutWindow';
@@ -8,11 +8,116 @@ import ContactWindow from '../src/components/ContactWindow';
 import MuseumWindow from '../src/components/MuseumWindow';
 import FaqWindow from '../src/components/FaqWindow';
 import BlogsWindow from '../src/components/BlogsWindow';
+import { useThemedSpec } from '../src/theme/useThemedSpec';
+import { useTheme } from '../src/theme/ThemeContext';
 
-// Markdown content is fetched client-side within each window component
+const WINDOW_KEYS = ['about', 'work', 'links', 'contact', 'faq', 'museum', 'blogs'];
+const ANIMATION_DURATION = 240;
 
 export default function Home() {
-  const [open, setOpen] = useState({ home: true });
+  const mainCfg = useThemedSpec('main');
+  const { toggleTheme, themeName } = useTheme();
+  const [windowLifecycle, setWindowLifecycle] = useState(() =>
+    WINDOW_KEYS.reduce((acc, key) => {
+      acc[key] = { isMounted: false, isOpen: false };
+      return acc;
+    }, {})
+  );
+  const [zStack, setZStack] = useState(['home']);
+  const closeTimers = useRef({});
+
+  const bringToFront = (key) => {
+    setZStack((prev) => {
+      const filtered = prev.filter((item) => item !== key);
+      return [...filtered, key];
+    });
+  };
+
+  const openWindow = (key) => {
+    if (!WINDOW_KEYS.includes(key)) return;
+
+    if (closeTimers.current[key]) {
+      clearTimeout(closeTimers.current[key]);
+      closeTimers.current[key] = undefined;
+    }
+
+    let shouldAnimate = true;
+    setWindowLifecycle((prev) => {
+      const current = prev[key];
+      if (current?.isMounted && current.isOpen) {
+        shouldAnimate = false;
+        return prev;
+      }
+      return {
+        ...prev,
+        [key]: { isMounted: true, isOpen: current?.isMounted ? current.isOpen : false }
+      };
+    });
+
+    if (!shouldAnimate) {
+      bringToFront(key);
+      return;
+    }
+
+    setTimeout(() => {
+      setWindowLifecycle((prev) => {
+        const current = prev[key];
+        if (!current?.isMounted || current.isOpen) {
+          return prev;
+        }
+        return { ...prev, [key]: { ...current, isOpen: true } };
+      });
+    }, 20);
+
+    bringToFront(key);
+  };
+
+  useEffect(() => {
+    const timers = closeTimers.current;
+    return () => {
+      Object.values(timers).forEach((timer) => {
+        if (timer) clearTimeout(timer);
+      });
+    };
+  }, []);
+
+  const closeWindow = (key) => {
+    if (!WINDOW_KEYS.includes(key)) return;
+
+    setWindowLifecycle((prev) => {
+      const current = prev[key];
+      if (!current?.isMounted) return prev;
+      return { ...prev, [key]: { ...current, isOpen: false } };
+    });
+
+    if (closeTimers.current[key]) {
+      clearTimeout(closeTimers.current[key]);
+    }
+
+    closeTimers.current[key] = setTimeout(() => {
+      setWindowLifecycle((prev) => {
+        const current = prev[key];
+        if (!current || current.isOpen) {
+          return prev;
+        }
+        return { ...prev, [key]: { isMounted: false, isOpen: false } };
+      });
+      setZStack((prev) => prev.filter((item) => item !== key));
+      closeTimers.current[key] = undefined;
+    }, ANIMATION_DURATION);
+  };
+
+  const handleFocus = (key) => {
+    bringToFront(key);
+  };
+
+  const getZIndex = (key) => {
+    const index = zStack.indexOf(key);
+    return 100 + (index === -1 ? 0 : index);
+  };
+
+  const defaultPositions = uiSpec.opening || {};
+  const getDefaultPosition = (key) => defaultPositions[key] || { x: 0, y: 0 };
 
   return (
     <>
@@ -24,7 +129,7 @@ export default function Home() {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundImage: `url(${uiSpec.main.backgroundImage})`,
+          backgroundImage: `url(${mainCfg.backgroundImage})`,
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
@@ -32,38 +137,113 @@ export default function Home() {
           zIndex: -1
         }}
       />
-  <main style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent' }}>
-        {open.home && (
-          <HomeWindow onOpen={key => setOpen(o => ({ ...o, [key]: true }))} />
+      <main style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent', color: mainCfg?.textColor }}>
+        {mainCfg?.darkMode?.enabled && (
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={mainCfg.darkMode.tooltip || 'Toggle theme'}
+            style={{
+              position: 'fixed',
+              top: 20,
+              right: 20,
+              width: (mainCfg.darkMode.button?.size || 48) + 'px',
+              height: (mainCfg.darkMode.button?.size || 48) + 'px',
+              borderRadius: (mainCfg.darkMode.button?.borderRadius || 24) + 'px',
+              background: mainCfg.darkMode.button?.background || 'rgba(255,255,255,0.85)',
+              color: mainCfg.darkMode.button?.color || '#000000',
+              border: mainCfg.darkMode.button?.border || 'none',
+              boxShadow: mainCfg.darkMode.button?.shadow || 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'transform 0.12s ease'
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+          >
+            <img
+              src={mainCfg.darkMode.icon}
+              alt="Theme icon"
+              style={{
+                width: (mainCfg.darkMode.iconSize || 28) + 'px',
+                height: (mainCfg.darkMode.iconSize || 28) + 'px',
+                filter: themeName === 'dark' ? 'invert(1)' : 'none'
+              }}
+            />
+          </button>
         )}
-        {open.about && (
-          <AboutWindow onClose={() => setOpen(o => ({ ...o, about: false }))} />
-        )}
-        {open.work && (
-          <WorkWindow onClose={() => setOpen(o => ({ ...o, work: false }))} />
-        )}
-        {open.links && (
-          <LinksWindow 
-            onClose={() => setOpen(o => ({ ...o, links: false }))}
-            onOpenContact={() => setOpen(o => ({ ...o, contact: true }))}
+        <HomeWindow onOpen={openWindow} />
+        {windowLifecycle.about.isMounted && (
+          <AboutWindow
+            onClose={() => closeWindow('about')}
+            onFocus={() => handleFocus('about')}
+            zIndex={getZIndex('about')}
+            isOpen={windowLifecycle.about.isOpen}
+            defaultPosition={getDefaultPosition('about')}
           />
         )}
-        {open.contact && (
-          <ContactWindow onClose={() => setOpen(o => ({ ...o, contact: false }))} />
+        {windowLifecycle.work.isMounted && (
+          <WorkWindow
+            onClose={() => closeWindow('work')}
+            onFocus={() => handleFocus('work')}
+            zIndex={getZIndex('work')}
+            isOpen={windowLifecycle.work.isOpen}
+            defaultPosition={getDefaultPosition('work')}
+          />
         )}
-        {open.museum && (
-          <MuseumWindow onClose={() => setOpen(o => ({ ...o, museum: false }))} />
+        {windowLifecycle.links.isMounted && (
+          <LinksWindow
+            onClose={() => closeWindow('links')}
+            onOpenContact={() => openWindow('contact')}
+            onFocus={() => handleFocus('links')}
+            zIndex={getZIndex('links')}
+            isOpen={windowLifecycle.links.isOpen}
+            defaultPosition={getDefaultPosition('links')}
+          />
         )}
-        {open.faq && (
-          <FaqWindow onClose={() => setOpen(o => ({ ...o, faq: false }))} />
+        {windowLifecycle.contact.isMounted && (
+          <ContactWindow
+            onClose={() => closeWindow('contact')}
+            onFocus={() => handleFocus('contact')}
+            zIndex={getZIndex('contact')}
+            isOpen={windowLifecycle.contact.isOpen}
+            defaultPosition={getDefaultPosition('contact')}
+          />
         )}
-        {open.blogs && (
-          <BlogsWindow onClose={() => setOpen(o => ({ ...o, blogs: false }))} />
+        {windowLifecycle.museum.isMounted && (
+          <MuseumWindow
+            onClose={() => closeWindow('museum')}
+            onFocus={() => handleFocus('museum')}
+            zIndex={getZIndex('museum')}
+            isOpen={windowLifecycle.museum.isOpen}
+            defaultPosition={getDefaultPosition('museum')}
+          />
+        )}
+        {windowLifecycle.faq.isMounted && (
+          <FaqWindow
+            onClose={() => closeWindow('faq')}
+            onFocus={() => handleFocus('faq')}
+            zIndex={getZIndex('faq')}
+            isOpen={windowLifecycle.faq.isOpen}
+            defaultPosition={getDefaultPosition('faq')}
+          />
+        )}
+        {windowLifecycle.blogs.isMounted && (
+          <BlogsWindow
+            onClose={() => closeWindow('blogs')}
+            onFocus={() => handleFocus('blogs')}
+            zIndex={getZIndex('blogs')}
+            isOpen={windowLifecycle.blogs.isOpen}
+            defaultPosition={getDefaultPosition('blogs')}
+          />
         )}
         {/* Footer */}
         <div style={{ position: 'fixed', bottom: 8, left: 0, right: 0, textAlign: 'center' }}>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            {Object.entries(uiSpec.main.footer.linkingIcons).map(([key, icon]) => (
+            {Object.entries(mainCfg.footer.linkingIcons).map(([key, icon]) => (
               <img key={key} src={icon.source} alt={key}
                    style={{ width: icon.width + 'px', height: icon.height + 'px', margin: icon.margin + 'px', cursor: 'pointer' }}
                    onClick={() => {
@@ -73,8 +253,8 @@ export default function Home() {
                    }} />
             ))}
           </div>
-          <div style={{ fontSize: uiSpec.main.footer.description.fontSize, color: uiSpec.main.footer.description.color, background: uiSpec.main.footer.description.bg, fontWeight: uiSpec.main.footer.description.fontWeight }}>
-            {uiSpec.main.footer.description.text}
+          <div style={{ fontSize: mainCfg.footer.description.fontSize, color: mainCfg.footer.description.color, background: mainCfg.footer.description.bg, fontWeight: mainCfg.footer.description.fontWeight }}>
+            {mainCfg.footer.description.text}
           </div>
         </div>
         {/* Dark mode button placeholder */}

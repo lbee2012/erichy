@@ -1,52 +1,34 @@
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
-import uiSpec from '../ui-spec';
+import { useTheme } from '../theme/ThemeContext';
+import { useThemedSpec } from '../theme/useThemedSpec';
+import { useDragState } from '../hooks/useDragState';
+import { DEFAULT_MUSEUM_DESCRIPTION, getMuseumDescription } from '../data/museum-text';
 
-export default function MuseumWindow({ onClose }) {
-  const cfg = uiSpec.museum;
+export default function MuseumWindow({
+  onClose,
+  onFocus = () => {},
+  zIndex = 1,
+  isOpen = true,
+  defaultPosition = { x: 0, y: 0 }
+}) {
+  const cfg = useThemedSpec('museum');
+  const { palette } = useTheme();
   const [zoomedImage, setZoomedImage] = useState(null);
-
-  // Tech device descriptions array matching the image indices
-  const techDescriptions = [
-    "my first iPad ever! this iPad was my dad's gift when I was around 3, he bought it in a autumn vacation to Japan, Akihabara - Tokyo in 2010. thanks dad\njoke of the century (Vietnamese): tao đã chém hoa quả ầm ầm khi mấy thằng cùng lứa chưa biết cái iPad là chố cái gì.\n\nthen I got an iPad 2nd gen in the next year, afterwards, 3rd generation, subconsequenly, iPad Air 1st gen.\nthe head pic was the first one, I would update some nearby pics for the later gets",
-    
-    "finally, a guy who addicted and really enjoy FreeFire, PUBG, ArenaOfValor got his first self-afford iPad, in Mar 21st. 2021, which is an 8th Generation. it took my accumulation roughly 9 millions of VND",
-    
-    "iPad Air 4. (purchased in Dec 08. 2021). this was my mom's present, for my 14th birthday. thanks mom.",
-    
-    "iPad Air 5. (in June 19. 2022). this one is also my mom's gift, for my graduation of the junior high-school. thanks mom.",
-    
-    "Acer Nitro 5. AN515-45 R86D submodel. (in June 10. 2023). first laptop ever, I'm currently utilizing it since the time, really love it although the original charger have almost been broken. 😊",
-    
-    "Attack Shark X3. lavender-base. my mom's present, for a 16th birth day. this was a gaming mouse and I've sold it after few months of using because I decided to quit games, then I really left them behind. all the achivements were memories for the moment and also the future. games, games, games. 😳",
-    
-    "ZA68 Pro. tri-modes. my mom's present of my 16th birthday. I picked it because I love the LGBT led. continue using for a while since it broke at around the 2023's July. long story. 😭",
-    
-    "Moondrop Space Travel. hell yah, I bought it follow a friend's tell, love the trab, boost, volume, noise cancle, extend vol,... WE CAN'T NOT BLAME THIS SHIT BECAUSE IT WAS HELLY PERFECT. 😎",
-    
-    "Hyperwork. Hyperone Gen 2 & Silentium. special minimal ergonomic combo, keyboard & mouse. I bought this combination some days after taking the IELTS examination at Mar 22nd. Before, I simply use enormouse gears and they take me huge spaces on the desk, so my needs change then... 😔",
-    
-    "Logitech Ergo M575s. (in May 24. 2025). after realizing my desk sucked, I actively try to find a stable-in-one-place mouse, which is the kind of 'trackball' mouse. bought it at used condition with 30% of the original price, then I give the ergonomic Silentium to my mom. my first trackball, in the long-term journey with them! 😆",
-    
-    "Seiko Watch. (Mar 14. 2025). a special gift from Mr.Agata, our japanese friend, Agata decides to give me the watch throughout my dad, while my dad visiting Japan and his friends, includes Mr.Agata.",
-    
-    "Asus Vivobook. X509FA - xxx submodel. my uncle's old laptop, I support her to pick a new one and she gives me this one. currently dual-booting Arch Linux and Windows 10 ULTRA LITE on it, I mainly use it for writing something, like thoughts, autobiographies...",
-    
-    "Logitech Cordless Trackman Wheel - wireless version. (July 14. 2025). this one is dead for the moment, but this model first time released in 2000. I've got an ultimately ancient trackball during the real Japan summer vacation trippin. plus one for eric's trackball collection, hell yeh. 🏆",
-    
-    "ProtoArc EM01 - white & RGB ring (July 14. 2025). this was a very special one because its mother company, protoarc, did not produce this variant of EM01 anymore. Another extremely special trackball I got during Japan summer trip. 😎",
-    
-    "HHKB Professional HYBRID Type-S (Snow). (July 06. 2025). my first HHKB ever! I've dreamed for a HHKB keyboard for a while, mainly because of the notorious layout in any keyboard-tech forums. I thought it was customizable (hotswapable) but I was wrong, I did not read the information about Topre-switches since I bought it home =)). However, my keyboard nowadays is the limited edition. 😳\n\nif uguys pay more attention, will see the special point in the general looking at keycaps. I've mailed PFU for this issue reporting and they said they would send me a new one (not for replacement but the whole brand new HHKB by the same variant).",
-    
-    "LG Monitor - 23EA63. (July 05. 2025). quite an old monitor, first released might be in 2013, Agata gave it to me, the monitor has travelled for more than 5000 kilometers from Japan to Vietnam."
-  ];
+  const handleFocus = () => onFocus();
+  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus);
+  const frameStroke = cfg.window.strokeColor || palette.frameStrokeColor || '#000000';
+  const backgroundOverlay = cfg.backgroundOverlay || 'rgba(0, 0, 0, 0)';
+  const backgroundImageValue = cfg.backgroundImage
+    ? `linear-gradient(${backgroundOverlay}, ${backgroundOverlay}), url(${cfg.backgroundImage})`
+    : undefined;
 
   const handleImageClick = (imageIndex, imageSrc) => {
-    setZoomedImage({
-      index: imageIndex,
-      src: imageSrc,
-      description: techDescriptions[imageIndex - 1] // Convert to 0-based index
-    });
+    if (!imageSrc) return;
+
+    const deviceKey = `device${imageIndex}`;
+    const description = getMuseumDescription(deviceKey) || DEFAULT_MUSEUM_DESCRIPTION;
+    setZoomedImage({ index: imageIndex, src: imageSrc, description });
   };
 
   const handleModalClose = () => {
@@ -55,14 +37,21 @@ export default function MuseumWindow({ onClose }) {
 
   return (
     <>
-      <Draggable handle=".handle">
+      <Draggable handle=".handle" defaultPosition={defaultPosition} onStart={handleDragStart} onStop={handleDragStop}>
         <div
+          onMouseDown={handleFocus}
+          className={`window-frame ${isDragging ? 'window-dragging' : ''} ${isOpen ? 'window-open' : 'window-closed'}`}
           style={{
             position: 'absolute',
             width: cfg.window.width + 'px',
             height: cfg.window.height + 'px',
+            zIndex,
             backgroundColor: cfg.window.bg,
-            border: cfg.window.stroke + 'px solid black',
+            backgroundImage: backgroundImageValue,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            border: cfg.window.stroke + 'px solid ' + frameStroke,
             borderRadius: cfg.window.radius + 'px',
             display: 'flex',
             flexDirection: 'column',
@@ -79,7 +68,7 @@ export default function MuseumWindow({ onClose }) {
             paddingRight: cfg.titleBar.padding[1] + 'px',
             paddingBottom: cfg.titleBar.padding[2] + 'px',
             paddingLeft: cfg.titleBar.padding[3] + 'px',
-            borderBottom: '4px solid black',
+            borderBottom: '4px solid ' + frameStroke,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -310,26 +299,53 @@ export default function MuseumWindow({ onClose }) {
                 gap: cfg.techs.deviceImage.spacing + 'px'
               }}
             >
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((num) => (
-                <img
-                  key={num}
-                  src={cfg.techs[`device${num}`]?.source}
-                  alt={`Device ${num}`}
-                  style={{
-                    width: cfg.techs.deviceImage.width + 'px',
-                    height: cfg.techs.deviceImage.height + 'px',
-                    backgroundColor: cfg.techs.deviceImage.backgroundColor,
-                    borderRadius: cfg.techs.deviceImage.borderRadius + 'px',
-                    objectFit: 'cover',
-                    cursor: cfg.techs.deviceImage.cursor,
-                    transition: 'transform 0.2s ease',
-                    willChange: 'transform'
-                  }}
-                  onClick={() => handleImageClick(num, cfg.techs[`device${num}`]?.source)}
-                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                />
-              ))}
+              {Array.from({ length: cfg.techs.totalSlots || 16 }, (_, index) => index + 1).map((num) => {
+                const deviceKey = `device${num}`;
+                const deviceConfig = cfg.techs[deviceKey] || {};
+                const source = deviceConfig.source;
+                const hasImage = Boolean(source);
+                return (
+                  <div
+                    key={deviceKey}
+                    style={{
+                      width: cfg.techs.deviceImage.width + 'px',
+                      height: cfg.techs.deviceImage.height + 'px',
+                      backgroundColor: cfg.techs.deviceImage.backgroundColor,
+                      borderRadius: cfg.techs.deviceImage.borderRadius + 'px',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: hasImage ? cfg.techs.deviceImage.cursor : 'default',
+                      transition: 'transform 0.2s ease',
+                      willChange: hasImage ? 'transform' : 'auto'
+                    }}
+                    onClick={() => handleImageClick(num, source)}
+                    onMouseEnter={(e) => {
+                      if (hasImage) e.currentTarget.style.transform = 'scale(1.05)';
+                    }}
+                    onMouseLeave={(e) => {
+                      if (hasImage) e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    {hasImage ? (
+                      <img
+                        src={source}
+                        alt={`Device ${num}`}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    ) : (
+                      <span style={{ color: palette.placeholderTextColor || '#555555', fontSize: '0.85rem', textAlign: 'center', padding: '0 12px' }}>
+                        coming soon
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 

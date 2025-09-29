@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
-import uiSpec from '../ui-spec';
+import { useTheme } from '../theme/ThemeContext';
+import { useThemedSpec } from '../theme/useThemedSpec';
+import { useDragState } from '../hooks/useDragState';
 
-export default function FaqWindow({ onClose }) {
-  const cfg = uiSpec.faq;
+export default function FaqWindow({
+  onClose,
+  onFocus = () => {},
+  zIndex = 1,
+  isOpen = true,
+  defaultPosition = { x: 0, y: 0 }
+}) {
+  const cfg = useThemedSpec('faq');
+  const { palette } = useTheme();
   const [expandedItems, setExpandedItems] = useState({});
+
+  const handleFocus = () => onFocus();
+  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus);
+  const frameStroke = cfg.window.strokeColor || palette.frameStrokeColor || '#000000';
 
   const toggleItem = (index) => {
     setExpandedItems(prev => ({
@@ -93,14 +106,17 @@ export default function FaqWindow({ onClose }) {
   ];
 
   return (
-    <Draggable handle=".handle">
+    <Draggable handle=".handle" defaultPosition={defaultPosition} onStart={handleDragStart} onStop={handleDragStop}>
       <div
+        onMouseDown={handleFocus}
+        className={`window-frame ${isDragging ? 'window-dragging' : ''} ${isOpen ? 'window-open' : 'window-closed'}`}
         style={{
           position: 'absolute',
           width: cfg.window.width + 'px',
           height: cfg.window.height + 'px',
+          zIndex,
           backgroundColor: cfg.window.bg,
-          border: cfg.window.stroke + 'px solid black',
+          border: cfg.window.stroke + 'px solid ' + frameStroke,
           borderRadius: cfg.window.radius + 'px',
           display: 'flex',
           flexDirection: 'column',
@@ -117,7 +133,7 @@ export default function FaqWindow({ onClose }) {
             paddingRight: cfg.titleBar.padding[1] + 'px',
             paddingBottom: cfg.titleBar.padding[2] + 'px',
             paddingLeft: cfg.titleBar.padding[3] + 'px',
-            borderBottom: '4px solid black',
+            borderBottom: '4px solid ' + frameStroke,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -196,7 +212,7 @@ export default function FaqWindow({ onClose }) {
                     paddingBottom: cfg.questionItem.padding[2] + 'px',
                     paddingLeft: cfg.questionItem.padding[3] + 'px',
                     borderRadius: expandedItems[index] ? '5px 5px 0 0' : cfg.questionItem.borderRadius + 'px',
-                    border: '2px solid ' + cfg.questionItem.backgroundColor,
+                    border: cfg.questionItem.border,
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',

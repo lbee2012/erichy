@@ -9,12 +9,13 @@ export default function BlogsWindow({
   onFocus = () => {},
   zIndex = 1,
   isOpen = true,
-  defaultPosition = { x: 0, y: 0 }
+  defaultPosition = { x: 0, y: 0 },
+  onDragStop = () => {}
 }) {
   const cfg = useThemedSpec('blogs');
   const { palette } = useTheme();
   const handleFocus = () => onFocus();
-  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus);
+  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus, onDragStop);
   const frameStroke = cfg.window.strokeColor || palette.frameStrokeColor || '#000000';
   return (
     <Draggable handle=".handle" defaultPosition={defaultPosition} onStart={handleDragStart} onStop={handleDragStop}>

@@ -1,15 +1,13 @@
-hi i'm lbee, a crazy guy. and i...
-- don't use social medias (except gubhit and linkedin).
-- crazy about tracking // the habits
-- believe in the things-i-do would reflect my personality!
+hi i'm eric // lbee // b // long. a crazy guy. and i...
+- don't use social media (except discord & linkedin).
+- crazy about tracking the habits
+- believe in things-i-do would reflect my personality!
 
 ### EDUCATIONAL BACKGROUND
-- **i'm broke**
-- FPT PolySchool (2022 - 2026) on Software Engineering.
-- FPT University - Hoa Lac campus (2026 - 2028) on Computer Science.
+- Bachelor of Science in Computer Science (this's about the future).
 
-### OTHERS INTERESTS
-- reading books (mostly self-help and psychology).
+### OTHER INTERESTS
+- reading books w/. self-help & psychology.
 - exploring new tech stacks.
 - learning new things, currently: 
     - Japanese
@@ -17,5 +15,6 @@ hi i'm lbee, a crazy guy. and i...
     - self-care
 
 ### LANGUAGE PROFICIENCY
-- modest **English** (IELTS - 6.0).
-- tiny on Japanese. (very pre-school ability).
+- modest **English** // IELTS - 6.0.
+- natively **Vietnamese**.
+- tiny on **Japanese** // pre-school ability.

@@ -10,13 +10,14 @@ export default function MuseumWindow({
   onFocus = () => {},
   zIndex = 1,
   isOpen = true,
-  defaultPosition = { x: 0, y: 0 }
+  defaultPosition = { x: 0, y: 0 },
+  onDragStop = () => {}
 }) {
   const cfg = useThemedSpec('museum');
   const { palette } = useTheme();
   const [zoomedImage, setZoomedImage] = useState(null);
   const handleFocus = () => onFocus();
-  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus);
+  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus, onDragStop);
   const frameStroke = cfg.window.strokeColor || palette.frameStrokeColor || '#000000';
   const backgroundOverlay = cfg.backgroundOverlay || 'rgba(0, 0, 0, 0)';
   const backgroundImageValue = cfg.backgroundImage

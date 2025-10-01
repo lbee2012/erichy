@@ -9,12 +9,13 @@ export default function WorkWindow({
   onFocus = () => {},
   zIndex = 1,
   isOpen = true,
-  defaultPosition = { x: 0, y: 0 }
+  defaultPosition = { x: 0, y: 0 },
+  onDragStop = () => {}
 }) {
   const cfg = useThemedSpec('work');
   const { palette } = useTheme();
   const handleFocus = () => onFocus();
-  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus);
+  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus, onDragStop);
   const frameStroke = cfg.window.strokeColor || palette.frameStrokeColor || '#000000';
 
   return (
@@ -320,7 +321,9 @@ export default function WorkWindow({
               <ul style={{
                 margin: cfg.development.descriptionText.margin + 'px',
                 paddingLeft: cfg.development.descriptionText.paddingLeft + 'px',
-                lineHeight: cfg.development.descriptionText.lineHeight
+                lineHeight: cfg.development.descriptionText.lineHeight,
+                fontSize: cfg.development.descriptionText.fontSize,
+                color: cfg.development.descriptionText.color
               }}>
                 <li>archy - this website! &lt;3</li>
                 <li>that's it for the moment, some projects that i'm currently working on will be releasing soon!</li>

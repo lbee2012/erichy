@@ -9,14 +9,15 @@ export default function FaqWindow({
   onFocus = () => {},
   zIndex = 1,
   isOpen = true,
-  defaultPosition = { x: 0, y: 0 }
+  defaultPosition = { x: 0, y: 0 },
+  onDragStop = () => {}
 }) {
   const cfg = useThemedSpec('faq');
   const { palette } = useTheme();
   const [expandedItems, setExpandedItems] = useState({});
 
   const handleFocus = () => onFocus();
-  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus);
+  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus, onDragStop);
   const frameStroke = cfg.window.strokeColor || palette.frameStrokeColor || '#000000';
 
   const toggleItem = (index) => {
@@ -30,77 +31,80 @@ export default function FaqWindow({
     {
       question: "WHO is me?",
       answer: [
-        "• origin: a vietnamese guy",
-        "• birthday: dec-20. 2007",
-        "  - i often joke as i borned in '2012', because, as vietnam we mainly use DD/MM/YYYY, so my birthday would be wrote as '20/12'",
-        "• gender: undetermined yet"
+        "- origin: vietnamese guy",
+        "- birthday: dec-20. 2007",
+        "  - i often joke as i borned in '2012' // as vietnamese, we mostly/officially use DD/MM/YYYY // ma dob would be writen as '20/12'",
+        "- gender: undetermined yet"
       ]
     },
     {
       question: "WHERE my location?",
       answer: [
-        "• currently living: Hanoi city - Vietnam's capital",
-        "• originally from:",
-        "  - Giao Tien, Nam Dinh province",
-        "  - Kien Xuong, Thai Binh province"
+        "- currently living: Hanoi City - Vietnam's Capital",
+        "- ordinary from:",
+        "  - Hoanh Nha, Giao Thuy, Giao Tien, Nam Dinh prc.",
+        "  - Kien Xuong, Thai Binh prc."
       ]
     },
     {
       question: "WHICH my degrees?",
       answer: [
-        "• 2022 - 2026: Software Engineering",
-        "  (FPT PolySchool & FPT Polytechnic)",
-        "• 2026 - 20xx (near future or far.. idk): ???"
+        "- FPT PolySchool // 2022 - 2026 // Software Engineering.",
+          "- affiliated w/. FPT University.",
+          "- GPA: 3.85/4.0 // top 10%",
+        "- FPT University - Hoa Lac camp // 2026 - 2028 // Computer Science",
+        "- Master? // definitely i would! but unsured y:?",
       ]
     },
     {
       question: "WHY this website?",
       answer: [
-        "• inspired by Shan (youtube.com/sharyap).",
-        "• her personal site (sharyap.com) is sooo adorable!",
+        "- inspired by Shar // youtube.com/sharyap.",
+        "- sharyap.com is sooo adorable!",
         "  <3"
       ]
     },
     {
       question: "WHAT things involve?",
       answer: [
-        "• check them out urself!",
-        "  - home (main directory)",
-        "  - about (me, not/and u <3)",
-        "  - work (mine!)",
-        "  - faq (no one asked?)",
-        "  - links (my social!)",
-        "  - museum (cloud-hosting exhibition!)"
+        "- home // main dir",
+        "- about // me, not/and u <3",
+        "- work // mine!",
+        "- faq // no one asked. sorry",
+        "- links // my connections",
+        "- museum // cloud-hosting exhibition",
+        "- blogs // abt my thghts, wrts, life",
       ]
     },
     {
       question: "are you grieay?",
       answer: [
-        "• ..yea... i'm not sure :?"
+        "- ..yea... i'm not sure :?"
       ]
     },
     {
       question: "bro u r so skibidi!",
       answer: [
-        "• i bili: ok -_- :/"
+        "- i bili: ok -_- :/"
       ]
     },
     {
       question: "wenomechainsama?",
       answer: [
-        "• hell nah :("
+        "- hell nah :("
       ]
     },
     {
       question: "gegagedigedagedago?",
       answer: [
-        "• everyday i'm shuffling!"
+        "- everyday i'm shuffling!"
       ]
     },
     {
       question: "do you btw!?",
       answer: [
-        "• absolutely! btw i use arch."
+        "- absolutely! btw i use arch.",
+        "- ma daily-drive since 25.Sep.",
       ]
     }
   ];

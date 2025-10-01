@@ -6,16 +6,17 @@ import { useDragState } from '../hooks/useDragState';
 
 export default function LinksWindow({
   onClose,
-  onOpenContact,
+  onOpenContact = () => {},
   onFocus = () => {},
   zIndex = 1,
   isOpen = true,
-  defaultPosition = { x: 0, y: 0 }
+  defaultPosition = { x: 0, y: 0 },
+  onDragStop = () => {}
 }) {
   const cfg = useThemedSpec('links');
   const { palette } = useTheme();
   const handleFocus = () => onFocus();
-  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus);
+  const { isDragging, handleDragStart, handleDragStop } = useDragState(handleFocus, onDragStop);
   // New order: disco, tele, edin, gubhit, mail, whasup
   const firstRowPlatforms = ['discord', 'telegram', 'linkedin'];
   const secondRowPlatforms = ['github', 'mail', 'whatsapp'];

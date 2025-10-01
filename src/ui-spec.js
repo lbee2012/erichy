@@ -1,6 +1,5 @@
 export default {
-  opening: {
-    main: { x: 0, y: 0 },
+  positioning: {
     appearanceToggle: { x: 20, y: 20 },
     about: { x: -160, y: 340 },
     work: { x: 360, y: -140 },
@@ -13,27 +12,27 @@ export default {
   theme: {
     light: {
       mainBg: 'transparent',
-      windowBg: '#FFFBE3',
-      titleBarBg: '#FFD992',
-      titleColor: '#333333',
+      windowBg: '#F9F5D7',
+      titleBarBg: '#EBDBB2',
+      titleColor: '#000000',
       textColor: '#333333',
       accentColor: '#32117C',
-      dividerColor: '#979797',
-      frameStrokeColor: '#000000',
+      dividerColor: '#675F56',
+      frameStrokeColor: '#675F56',
       footerTextColor: '#333333',
       footerBg: 'transparent',
-      subtleBg: '#DBDBDB',
+      subtleBg: '#EBDBB2',
       cardSurface: '#FFFFFF',
-      buttonBg: '#FFD992',
+      buttonBg: '#EBDBB2',
       buttonTextColor: '#333333',
-      buttonBorderColor: '#333333',
+      buttonBorderColor: '#675F56',
       placeholderTextColor: '#333333',
       homePrimaryTextColor: '#333333',
       homeAccentTextColor: '#32117C',
       homeSupportingTextColor: '#333333',
       aboutQuoteColor: '#333333',
       faqQuestionBackground: '#DBDBDB',
-      faqQuestionBorderColor: '#333333',
+      faqQuestionBorderColor: '#DBDBDB',
       mainBackgroundImage: '/sources/img/main/lighten.webp',
       museumBackgroundImage: '/sources/img/museum/sunrise.webp',
       museumBackgroundOverlay: 'rgba(255, 255, 255, 0.6)',
@@ -61,7 +60,7 @@ export default {
       frameStrokeColor: '#FFFFFF',
       footerTextColor: '#EEEEEE',
       footerBg: 'transparent',
-      subtleBg: '#24354F',
+      subtleBg: '#1A2C44',
       cardSurface: '#152334',
       buttonBg: '#325387',
       buttonTextColor: '#FFFFFF',
@@ -111,9 +110,9 @@ export default {
     },
     footer: {
       linkingIcons: {
-        youtubeIcon:  { width: 32, height: 40, margin: 8, source: 'footerYoutubeIcon', url: 'https://youtube.com/@lbee2012' },
-        linkedinIcon: { width: 32, height: 32, margin: 8, source: 'footerLinkedinIcon', url: 'https://linkedin.com/in/lbee2012' },
-        githubIcon:   { width: 32, height: 32, margin: 8, source: 'footerGithubIcon', url: 'https://github.com/lbee2012' },
+        youtubeIcon:  { width: 32, height: 32, margin: 4, source: 'footerYoutubeIcon', url: 'https://youtube.com/@lbee2012/' },
+        linkedinIcon: { width: 32, height: 32, margin: 4, source: 'footerLinkedinIcon', url: 'https://linkedin.com/in/lbee2012/' },
+        githubIcon:   { width: 32, height: 32, margin: 4, source: 'footerGithubIcon', url: 'https://github.com/lbee2012/' },
       },
       description: {
         text: '© 2025 Long Hoang (Eric Hy)',
@@ -161,7 +160,10 @@ export default {
     titleText: { fontSize: '1.5rem', fontWeight: 'bold', color: 'titleColor' },
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: 'titleColor' },
     contentArea: { height: 540, padding: [20, 40, 0, 40] },
-    arch: { sectionTitle: { fontSize: '1.25rem', fontWeight: 'bold', color: 'titleColor', margin: [0, 0, 0, 0] }, contentArea: { padding: [20, 20, 40, 20] }, spacing: { marginBottom: 20 } },
+    arch: { 
+      sectionTitle: { fontSize: '1.25rem', fontWeight: 'bold', color: 'titleColor', margin: [0, 0, 0, 0] }, 
+      contentArea: { padding: [20, 20, 40, 20] }, 
+      spacing: { marginBottom: 20 } },
     aep: {
       sectionTitle: { fontSize: '1.25rem', fontWeight: 'bold', color: 'titleColor', margin: [0, 0, 0, 0] },
       contentArea: { padding: [20, 20, 40, 20] },
@@ -177,7 +179,12 @@ export default {
       },
       playbackSettings: { autoplay: false, muted: true, loop: false, controls: true, preload: 'metadata', objectFit: 'cover' }
     },
-    development: { sectionTitle: { fontSize: '1.25rem', fontWeight: 'bold', color: 'titleColor', margin: [0, 0, 0, 0] }, contentArea: { padding: [20, 20, 40, 20] }, descriptionText: { margin: 0, paddingLeft: 20 }, repositoryLink: { marginTop: 10, fontSize: '1rem', color: 'textColor' } }
+    development: { 
+      sectionTitle: { fontSize: '1.25rem', fontWeight: 'bold', color: 'titleColor', margin: [0, 0, 0, 0] }, 
+      contentArea: { padding: [20, 20, 40, 20] }, 
+      descriptionText: { margin: 0, paddingLeft: 20, fontSize: '1rem', color: 'textColor' }, 
+      repositoryLink: { marginTop: 10, fontSize: '1rem', color: 'textColor' } 
+    }
   },
   links: {
     window: { width: 400, height: 400, stroke: 4, bg: 'windowBg', radius: 10, overflowHidden: true },
@@ -186,12 +193,12 @@ export default {
     closeButton: { fontSize: '1.5rem', fontWeight: 'bold', color: 'titleColor' },
     contentArea: { height: 340, margin: [5, 20, 5, 20] },
     groupLinks: {
-      discord:  { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/discord.webp',  url: 'https://discord.gg/jvscholz' },
-      telegram: { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/telegram.webp', url: 'https://t.me/lbee2012' },
+      discord:  { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/discord.webp',  url: 'https://discord.gg/jvscholz/' },
+      telegram: { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/telegram.webp', url: 'https://t.me/lbee2012/' },
       linkedin: { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/linkedin.webp', url: 'https://linkedin.com/in/lbee2012/' },
       github:   { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/github.webp',   url: 'https://github.com/lbee2012/' },
       mail:     { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/email.webp' },
-      whatsapp: { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/whatsapp.webp', url: 'https://wa.me/84947448325' },
+      whatsapp: { width: 100, height: 120, padding: [10, 5, 0, 5], source: '/sources/ico/links/whatsapp.webp', url: 'https://wa.me/84947448325/' },
     },
     groupIcon: { width: 80, height: 80 },
     groupLabel: { width: 100, height: 40, fontSize: '1.25rem', fontWeight: 'bold', color: 'textColor' },
@@ -272,6 +279,10 @@ export default {
       device18: { source: '/sources/img/museum/tech/device18/ibm_r51e.webp' },
       device19: { source: '/sources/img/museum/tech/device19/unknown.webp' },
       device20: { source: '/sources/img/museum/tech/device20/unknown.webp' },
+      device21: { source: '/sources/img/museum/tech/device21/unknown.webp' },
+      device22: { source: '/sources/img/museum/tech/device22/unknown.webp' },
+      device23: { source: '/sources/img/museum/tech/device23/unknown.webp' },
+      device24: { source: '/sources/img/museum/tech/device24/unknown.webp' },
     },
     diy: { sectionTitle: { fontSize: '1.25rem', fontWeight: 'bold', color: 'titleColor' } },
     achievements: { sectionTitle: { fontSize: '1.25rem', fontWeight: 'bold', color: 'titleColor' }, gameFrame1: { width: 880, height: 225, marginBottom: 40 }, gameFrame2: { width: 880, height: 208 }, gameImage1: { width: 300, height: 225, borderRadius: 10, source: '/sources/img/museum/game/free_fire.webp' }, gameImage2: { width: 300, height: 208, borderRadius: 10, source: '/sources/img/museum/game/arena_of_valor.webp' }, gameTitle: { fontSize: '1.25rem', fontWeight: 'bold', color: 'titleColor', margin: [20, 0, 5, 40] }, gameDescription: { fontSize: '1rem', fontWeight: 'normal', color: 'textColor', margin: [5, 0, 0, 40] } },

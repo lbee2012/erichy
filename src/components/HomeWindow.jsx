@@ -90,7 +90,7 @@ export default function HomeWindow({ onOpen }) {
               color: cfg.supportingText.color
             }}
           >
-            technology enthusiasm.
+            technology enthusiasm // 40%
           </div>
 
           {/* icon groups */}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import uiSpec from '../src/ui-spec';
 import HomeWindow from '../src/components/HomeWindow';
 import AboutWindow from '../src/components/AboutWindow';
@@ -13,10 +13,12 @@ import { useTheme } from '../src/theme/ThemeContext';
 
 const WINDOW_KEYS = ['about', 'work', 'links', 'contact', 'faq', 'museum', 'blogs'];
 const ANIMATION_DURATION = 240;
+const WINDOW_POSITION_STORAGE_KEY = 'erichy-window-positions';
 
 export default function Home() {
   const mainCfg = useThemedSpec('main');
   const { toggleTheme } = useTheme();
+  const basePositions = useMemo(() => uiSpec.positioning || {}, []);
   const [windowLifecycle, setWindowLifecycle] = useState(() =>
     WINDOW_KEYS.reduce((acc, key) => {
       acc[key] = { isMounted: false, isOpen: false };
@@ -25,6 +27,7 @@ export default function Home() {
   );
   const [zStack, setZStack] = useState(['home']);
   const closeTimers = useRef({});
+  const [windowPositions, setWindowPositions] = useState(() => ({ ...basePositions }));
 
   const bringToFront = (key) => {
     setZStack((prev) => {
@@ -116,8 +119,55 @@ export default function Home() {
     return 100 + (index === -1 ? 0 : index);
   };
 
-  const defaultPositions = uiSpec.opening || {};
-  const getDefaultPosition = (key) => defaultPositions[key] || { x: 0, y: 0 };
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const raw = window.sessionStorage.getItem(WINDOW_POSITION_STORAGE_KEY);
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        setWindowPositions((prev) => ({ ...prev, ...parsed }));
+      } catch (error) {
+        console.warn('Failed to parse stored window positions', error);
+        window.sessionStorage.removeItem(WINDOW_POSITION_STORAGE_KEY);
+      }
+    }
+  }, [basePositions]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const handleBeforeUnload = () => {
+      window.sessionStorage.removeItem(WINDOW_POSITION_STORAGE_KEY);
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  const getDefaultPosition = (key) => windowPositions[key] || basePositions[key] || { x: 0, y: 0 };
+
+  const handleWindowDragStop = useCallback((key, data) => {
+    setWindowPositions((prev) => {
+      const next = { ...prev, [key]: { x: data.x, y: data.y } };
+      if (typeof window !== 'undefined') {
+        const storable = WINDOW_KEYS.reduce((acc, windowKey) => {
+          if (next[windowKey]) {
+            acc[windowKey] = next[windowKey];
+          }
+          return acc;
+        }, {});
+        window.sessionStorage.setItem(WINDOW_POSITION_STORAGE_KEY, JSON.stringify(storable));
+      }
+      return next;
+    });
+  }, []);
   const togglePositionKey = mainCfg?.darkMode?.positionKey || 'appearanceToggle';
   const togglePosition = getDefaultPosition(togglePositionKey);
   const toggleButtonCfg = mainCfg?.darkMode?.button || {};
@@ -190,6 +240,7 @@ export default function Home() {
             zIndex={getZIndex('about')}
             isOpen={windowLifecycle.about.isOpen}
             defaultPosition={getDefaultPosition('about')}
+            onDragStop={(event, data) => handleWindowDragStop('about', data)}
           />
         )}
         {windowLifecycle.work.isMounted && (
@@ -199,6 +250,7 @@ export default function Home() {
             zIndex={getZIndex('work')}
             isOpen={windowLifecycle.work.isOpen}
             defaultPosition={getDefaultPosition('work')}
+            onDragStop={(event, data) => handleWindowDragStop('work', data)}
           />
         )}
         {windowLifecycle.links.isMounted && (
@@ -209,6 +261,7 @@ export default function Home() {
             zIndex={getZIndex('links')}
             isOpen={windowLifecycle.links.isOpen}
             defaultPosition={getDefaultPosition('links')}
+            onDragStop={(event, data) => handleWindowDragStop('links', data)}
           />
         )}
         {windowLifecycle.contact.isMounted && (
@@ -218,6 +271,7 @@ export default function Home() {
             zIndex={getZIndex('contact')}
             isOpen={windowLifecycle.contact.isOpen}
             defaultPosition={getDefaultPosition('contact')}
+            onDragStop={(event, data) => handleWindowDragStop('contact', data)}
           />
         )}
         {windowLifecycle.museum.isMounted && (
@@ -227,6 +281,7 @@ export default function Home() {
             zIndex={getZIndex('museum')}
             isOpen={windowLifecycle.museum.isOpen}
             defaultPosition={getDefaultPosition('museum')}
+            onDragStop={(event, data) => handleWindowDragStop('museum', data)}
           />
         )}
         {windowLifecycle.faq.isMounted && (
@@ -236,6 +291,7 @@ export default function Home() {
             zIndex={getZIndex('faq')}
             isOpen={windowLifecycle.faq.isOpen}
             defaultPosition={getDefaultPosition('faq')}
+            onDragStop={(event, data) => handleWindowDragStop('faq', data)}
           />
         )}
         {windowLifecycle.blogs.isMounted && (
@@ -245,6 +301,7 @@ export default function Home() {
             zIndex={getZIndex('blogs')}
             isOpen={windowLifecycle.blogs.isOpen}
             defaultPosition={getDefaultPosition('blogs')}
+            onDragStop={(event, data) => handleWindowDragStop('blogs', data)}
           />
         )}
         {/* Footer */}
